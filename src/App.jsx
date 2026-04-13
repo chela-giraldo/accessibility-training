@@ -3425,9 +3425,9 @@ function ChartExample() {
             <TableBody>
               {CHART_X.map((week,wi)=>(
                 <TableRow key={wi}>
-                  <TableCell style={{ fontFamily:FONT, color:rdcUiTheme.color.text.secondary }}>{week}</TableCell>
+                  <TableCell style={{ fontFamily:FONT, color:rdcUiTheme.color.text.secondary, backgroundColor:rdcUiTheme.color.bg.primary }}>{week}</TableCell>
                   {CHART_DATA.map((c,ci)=>(
-                    <TableCell key={ci} style={{ fontFamily:FONT }}>{c.data[wi].toLocaleString()}</TableCell>
+                    <TableCell key={ci} style={{ fontFamily:FONT, backgroundColor:rdcUiTheme.color.bg.primary }}>{c.data[wi].toLocaleString()}</TableCell>
                   ))}
                 </TableRow>
               ))}

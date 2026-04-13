@@ -39,6 +39,11 @@ Opens at http://localhost:5173/
 - Quiz supports single and multi-question formats
 - `isReadOnly` mode shows module recap after completion
 
+## Workflow
+- After every change, always `git add -A && git commit -m "<description>" && git push`
+- This keeps GitHub and the live site at https://chela-giraldo.github.io/accessibility-training/ up to date automatically
+- No need to ask — just do it after every task
+
 ## Known gotchas
 - `@rdc-npm/rdc-ui` requires `legacy-peer-deps` to install (peer dep conflict with React 19)
 - Missing `RdcUiThemeProvider` causes a blank page crash on any rdc-ui component render
