@@ -115,18 +115,32 @@ function ProgressMeter({ value, id, valueText, progressBarProps, dataColor }) {
   const pct = Math.min(100, Math.max(0, value || 0));
   const barColor = dataColor === 'success' ? rdcUiTheme.color.status.success : rdcUiTheme.color.text.primary;
   const { style: pbStyle, ...pbRest } = progressBarProps || {};
+  const dotSize = 10;
   return (
-    <div
-      id={id}
-      role="progressbar"
-      aria-valuenow={pct}
-      aria-valuemin={0}
-      aria-valuemax={100}
-      aria-valuetext={valueText}
-      style={{ width: '100%', height: '8px', background: rdcUiTheme.color.border.accent, borderRadius: '100px', overflow: 'hidden', ...pbStyle }}
-      {...pbRest}
-    >
-      <div style={{ width: `${pct}%`, height: '100%', background: barColor, borderRadius: '100px', transition: 'width 0.3s ease' }} />
+    <div style={{ position: 'relative', width: '100%' }}>
+      <div
+        id={id}
+        role="progressbar"
+        aria-valuenow={pct}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-valuetext={valueText}
+        style={{ width: '100%', height: '8px', background: rdcUiTheme.color.border.accent, borderRadius: '100px', overflow: 'hidden', ...pbStyle }}
+        {...pbRest}
+      >
+        <div style={{ width: `${pct}%`, height: '100%', background: barColor, borderRadius: '100px', transition: 'width 0.3s ease' }} />
+      </div>
+      <div style={{
+        position: 'absolute',
+        right: 0,
+        top: '50%',
+        transform: 'translateY(-50%)',
+        width: dotSize,
+        height: dotSize,
+        borderRadius: '50%',
+        background: barColor,
+        transition: 'background 0.3s ease',
+      }} />
     </div>
   );
 }
