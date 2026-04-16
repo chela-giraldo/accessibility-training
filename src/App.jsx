@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import styled, { createGlobalStyle, keyframes, css } from "styled-components";
+import { IconChevronLeft as RdcIconChevronLeft, IconClock as RdcIconClock, IconSchool as RdcIconSchool } from "@rdc-npm/rdc-ui";
 // ── Local theme (replaces @rdc-npm/rdc-ui rdcUiTheme) ───────────────────────
 const rdcUiTheme = {
   color: {
@@ -198,30 +199,15 @@ function InlineMessage({ styleType, showIcon, children, style }) {
 }
 
 function IconChevronLeft({ size = 16 }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 16 16" fill="none" aria-hidden="true">
-      <path d="M10 12L6 8l4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
+  return <RdcIconChevronLeft size={size} aria-hidden="true" />;
 }
 
 function IconSchool({ size = 16, color = 'currentColor' }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M12 4L2 9l10 5 10-5-10-5z" stroke={color} strokeWidth="1.5" strokeLinejoin="round" />
-      <path d="M6 11.5V16c0 1.657 2.686 3 6 3s6-1.343 6-3v-4.5" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-      <line x1="22" y1="9" x2="22" y2="14" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
-    </svg>
-  );
+  return <RdcIconSchool size={size} color={color} aria-hidden="true" />;
 }
 
 function IconClock({ size = 16, color = 'currentColor' }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <circle cx="12" cy="12" r="9" stroke={color} strokeWidth="1.5" />
-      <path d="M12 7v5l3 3" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
+  return <RdcIconClock size={size} color={color} aria-hidden="true" />;
 }
 
 function Link({ as: As = 'a', reverse, onClick, style, children, ...rest }) {
@@ -3812,13 +3798,13 @@ function ChartExample() {
           <ContentSwitch
             selected={tab === "charts"}
             onClick={() => setTab("charts")}
-            iconBefore={tab === "charts" ? <IconBarChartFilled size={2} /> : <IconBarChart size={2} />}
+            iconBefore={tab === "charts" ? <IconBarChartFilled size={16} /> : <IconBarChart size={16} />}
           >Charts</ContentSwitch>
           <span style={{ position: "relative" }}>
             <ContentSwitch
               selected={tab === "table"}
               onClick={() => setTab("table")}
-              iconBefore={<IconList size={2} />}
+              iconBefore={<IconList size={16} />}
             >Table</ContentSwitch>
             {tab !== "table" && <PulseDot />}
           </span>
@@ -4951,7 +4937,7 @@ export default function App() {
               onClick={() => setActive(null)}
               style={{ display: 'inline-flex', alignItems: 'center', gap: 4, fontWeight: rdcUiTheme.typography.weight.medium, fontFamily: FONT, background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: rdcUiTheme.color.text.primaryReverse, textDecoration: 'underline', textUnderlineOffset: 3 }}
             >
-              <IconChevronLeft size={2} aria-hidden="true" />
+              <IconChevronLeft size={16} aria-hidden="true" />
               Back to dashboard
             </Link>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: 24 }}>
