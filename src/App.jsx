@@ -3512,7 +3512,7 @@ function GreetingUploadExample() {
 function VideoCardExample() {
   return (
     <img
-      src="/Images/Perceivable/providing-the-content.svg"
+      src="/Images/Perceivable/You're providing the content.svg"
       alt=""
       aria-hidden="true"
       style={{ width: 800, maxWidth: "100%", height: "auto", display: "block", margin: "0 auto" }}
