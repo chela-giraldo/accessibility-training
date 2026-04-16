@@ -115,7 +115,7 @@ function ProgressMeter({ value, id, valueText, progressBarProps, dataColor }) {
   const pct = Math.min(100, Math.max(0, value || 0));
   const barColor = dataColor === 'success' ? rdcUiTheme.color.status.success : rdcUiTheme.color.text.primary;
   const { style: pbStyle, ...pbRest } = progressBarProps || {};
-  const dotSize = 10;
+  const dotSize = 7;
   return (
     <div style={{ position: 'relative', width: '100%' }}>
       <div
