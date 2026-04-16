@@ -10,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@rdc-npm/rdc-ui": "^3.397.2",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "styled-components": "^6.4.0"

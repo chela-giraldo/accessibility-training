@@ -1,17 +1,434 @@
 import { useState, useRef, useEffect } from "react";
 import styled, { createGlobalStyle, keyframes, css } from "styled-components";
-import {
-  Button, Tag, Chip, ProgressMeter, Accordion, Form, IconClock, IconSchool,
-  FormControlSet, FormControlLabel, Checkbox,
-  InlineMessage, IconChevronLeft, Link, FormHelperText,
-  Table, TableBody, TableCell, TableContainer, TableHeader, TableRow,
-  ContentSwitch, ContentSwitchGroup,
-  IconBarChart, IconBarChartFilled, IconList,
-  Radio, IconProfile, IconUpload,
-  IconButton, IconMoreVerticalFilled, IconPlay,
-  Menu, MenuHeader, MenuItem, MenuList, MenuDivider,
-  rdcUiTheme
-} from "@rdc-npm/rdc-ui";
+// ── Local theme (replaces @rdc-npm/rdc-ui rdcUiTheme) ───────────────────────
+const rdcUiTheme = {
+  color: {
+    bg: {
+      primary:   '#FFFFFF',
+      secondary: '#F4F0EB',
+      alternate: '#1A1816',
+    },
+    text: {
+      primary:        '#1A1816',
+      secondary:      '#726A60',
+      primaryReverse: '#FFFFFF',
+    },
+    border: {
+      base:      '#D3CFCA',
+      accent:    '#E5E1DC',
+      secondary: '#C8C3BC',
+    },
+    status: {
+      success:       '#2D8653',
+      successSubtle: '#D4F0E0',
+      info:          '#0D57D4',
+    },
+    interactive: {
+      primary: { default: { initial: '#1A1816' } }
+    },
+    gray: { '50': '#F8F7F7' },
+  },
+  size: {
+    borderRadius: { '100': '4px', '200': '8px', '300': '12px' }
+  },
+  typography: {
+    scale: {
+      body200:    { size: '12px', lineHeight: '16px', fontWeight: 400 },
+      body300:    { size: '14px', lineHeight: '20px', fontWeight: 400 },
+      body400:    { size: '16px', lineHeight: '24px', fontWeight: 400 },
+      display700: { size: '24px', lineHeight: '32px', letterSpacing: '-0.24px' },
+      display800: { size: '32px', lineHeight: '40px', letterSpacing: '-0.5px' },
+    },
+    weight: { medium: 500 }
+  }
+};
+
+// ── Local component replacements (replaces @rdc-npm/rdc-ui imports) ──────────
+
+function Button({ styleType, onClick, children, style, disabled }) {
+  const isPrimary = styleType === 'PrimaryDefault';
+  return (
+    <button
+      onClick={onClick}
+      disabled={disabled}
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: '8px',
+        padding: '10px 16px',
+        borderRadius: rdcUiTheme.size.borderRadius['100'],
+        border: isPrimary ? 'none' : `1px solid ${rdcUiTheme.color.border.base}`,
+        background: isPrimary ? rdcUiTheme.color.bg.alternate : 'transparent',
+        color: isPrimary ? rdcUiTheme.color.text.primaryReverse : rdcUiTheme.color.text.primary,
+        fontSize: rdcUiTheme.typography.scale.body300.size,
+        fontWeight: rdcUiTheme.typography.weight.medium,
+        lineHeight: rdcUiTheme.typography.scale.body300.lineHeight,
+        cursor: disabled ? 'not-allowed' : 'pointer',
+        opacity: disabled ? 0.5 : 1,
+        fontFamily: 'inherit',
+        ...style,
+      }}
+    >
+      {children}
+    </button>
+  );
+}
+
+const TAG_COLORS = {
+  blueSubtle:   { bg: '#E9EFFB', color: '#0D2C62' },
+  greenSubtle:  { bg: '#D4F0E0', color: '#203C25' },
+  purpleSubtle: { bg: '#F7DEF8', color: '#53195D' },
+  yellowSubtle: { bg: '#FEFACD', color: '#5C4700' },
+  graySubtle:   { bg: '#F4F0EB', color: '#726A60' },
+  redSubtle:    { bg: '#FEE2E3', color: '#7F1D20' },
+  blue:         { bg: '#0D57D4', color: '#FFFFFF' },
+};
+
+function Tag({ dataColor, children, style, disableCasingRule }) {
+  const c = TAG_COLORS[dataColor] || TAG_COLORS.graySubtle;
+  return (
+    <span
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        padding: '2px 8px',
+        borderRadius: '100px',
+        background: c.bg,
+        color: c.color,
+        fontSize: rdcUiTheme.typography.scale.body200.size,
+        fontWeight: rdcUiTheme.typography.weight.medium,
+        lineHeight: rdcUiTheme.typography.scale.body200.lineHeight,
+        whiteSpace: 'nowrap',
+        textTransform: disableCasingRule ? 'none' : undefined,
+        ...style,
+      }}
+    >
+      {children}
+    </span>
+  );
+}
+
+function ProgressMeter({ value, id, valueText, progressBarProps, dataColor }) {
+  const pct = Math.min(100, Math.max(0, value || 0));
+  const barColor = dataColor === 'success' ? rdcUiTheme.color.status.success : rdcUiTheme.color.bg.alternate;
+  return (
+    <div
+      id={id}
+      role="progressbar"
+      aria-valuenow={pct}
+      aria-valuemin={0}
+      aria-valuemax={100}
+      aria-valuetext={valueText}
+      style={{ width: '100%', height: '8px', background: rdcUiTheme.color.border.accent, borderRadius: '100px', overflow: 'hidden' }}
+      {...progressBarProps}
+    >
+      <div style={{ width: `${pct}%`, height: '100%', background: barColor, borderRadius: '100px', transition: 'width 0.3s ease' }} />
+    </div>
+  );
+}
+
+function Accordion({ title, tags, size, children }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div style={{ border: `1px solid ${rdcUiTheme.color.border.base}`, borderRadius: rdcUiTheme.size.borderRadius['200'], overflow: 'hidden' }}>
+      <button
+        onClick={() => setOpen(o => !o)}
+        style={{
+          width: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: '8px',
+          padding: size === 'small' ? '12px 16px' : '16px 20px',
+          background: rdcUiTheme.color.bg.secondary,
+          border: 'none',
+          cursor: 'pointer',
+          fontFamily: 'inherit',
+          fontSize: rdcUiTheme.typography.scale.body300.size,
+          fontWeight: rdcUiTheme.typography.weight.medium,
+          color: rdcUiTheme.color.text.primary,
+          textAlign: 'left',
+        }}
+        aria-expanded={open}
+      >
+        <span style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+          {title}
+          {tags && tags.map((t, i) => <Tag key={i} dataColor={t.dataColor}>{t.text}</Tag>)}
+        </span>
+        <span style={{ transform: open ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s', flexShrink: 0 }}>▼</span>
+      </button>
+      {open && (
+        <div style={{ padding: size === 'small' ? '12px 16px' : '16px 20px', background: rdcUiTheme.color.bg.primary }}>
+          {children}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function InlineMessage({ styleType, showIcon, children, style }) {
+  const isError = styleType === 'error';
+  const isSuccess = styleType === 'success';
+  const bg = isError ? '#FEE2E3' : isSuccess ? rdcUiTheme.color.status.successSubtle : '#E9EFFB';
+  const color = isError ? '#7F1D20' : isSuccess ? rdcUiTheme.color.status.success : rdcUiTheme.color.status.info;
+  const icon = isError ? '⚠' : isSuccess ? '✓' : 'ℹ';
+  return (
+    <div
+      role={isError ? 'alert' : 'status'}
+      style={{
+        display: 'flex',
+        alignItems: 'flex-start',
+        gap: '8px',
+        padding: '12px 16px',
+        borderRadius: rdcUiTheme.size.borderRadius['200'],
+        background: bg,
+        color,
+        fontSize: rdcUiTheme.typography.scale.body300.size,
+        lineHeight: rdcUiTheme.typography.scale.body300.lineHeight,
+        ...style,
+      }}
+    >
+      {showIcon && <span aria-hidden="true">{icon}</span>}
+      <span>{children}</span>
+    </div>
+  );
+}
+
+function IconChevronLeft({ size = 16 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M10 12L6 8l4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function IconSchool({ size = 16, color = 'currentColor' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z" fill={color} />
+      <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z" fill={color} />
+    </svg>
+  );
+}
+
+function IconClock({ size = 16, color = 'currentColor' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="12" r="10" stroke={color} strokeWidth="1.5" />
+      <path d="M12 7v5l3 3" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function Link({ as: As = 'a', reverse, onClick, style, children, ...rest }) {
+  return (
+    <As
+      onClick={onClick}
+      style={{
+        color: reverse ? rdcUiTheme.color.text.primaryReverse : rdcUiTheme.color.text.primary,
+        textDecoration: 'underline',
+        cursor: 'pointer',
+        background: 'none',
+        border: 'none',
+        padding: 0,
+        fontFamily: 'inherit',
+        fontSize: 'inherit',
+        ...style,
+      }}
+      {...rest}
+    >
+      {children}
+    </As>
+  );
+}
+
+function FormHelperText({ id, helperText }) {
+  return (
+    <p id={id} style={{ margin: '4px 0 0', fontSize: rdcUiTheme.typography.scale.body200.size, lineHeight: rdcUiTheme.typography.scale.body200.lineHeight, color: rdcUiTheme.color.text.secondary }}>
+      {helperText}
+    </p>
+  );
+}
+
+function TableContainer({ children }) {
+  return <div style={{ width: '100%', overflowX: 'auto' }}>{children}</div>;
+}
+
+function Table({ withLines, children }) {
+  return (
+    <table style={{ width: '100%', borderCollapse: withLines ? 'collapse' : 'separate', borderSpacing: 0 }}>
+      {children}
+    </table>
+  );
+}
+
+function TableHeader({ children }) {
+  return <thead>{children}</thead>;
+}
+
+function TableBody({ children }) {
+  return <tbody>{children}</tbody>;
+}
+
+function TableRow({ children, style }) {
+  return <tr style={style}>{children}</tr>;
+}
+
+function TableCell({ as: As = 'td', children, style }) {
+  return (
+    <As
+      style={{
+        padding: '12px 16px',
+        fontSize: rdcUiTheme.typography.scale.body300.size,
+        lineHeight: rdcUiTheme.typography.scale.body300.lineHeight,
+        color: rdcUiTheme.color.text.primary,
+        borderBottom: `1px solid ${rdcUiTheme.color.border.accent}`,
+        textAlign: 'left',
+        verticalAlign: 'top',
+        ...style,
+      }}
+    >
+      {children}
+    </As>
+  );
+}
+
+function ContentSwitchGroup({ size, style, children }) {
+  return (
+    <div
+      role="tablist"
+      style={{
+        display: 'inline-flex',
+        borderRadius: rdcUiTheme.size.borderRadius['100'],
+        border: `1px solid ${rdcUiTheme.color.border.base}`,
+        overflow: 'hidden',
+        ...style,
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
+function ContentSwitch({ selected, onClick, iconBefore, children, style }) {
+  return (
+    <button
+      role="tab"
+      aria-selected={selected}
+      onClick={onClick}
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: '6px',
+        padding: '8px 14px',
+        border: 'none',
+        borderRadius: 0,
+        background: selected ? rdcUiTheme.color.bg.alternate : 'transparent',
+        color: selected ? rdcUiTheme.color.text.primaryReverse : rdcUiTheme.color.text.primary,
+        fontSize: rdcUiTheme.typography.scale.body300.size,
+        fontWeight: rdcUiTheme.typography.weight.medium,
+        cursor: 'pointer',
+        fontFamily: 'inherit',
+        ...style,
+      }}
+    >
+      {iconBefore}
+      {children}
+    </button>
+  );
+}
+
+function IconBarChart({ size = 16 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <rect x="3" y="10" width="4" height="11" />
+      <rect x="10" y="5" width="4" height="16" />
+      <rect x="17" y="13" width="4" height="8" />
+    </svg>
+  );
+}
+
+function IconBarChartFilled({ size = 16 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <rect x="3" y="10" width="4" height="11" />
+      <rect x="10" y="5" width="4" height="16" />
+      <rect x="17" y="13" width="4" height="8" />
+    </svg>
+  );
+}
+
+function IconList({ size = 16 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect x="3" y="5" width="2" height="2" fill="currentColor" />
+      <rect x="3" y="11" width="2" height="2" fill="currentColor" />
+      <rect x="3" y="17" width="2" height="2" fill="currentColor" />
+      <rect x="8" y="5" width="13" height="2" fill="currentColor" />
+      <rect x="8" y="11" width="13" height="2" fill="currentColor" />
+      <rect x="8" y="17" width="13" height="2" fill="currentColor" />
+    </svg>
+  );
+}
+
+function IconUpload({ size = 16, color = 'currentColor' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      <polyline points="17 8 12 3 7 8" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      <line x1="12" y1="3" x2="12" y2="15" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function IconProfile({ size = 16, color = 'currentColor' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="12" cy="7" r="4" stroke={color} strokeWidth="1.5" />
+    </svg>
+  );
+}
+
+function Form({ children, ...props }) {
+  return <div {...props}>{children}</div>;
+}
+
+function FormControlSet({ id, legend, direction, children }) {
+  return (
+    <fieldset id={id} style={{ border: 'none', margin: 0, padding: 0 }}>
+      {legend && (
+        <legend style={{ position: 'absolute', width: '1px', height: '1px', margin: '-1px', overflow: 'hidden', clip: 'rect(0,0,0,0)', whiteSpace: 'nowrap' }}>
+          {legend}
+        </legend>
+      )}
+      <div style={{ display: 'flex', flexDirection: direction === 'horizontal' ? 'row' : 'column', gap: '8px', flexWrap: 'wrap' }}>
+        {children}
+      </div>
+    </fieldset>
+  );
+}
+
+function FormControlLabel({ checked, control, id, name, onChange, value, children }) {
+  return (
+    <label htmlFor={id} style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', fontSize: rdcUiTheme.typography.scale.body300.size, color: rdcUiTheme.color.text.primary }}>
+      <input
+        type="checkbox"
+        id={id}
+        name={name}
+        value={value}
+        checked={checked}
+        onChange={onChange}
+        style={{ width: '16px', height: '16px', cursor: 'pointer', accentColor: rdcUiTheme.color.bg.alternate }}
+      />
+      {children}
+    </label>
+  );
+}
+
+function Checkbox() {
+  return null;
+}
 
 // ── Constants ────────────────────────────────────────────────────────────────
 
