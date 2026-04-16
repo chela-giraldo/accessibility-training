@@ -563,8 +563,8 @@ const HeroPill = styled.span`
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: ${rdcUiTheme.color.bg.alternate};
-  color: ${rdcUiTheme.color.text.primaryReverse};
+  background: #ffffff;
+  color: ${rdcUiTheme.color.text.primary};
   border-radius: 40px;
   padding: 5px 14px;
   font-size: 13px;
@@ -5120,12 +5120,12 @@ export default function App() {
           </div>
           <HeroTagRow>
             <HeroPill>
-              <IconSchool size={2} color={rdcUiTheme.color.text.primaryReverse} aria-hidden="true" />
+              <IconSchool size={2} color={rdcUiTheme.color.text.primary} aria-hidden="true" />
               {MODULES.length} modules
             </HeroPill>
             <HeroMetaDot aria-hidden="true">·</HeroMetaDot>
             <HeroPill>
-              <IconClock size={2} color={rdcUiTheme.color.text.primaryReverse} aria-hidden="true" />
+              <IconClock size={2} color={rdcUiTheme.color.text.primary} aria-hidden="true" />
               ~60 min
             </HeroPill>
           </HeroTagRow>
