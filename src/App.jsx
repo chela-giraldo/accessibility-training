@@ -3798,13 +3798,13 @@ function ChartExample() {
           <ContentSwitch
             selected={tab === "charts"}
             onClick={() => setTab("charts")}
-            iconBefore={tab === "charts" ? <IconBarChartFilled size={16} /> : <IconBarChart size={16} />}
+            iconBefore={tab === "charts" ? <IconBarChartFilled size={2} /> : <IconBarChart size={2} />}
           >Charts</ContentSwitch>
           <span style={{ position: "relative" }}>
             <ContentSwitch
               selected={tab === "table"}
               onClick={() => setTab("table")}
-              iconBefore={<IconList size={16} />}
+              iconBefore={<IconList size={2} />}
             >Table</ContentSwitch>
             {tab !== "table" && <PulseDot />}
           </span>
@@ -4937,7 +4937,7 @@ export default function App() {
               onClick={() => setActive(null)}
               style={{ display: 'inline-flex', alignItems: 'center', gap: 4, fontWeight: rdcUiTheme.typography.weight.medium, fontFamily: FONT, background: 'none', border: 'none', padding: 0, cursor: 'pointer', color: rdcUiTheme.color.text.primaryReverse, textDecoration: 'underline', textUnderlineOffset: 3 }}
             >
-              <IconChevronLeft size={16} aria-hidden="true" />
+              <IconChevronLeft size={2} aria-hidden="true" />
               Back to dashboard
             </Link>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: 24 }}>
@@ -5119,12 +5119,12 @@ export default function App() {
           </div>
           <HeroTagRow>
             <HeroPill>
-              <IconSchool size={16} color={rdcUiTheme.color.text.primary} aria-hidden="true" />
+              <IconSchool size={2} color={rdcUiTheme.color.text.primary} aria-hidden="true" />
               {MODULES.length} modules
             </HeroPill>
             <HeroMetaDot aria-hidden="true">·</HeroMetaDot>
             <HeroPill>
-              <IconClock size={16} color={rdcUiTheme.color.text.primary} aria-hidden="true" />
+              <IconClock size={2} color={rdcUiTheme.color.text.primary} aria-hidden="true" />
               ~60 min
             </HeroPill>
           </HeroTagRow>
