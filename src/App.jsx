@@ -55,17 +55,19 @@ function Button({ styleType, onClick, children, style, disabled }) {
         display: 'inline-flex',
         alignItems: 'center',
         gap: '8px',
-        padding: '10px 16px',
-        borderRadius: rdcUiTheme.size.borderRadius['100'],
-        border: isPrimary ? 'none' : `1px solid ${rdcUiTheme.color.border.base}`,
+        padding: '10px 20px',
+        borderRadius: '100px',
+        border: isPrimary ? 'none' : `1.5px solid ${rdcUiTheme.color.text.primary}`,
         background: isPrimary ? rdcUiTheme.color.bg.alternate : 'transparent',
         color: isPrimary ? rdcUiTheme.color.text.primaryReverse : rdcUiTheme.color.text.primary,
-        fontSize: rdcUiTheme.typography.scale.body300.size,
-        fontWeight: rdcUiTheme.typography.weight.medium,
-        lineHeight: rdcUiTheme.typography.scale.body300.lineHeight,
+        fontSize: '14px',
+        fontWeight: 600,
+        lineHeight: '20px',
+        letterSpacing: '0.1px',
         cursor: disabled ? 'not-allowed' : 'pointer',
         opacity: disabled ? 0.5 : 1,
         fontFamily: 'inherit',
+        transition: 'background 0.15s, opacity 0.15s',
         ...style,
       }}
     >
@@ -206,8 +208,9 @@ function IconChevronLeft({ size = 16 }) {
 function IconSchool({ size = 16, color = 'currentColor' }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z" fill={color} />
-      <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z" fill={color} />
+      <path d="M12 4L2 9l10 5 10-5-10-5z" stroke={color} strokeWidth="1.5" strokeLinejoin="round" />
+      <path d="M6 11.5V16c0 1.657 2.686 3 6 3s6-1.343 6-3v-4.5" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      <line x1="22" y1="9" x2="22" y2="14" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
     </svg>
   );
 }
@@ -215,7 +218,7 @@ function IconSchool({ size = 16, color = 'currentColor' }) {
 function IconClock({ size = 16, color = 'currentColor' }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <circle cx="12" cy="12" r="10" stroke={color} strokeWidth="1.5" />
+      <circle cx="12" cy="12" r="9" stroke={color} strokeWidth="1.5" />
       <path d="M12 7v5l3 3" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
@@ -433,9 +436,19 @@ function Checkbox() {
 
 // ── Constants ────────────────────────────────────────────────────────────────
 
-const COVER_IMG = "/a11y-icons.svg";
-const LOGO_IMG  = "/haven-logo.png";
+const BASE      = import.meta.env.BASE_URL;
+const COVER_IMG = BASE + "a11y-icons.svg";
+const LOGO_IMG  = BASE + "haven-logo.png";
 const FONT      = "'Galano Grotesque Alt', system-ui, sans-serif";
+
+// Recursively prepend BASE to any string starting with "/" (image paths in data)
+function withBase(v) {
+  if (typeof v === 'string' && v.startsWith('/') && !v.startsWith('//'))
+    return BASE + v.slice(1);
+  if (Array.isArray(v)) return v.map(withBase);
+  if (v && typeof v === 'object') return Object.fromEntries(Object.entries(v).map(([k, val]) => [k, withBase(val)]));
+  return v;
+}
 
 const CAT = {
   teal:   { bold:"#00615F", subtle:"#CCF3F3" },
@@ -3930,7 +3943,7 @@ function GreetingUploadExample() {
 function VideoCardExample() {
   return (
     <img
-      src="/Images/Perceivable/You're providing the content.svg"
+      src={BASE + "Images/Perceivable/You're providing the content.svg"}
       alt=""
       aria-hidden="true"
       style={{ width: 800, maxWidth: "100%", height: "auto", display: "block", margin: "0 auto" }}
@@ -4427,12 +4440,12 @@ function Section({ section: s, acc, isReadOnly }) {
 // ── Module data ───────────────────────────────────────────────────────────────
 
 const MODULE_IMAGES = [
-  "/module-1.svg", "/module-2.svg", "/module-3.svg",
-  "/module-4.svg", "/module-5.svg", "/module-6.svg",
-  "/module-7.svg", "/module-8.svg", "/module-9.svg"
+  BASE+"module-1.svg", BASE+"module-2.svg", BASE+"module-3.svg",
+  BASE+"module-4.svg", BASE+"module-5.svg", BASE+"module-6.svg",
+  BASE+"module-7.svg", BASE+"module-8.svg", BASE+"module-9.svg"
 ];
 
-const MODULES = [
+const MODULES = withBase([
   { id:0, title:"Why accessibility matters", headerTitle:"Designing for Accessibility: One Pixel at a Time", emoji:"💡",
     pages:[
       { sections:[
@@ -4834,7 +4847,7 @@ const MODULES = [
     ],
     quiz:{ question:"At what stage of the design process does accessibility have the most impact?", options:["During QA testing before launch","During developer implementation","During design, before handoff","After the first accessibility audit"], answer:2, explanation:"Accessibility issues found during design cost the least to fix. Once code is written, retrofitting accessibility is significantly more expensive and time-consuming." }
   }
-];
+]);
 
 // ── App ───────────────────────────────────────────────────────────────────────
 
