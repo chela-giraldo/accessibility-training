@@ -5,7 +5,7 @@ An interactive accessibility training web app for designers at Move/realtor.com,
 
 ## How to run
 ```
-cd /Users/cgiraldovanegas/accessibility-training
+cd /Users/cgiraldovanegas/Desktop/accessibility-training
 npm run dev
 ```
 Opens at http://localhost:5173/
@@ -13,12 +13,13 @@ Opens at http://localhost:5173/
 ## Tech stack
 - React 19 + Vite
 - `styled-components` for styling
-- `@rdc-npm/rdc-ui` for components (internal Artifactory package — registry in `~/.npmrc`)
-- `RdcUiThemeProvider` must wrap the app in `src/main.jsx` or rdc-ui components will crash
+- `@rdc-npm/rdc-ui` icons still imported in App.jsx (node_modules must be present locally)
+- Theme and components are local implementations — no `RdcUiThemeProvider` needed
 
 ## Project structure
-- `src/App.jsx` — entire app (4800+ lines): all module data, components, and routing logic
-- `src/main.jsx` — entry point with `RdcUiThemeProvider` wrapper
+- `src/content.js` — all written copy: module titles, body text, quiz questions/answers. Edit text here.
+- `src/App.jsx` — all components and routing logic (~4800 lines)
+- `src/main.jsx` — entry point
 - `public/` — all images and SVG assets referenced by the app
 - `public/Images/` — per-module illustration assets
 
@@ -45,6 +46,5 @@ Opens at http://localhost:5173/
 - No need to ask — just do it after every task
 
 ## Known gotchas
-- `@rdc-npm/rdc-ui` requires `legacy-peer-deps` to install (peer dep conflict with React 19)
-- Missing `RdcUiThemeProvider` causes a blank page crash on any rdc-ui component render
-- Images live in `public/` — Vite serves them from `/` root path
+- Images use `import.meta.env.BASE_URL` prefix (via `withBase()`) so they work both locally and on GitHub Pages
+- `src/content.js` is the single source of truth for all written content
