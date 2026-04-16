@@ -110,7 +110,8 @@ function Tag({ dataColor, children, style, disableCasingRule }) {
 
 function ProgressMeter({ value, id, valueText, progressBarProps, dataColor }) {
   const pct = Math.min(100, Math.max(0, value || 0));
-  const barColor = dataColor === 'success' ? rdcUiTheme.color.status.success : rdcUiTheme.color.bg.alternate;
+  const barColor = dataColor === 'success' ? rdcUiTheme.color.status.success : rdcUiTheme.color.text.primary;
+  const { style: pbStyle, ...pbRest } = progressBarProps || {};
   return (
     <div
       id={id}
@@ -119,8 +120,8 @@ function ProgressMeter({ value, id, valueText, progressBarProps, dataColor }) {
       aria-valuemin={0}
       aria-valuemax={100}
       aria-valuetext={valueText}
-      style={{ width: '100%', height: '8px', background: rdcUiTheme.color.border.accent, borderRadius: '100px', overflow: 'hidden' }}
-      {...progressBarProps}
+      style={{ width: '100%', height: '8px', background: rdcUiTheme.color.border.accent, borderRadius: '100px', overflow: 'hidden', ...pbStyle }}
+      {...pbRest}
     >
       <div style={{ width: `${pct}%`, height: '100%', background: barColor, borderRadius: '100px', transition: 'width 0.3s ease' }} />
     </div>
@@ -563,7 +564,7 @@ const HeroPill = styled.span`
   align-items: center;
   gap: 6px;
   background: ${rdcUiTheme.color.bg.alternate};
-  color: ${rdcUiTheme.color.text.primary};
+  color: ${rdcUiTheme.color.text.primaryReverse};
   border-radius: 40px;
   padding: 5px 14px;
   font-size: 13px;
@@ -5119,12 +5120,12 @@ export default function App() {
           </div>
           <HeroTagRow>
             <HeroPill>
-              <IconSchool size={2} color={rdcUiTheme.color.text.primary} aria-hidden="true" />
+              <IconSchool size={2} color={rdcUiTheme.color.text.primaryReverse} aria-hidden="true" />
               {MODULES.length} modules
             </HeroPill>
             <HeroMetaDot aria-hidden="true">·</HeroMetaDot>
             <HeroPill>
-              <IconClock size={2} color={rdcUiTheme.color.text.primary} aria-hidden="true" />
+              <IconClock size={2} color={rdcUiTheme.color.text.primaryReverse} aria-hidden="true" />
               ~60 min
             </HeroPill>
           </HeroTagRow>
@@ -5151,8 +5152,6 @@ export default function App() {
           <ProgressMeter
             id="dashboard-progress"
             value={Math.round((completed.length / MODULES.length) * 100)}
-            dataColor={rdcUiTheme.color.text.primary}
-            progressBarProps={{ style: { backgroundColor: rdcUiTheme.color.bg.alternate, height: 8 } }}
           />
         </ProgressSection>
 
