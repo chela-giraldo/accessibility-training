@@ -47,7 +47,8 @@ const rdcUiTheme = {
 // ── Local component replacements (replaces @rdc-npm/rdc-ui imports) ──────────
 
 function Button({ styleType, onClick, children, style, disabled }) {
-  const isPrimary = styleType === 'PrimaryDefault';
+  const isPrimary   = styleType === 'PrimaryDefault';
+  const isTertiary  = styleType === 'TertiaryDefault';
   return (
     <button
       onClick={onClick}
@@ -56,15 +57,17 @@ function Button({ styleType, onClick, children, style, disabled }) {
         display: 'inline-flex',
         alignItems: 'center',
         gap: '8px',
-        padding: '10px 20px',
+        padding: isTertiary ? '10px 4px' : '10px 20px',
         borderRadius: '100px',
-        border: isPrimary ? 'none' : `1.5px solid ${rdcUiTheme.color.text.primary}`,
+        border: isPrimary || isTertiary ? 'none' : `1.5px solid ${rdcUiTheme.color.text.primary}`,
         background: isPrimary ? rdcUiTheme.color.bg.alternate : 'transparent',
         color: isPrimary ? rdcUiTheme.color.text.primaryReverse : rdcUiTheme.color.text.primary,
         fontSize: '14px',
         fontWeight: 600,
         lineHeight: '20px',
         letterSpacing: '0.1px',
+        textDecoration: isTertiary ? 'underline' : 'none',
+        textUnderlineOffset: isTertiary ? '3px' : undefined,
         cursor: disabled ? 'not-allowed' : 'pointer',
         opacity: disabled ? 0.5 : 1,
         fontFamily: 'inherit',
@@ -2624,7 +2627,7 @@ function QuizBlock({ quiz: quizInput, attempt, onComplete, isReadOnly, prevButto
         <div>{(!submitted || !isLast) ? prevButton || null : null}</div>
         <NavRight>
           {qIdx > 0 && !isLast && (
-            <Button styleType="SecondaryDefault" onClick={handlePrevQuestion}>
+            <Button styleType="TertiaryDefault" onClick={handlePrevQuestion}>
               Previous question
             </Button>
           )}
@@ -4989,11 +4992,11 @@ export default function App() {
               <NavRow>
                 <div>
                   {prevModule ? (
-                    <Button styleType="SecondaryDefault" onClick={() => openModule(prevModule)}>
+                    <Button styleType="TertiaryDefault" onClick={() => openModule(prevModule)}>
                       Previous module recap
                     </Button>
                   ) : (
-                    <Button styleType="SecondaryDefault" onClick={() => setActive(null)}>
+                    <Button styleType="TertiaryDefault" onClick={() => setActive(null)}>
                       Back to dashboard
                     </Button>
                   )}
@@ -5027,7 +5030,7 @@ export default function App() {
                   onComplete={finishQuiz}
                   isReadOnly={false}
                   prevButton={
-                    <Button styleType="SecondaryDefault" onClick={goPrev}>Previous page</Button>
+                    <Button styleType="TertiaryDefault" onClick={goPrev}>Previous page</Button>
                   }
                 />
               )}
@@ -5049,15 +5052,15 @@ export default function App() {
                 <NavRow>
                   <div>
                     {page > 0 ? (
-                      <Button styleType="SecondaryDefault" onClick={goPrev}>
+                      <Button styleType="TertiaryDefault" onClick={goPrev}>
                         Previous page
                       </Button>
                     ) : prevModule ? (
-                      <Button styleType="SecondaryDefault" onClick={() => openModule(prevModule)}>
+                      <Button styleType="TertiaryDefault" onClick={() => openModule(prevModule)}>
                         {completed.includes(prevModule.id) ? "Previous module recap" : "Previous module"}
                       </Button>
                     ) : (
-                      <Button styleType="SecondaryDefault" onClick={() => setActive(null)}>
+                      <Button styleType="TertiaryDefault" onClick={() => setActive(null)}>
                         Back to dashboard
                       </Button>
                     )}
