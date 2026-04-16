@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import styled, { createGlobalStyle, keyframes, css } from "styled-components";
-import { IconChevronLeft as RdcIconChevronLeft, IconClock as RdcIconClock, IconSchool as RdcIconSchool } from "@rdc-npm/rdc-ui";
+import { IconChevronLeft as RdcIconChevronLeft, IconClock as RdcIconClock, IconSchool as RdcIconSchool, IconBarChart as RdcIconBarChart, IconBarChartFilled as RdcIconBarChartFilled, IconList as RdcIconList, ContentSwitch as RdcContentSwitch, ContentSwitchGroup as RdcContentSwitchGroup } from "@rdc-npm/rdc-ui";
 // ── Local theme (replaces @rdc-npm/rdc-ui rdcUiTheme) ───────────────────────
 const rdcUiTheme = {
   color: {
@@ -284,81 +284,27 @@ function TableCell({ as: As = 'td', children, style }) {
 }
 
 function ContentSwitchGroup({ size, style, children }) {
-  return (
-    <div
-      role="tablist"
-      style={{
-        display: 'inline-flex',
-        borderRadius: rdcUiTheme.size.borderRadius['100'],
-        border: `1px solid ${rdcUiTheme.color.border.base}`,
-        overflow: 'hidden',
-        ...style,
-      }}
-    >
-      {children}
-    </div>
-  );
+  return <RdcContentSwitchGroup size={size} style={style}>{children}</RdcContentSwitchGroup>;
 }
 
 function ContentSwitch({ selected, onClick, iconBefore, children, style }) {
   return (
-    <button
-      role="tab"
-      aria-selected={selected}
-      onClick={onClick}
-      style={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        gap: '6px',
-        padding: '8px 14px',
-        border: 'none',
-        borderRadius: 0,
-        background: selected ? rdcUiTheme.color.bg.alternate : 'transparent',
-        color: selected ? rdcUiTheme.color.text.primaryReverse : rdcUiTheme.color.text.primary,
-        fontSize: rdcUiTheme.typography.scale.body300.size,
-        fontWeight: rdcUiTheme.typography.weight.medium,
-        cursor: 'pointer',
-        fontFamily: 'inherit',
-        ...style,
-      }}
-    >
-      {iconBefore}
+    <RdcContentSwitch selected={selected} onClick={onClick} iconBefore={iconBefore} style={style}>
       {children}
-    </button>
+    </RdcContentSwitch>
   );
 }
 
 function IconBarChart({ size = 16 }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <rect x="3" y="10" width="4" height="11" />
-      <rect x="10" y="5" width="4" height="16" />
-      <rect x="17" y="13" width="4" height="8" />
-    </svg>
-  );
+  return <RdcIconBarChart size={size} aria-hidden="true" />;
 }
 
 function IconBarChartFilled({ size = 16 }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <rect x="3" y="10" width="4" height="11" />
-      <rect x="10" y="5" width="4" height="16" />
-      <rect x="17" y="13" width="4" height="8" />
-    </svg>
-  );
+  return <RdcIconBarChartFilled size={size} aria-hidden="true" />;
 }
 
 function IconList({ size = 16 }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <rect x="3" y="5" width="2" height="2" fill="currentColor" />
-      <rect x="3" y="11" width="2" height="2" fill="currentColor" />
-      <rect x="3" y="17" width="2" height="2" fill="currentColor" />
-      <rect x="8" y="5" width="13" height="2" fill="currentColor" />
-      <rect x="8" y="11" width="13" height="2" fill="currentColor" />
-      <rect x="8" y="17" width="13" height="2" fill="currentColor" />
-    </svg>
-  );
+  return <RdcIconList size={size} aria-hidden="true" />;
 }
 
 function IconUpload({ size = 16, color = 'currentColor' }) {
