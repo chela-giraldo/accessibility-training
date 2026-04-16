@@ -3515,7 +3515,7 @@ function VideoCardExample() {
       src="/Images/Perceivable/providing-the-content.svg"
       alt=""
       aria-hidden="true"
-      style={{ width: "100%", maxWidth: 800, height: "auto", display: "block", margin: "0 auto" }}
+      style={{ width: 800, maxWidth: "100%", height: "auto", display: "block", margin: "0 auto" }}
     />
   );
 }
@@ -3575,7 +3575,7 @@ function GDCriterionBlock({ criterion, isReadOnly }) {
                 </div>
               )}
               {ex.videoExample ? (
-                <div style={{ width: "100%", background: rdcUiTheme.color.gray['50'], border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 16, padding: 24, boxSizing: "border-box" }}>
+                <div style={{ width: "100%", background: rdcUiTheme.color.gray['50'], borderRadius: 16, padding: 24, boxSizing: "border-box" }}>
                   <VideoCardExample />
                 </div>
               ) : ex.uploadExample ? (
