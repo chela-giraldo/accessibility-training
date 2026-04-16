@@ -5120,12 +5120,12 @@ export default function App() {
           </div>
           <HeroTagRow>
             <HeroPill>
-              <IconSchool size={2} color={rdcUiTheme.color.text.primary} aria-hidden="true" />
+              <IconSchool size={16} color={rdcUiTheme.color.text.primary} aria-hidden="true" />
               {MODULES.length} modules
             </HeroPill>
             <HeroMetaDot aria-hidden="true">·</HeroMetaDot>
             <HeroPill>
-              <IconClock size={2} color={rdcUiTheme.color.text.primary} aria-hidden="true" />
+              <IconClock size={16} color={rdcUiTheme.color.text.primary} aria-hidden="true" />
               ~60 min
             </HeroPill>
           </HeroTagRow>
