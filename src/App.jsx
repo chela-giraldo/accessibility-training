@@ -59,7 +59,7 @@ function Button({ styleType, onClick, children, style, disabled }) {
         padding: '10px 20px',
         borderRadius: '100px',
         border: isPrimary ? 'none' : `1px solid ${rdcUiTheme.color.border.accent}`,
-        background: isPrimary ? rdcUiTheme.color.bg.alternate : '#ffffff',
+        background: isPrimary ? '#3F3B36' : '#ffffff',
         color: isPrimary ? rdcUiTheme.color.text.primaryReverse : rdcUiTheme.color.text.primary,
         fontSize: '14px',
         fontWeight: 500,
@@ -1639,7 +1639,7 @@ const GuidelineBody = styled.p`
 // Section: guideline-detail
 const GDHeading = styled.h3`
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 600;
   color: ${rdcUiTheme.color.text.primary};
   font-family: ${FONT};
   margin: 0 0 16px;
