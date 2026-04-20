@@ -3727,7 +3727,7 @@ function MiniLineChart({ data, yLabels }) {
 }
 
 function SensoryCharacteristicsExample() {
-  const narrow = useNarrow(850);
+  const narrow = useNarrow(640);
   const [tab, setTab] = useState("chart");
 
   const years = ["2019","2020","2021","2022","2023","2024"];
@@ -3762,7 +3762,7 @@ function SensoryCharacteristicsExample() {
         return (
           <g key={v}>
             <line x1={PL} x2={W - PR} y1={cy} y2={cy} stroke="#E5E7EB" strokeWidth="1" />
-            <text x={W - PR + 5} y={cy + 4} fontSize="11" fill="#9CA3AF" fontFamily={FONT}>${v}K</text>
+            <text x={W - PR + 5} y={cy + 4} fontSize="9" fill="#9CA3AF" fontFamily={FONT}>${v}K</text>
           </g>
         );
       })}
@@ -3771,7 +3771,7 @@ function SensoryCharacteristicsExample() {
           strokeDasharray={s.dash || undefined} strokeLinecap="round" strokeLinejoin="round" />
       ))}
       {years.map((y, i) => (
-        <text key={y} x={toX(i)} y={H - 4} textAnchor="middle" fontSize="11" fill="#9CA3AF" fontFamily={FONT}>{y}</text>
+        <text key={y} x={toX(i)} y={H - 4} textAnchor="middle" fontSize="9" fill="#9CA3AF" fontFamily={FONT}>{y}</text>
       ))}
     </svg>
   );
