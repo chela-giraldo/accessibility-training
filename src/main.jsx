@@ -1,5 +1,7 @@
 import { StrictMode, Component } from 'react'
 import { createRoot } from 'react-dom/client'
+import { ThemeProvider } from 'styled-components'
+import { rdcUiTheme } from '@rdc-npm/rdc-ui'
 import './index.css'
 import App from './App.jsx'
 
@@ -22,7 +24,9 @@ class ErrorBoundary extends Component {
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ErrorBoundary>
-      <App />
+      <ThemeProvider theme={rdcUiTheme}>
+        <App />
+      </ThemeProvider>
     </ErrorBoundary>
   </StrictMode>,
 )
