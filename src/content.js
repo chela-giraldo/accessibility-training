@@ -160,7 +160,7 @@ export const MODULES_DATA = [
               "If an asterisk (*) is used to denote a required field, you must include explanatory text (e.g., \"Required fields are marked with an asterisk (*)\" or simply the word \"required\" next to the field) to ensure users who cannot understand the meaning of an asterisk, can still understand the requirement.",
               "If a required field is visually indicated with a red border when a user attempts to submit the form without filling it out, you must also provide an explicit error message (such as \"This field is required\"), to ensure users who cannot perceive color can still understand the requirement."
             ],
-            examples:[{ title:"Image goes here" }] },
+            examples:[{ title:"Required field examples", infoRelationshipsExample: true }] },
           { title:"1.3.2 Meaningful Sequence", level:"A", tags:["1.3.2: Meaningful sequence"], titleUrl:"https://www.w3.org/WAI/WCAG22/Understanding/meaningful-sequence",
             body:"The intended reading order of design elements must be carefully considered and documented. While the order may seem clear to you, this is subjective, and a lack of documentation can lead to incorrect coding. Work closely with developers to confirm the correct reading order for screen readers, as this collaboration is vital for users to accurately understand the sequence and context of all elements.",
             examples:[{ title:"Image goes here" }] },
