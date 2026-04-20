@@ -3748,7 +3748,7 @@ function InfoRelationshipsExample() {
   const dropdownBase = {
     fontFamily: FONT, fontSize: 18, color: rdcUiTheme.color.text.primary,
     border: `1px solid ${rdcUiTheme.color.border.base}`, borderRadius: 10,
-    padding: "16px 20px", width: "100%", boxSizing: "border-box",
+    padding: "12px 16px", width: "100%", boxSizing: "border-box",
     background: rdcUiTheme.color.bg.primary, display: "flex",
     alignItems: "center", justifyContent: "space-between",
   };
