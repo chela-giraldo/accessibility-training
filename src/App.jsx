@@ -3803,10 +3803,16 @@ function SensoryCharacteristicsExample() {
 function OrientationExample() {
   const [tab, setTab] = useState("portrait");
   const BASE = import.meta.env.BASE_URL ?? "/";
-  const src = tab === "portrait" ? `${BASE}portrait.svg` : `${BASE}landscape.svg`;
+  // Portrait: 436×848, Landscape: 848×436 — same phone rotated.
+  // Anchor: portrait shown at max-width 500px (scale = 500/436).
+  // At that scale landscape is 972px wide × 500px tall.
+  const isPortrait = tab === "portrait";
+  const imgStyle = isPortrait
+    ? { display: "block", maxWidth: 500, width: "100%", height: "auto" }
+    : { display: "block", maxHeight: 500, width: "auto", maxWidth: "100%" };
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 16, alignItems: "flex-start", width: "100%" }}>
-      <ContentSwitchGroup size="small">
+    <div style={{ display: "flex", flexDirection: "column", gap: 16, alignItems: "center", width: "100%" }}>
+      <ContentSwitchGroup size="small" style={{ alignSelf: "flex-start" }}>
         <span style={{ position: "relative" }}>
           <ContentSwitch selected={tab === "portrait"} onClick={() => setTab("portrait")}>Portrait</ContentSwitch>
         </span>
@@ -3815,7 +3821,11 @@ function OrientationExample() {
           {tab !== "landscape" && <PulseDot />}
         </span>
       </ContentSwitchGroup>
-      <img src={src} alt={tab === "portrait" ? "Portrait orientation example" : "Landscape orientation example"} style={{ width: "100%", display: "block" }} />
+      <img
+        src={isPortrait ? `${BASE}portrait.svg` : `${BASE}landscape.svg`}
+        alt={isPortrait ? "Portrait orientation example" : "Landscape orientation example"}
+        style={imgStyle}
+      />
     </div>
   );
 }
