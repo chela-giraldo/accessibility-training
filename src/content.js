@@ -166,7 +166,7 @@ export const MODULES_DATA = [
             examples:[{ title:"Card reading order", image:"/meaningful-sequence-1.svg", imageInteraction:"/meaningful-sequence-2.svg" }] },
           { title:"1.3.3 Sensory Characteristics", level:"A", tags:["1.3.3: Sensory characteristics"], titleUrl:"https://www.w3.org/WAI/WCAG22/Understanding/sensory-characteristics",
             body:"To ensure all users understand an element's purpose, avoid relying exclusively on its shape, color, size, visual location, orientation, or sound to convey meaning. Instead, provide clear instructions or explicit labels. For example, rather than using only an icon button, add a descriptive label alongside the icon to ensure everyone understands the button's function. This improves both accessibility and usability.",
-            examples:[{ title:"Icon buttons with and without labels", sensoryExample: true }] },
+            examples:[{ title:"RealEstimate℠ valuation chart", sensoryExample: true }] },
           { title:"1.3.4 Orientation", level:"AA", tags:["1.3.4: Orientation"], titleUrl:"https://www.w3.org/WAI/WCAG22/Understanding/orientation",
             body:"Design pages to support both portrait and landscape screen orientations. Restrict orientation only when it is absolutely necessary for the content or functionality (for example, in check deposit or piano applications). Maintaining this flexibility is vital for accessibility, especially for users who may have difficulty rotating their screen, such as those with a device mounted on a wheelchair.",
             examples:[{ title:"Orientation", descFooter:"Pro Tip: Optimize the horizontal layout by rearranging UI elements, ensuring consistent content access for the user across all views.", orientationExample: true }] },
