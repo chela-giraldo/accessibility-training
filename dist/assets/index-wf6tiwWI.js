@@ -1295,8 +1295,8 @@ The same principle plays out across design, again and again:`,items:[`High contr
   background: ${e=>e.$correct?R.color.status.successSubtle:R.color.bg.primary};
   cursor: ${e=>e.$disabled?`default`:`pointer`};
   font-family: ${H};
-  font-size: ${R.typography.scale.body200.size};
-  line-height: ${R.typography.scale.body200.lineHeight};
+  font-size: ${R.typography.scale.body300.size};
+  line-height: ${R.typography.scale.body300.lineHeight};
   font-weight: ${e=>e.$correct?500:400};
   color: ${e=>e.$correct?R.color.status.success:R.color.text.primary};
   transition: border-color 0.15s, background 0.15s, color 0.15s;

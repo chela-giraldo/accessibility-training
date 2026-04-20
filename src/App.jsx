@@ -2111,8 +2111,8 @@ const PickerCard = styled.label`
   background: ${p => p.$correct ? rdcUiTheme.color.status.successSubtle : rdcUiTheme.color.bg.primary};
   cursor: ${p => p.$disabled ? 'default' : 'pointer'};
   font-family: ${FONT};
-  font-size: ${rdcUiTheme.typography.scale.body200.size};
-  line-height: ${rdcUiTheme.typography.scale.body200.lineHeight};
+  font-size: ${rdcUiTheme.typography.scale.body300.size};
+  line-height: ${rdcUiTheme.typography.scale.body300.lineHeight};
   font-weight: ${p => p.$correct ? 500 : 400};
   color: ${p => p.$correct ? rdcUiTheme.color.status.success : rdcUiTheme.color.text.primary};
   transition: border-color 0.15s, background 0.15s, color 0.15s;
