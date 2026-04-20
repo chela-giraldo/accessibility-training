@@ -533,9 +533,8 @@ The same principle plays out across design, again and again:`,items:[`High contr
   font-size: 24px;
   font-weight: 600;
   color: ${R.color.text.primary};
-  text-decoration: none;
+  text-decoration: underline;
   margin-bottom: 12px;
-  &:hover { text-decoration: underline; }
 `,Ns=M.p`
   font-size: ${R.typography.scale.body400.size};
   line-height: ${R.typography.scale.body400.lineHeight};

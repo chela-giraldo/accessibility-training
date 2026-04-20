@@ -1138,9 +1138,8 @@ const GuidelineCardsHeadingLink = styled.a`
   font-size: 24px;
   font-weight: 600;
   color: ${rdcUiTheme.color.text.primary};
-  text-decoration: none;
+  text-decoration: underline;
   margin-bottom: 12px;
-  &:hover { text-decoration: underline; }
 `;
 const GuidelineCardsBody = styled.p`
   font-size: ${rdcUiTheme.typography.scale.body400.size};
