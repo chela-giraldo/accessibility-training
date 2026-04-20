@@ -3925,6 +3925,13 @@ function GDCriterionBlock({ criterion, isReadOnly }) {
         </div>
       )}
       <GDBody>{criterion.body}</GDBody>
+      {criterion.bodyItems && (
+        <ul style={{ margin: "8px 0 16px", paddingLeft: 20 }}>
+          {criterion.bodyItems.map((item, i) => (
+            <li key={i} style={{ fontSize: 18, color: rdcUiTheme.color.text.primary, fontFamily: FONT, lineHeight: 1.65, marginBottom: 6 }}>{item}</li>
+          ))}
+        </ul>
+      )}
       {criterion.examplesIntro && <GDExamplesIntro>{criterion.examplesIntro}</GDExamplesIntro>}
 
       {examples.length > 0 && (
