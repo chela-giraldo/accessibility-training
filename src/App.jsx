@@ -2290,7 +2290,7 @@ function StepIndicator({ total, current, onStepClick }) {
               onClick={() => onStepClick && onStepClick(i)}
               aria-label={isPast ? `Step ${i + 1} complete` : isActive ? `Step ${i + 1} current` : `Step ${i + 1}`}
               aria-current={isActive ? "step" : undefined}
-              style={{ cursor: "pointer", border: "none", outline: "none" }}
+              style={{ cursor: "pointer", padding: 0, background: "none", outline: "none" }}
             >
               {isPast ? "✓" : i + 1}
             </StepDot>
