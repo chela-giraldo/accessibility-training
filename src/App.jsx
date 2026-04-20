@@ -4362,7 +4362,7 @@ function GuidelineDetailSection({ s, isReadOnly }) {
       <GDSuccessLabel>Success criteria designers own</GDSuccessLabel>
       {s.criteria.map((criterion, ci) => (
         <div key={ci}>
-          {ci > 0 && <GDDivider style={{ margin: '40px 0' }} />}
+          {ci > 0 && <GDDivider style={{ margin: '48px 0' }} />}
           <GDCriterionBlock criterion={criterion} isReadOnly={isReadOnly} />
         </div>
       ))}
