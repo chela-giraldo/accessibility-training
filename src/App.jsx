@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import styled, { createGlobalStyle, keyframes, css } from "styled-components";
 import { MODULES_DATA } from "./content.js";
-import { IconChevronLeft as RdcIconChevronLeft, IconClock as RdcIconClock, IconSchool as RdcIconSchool, IconBarChart as RdcIconBarChart, IconBarChartFilled as RdcIconBarChartFilled, IconList as RdcIconList, ContentSwitch as RdcContentSwitch, ContentSwitchGroup as RdcContentSwitchGroup } from "@rdc-npm/rdc-ui";
+import { IconChevronLeft as RdcIconChevronLeft, IconClock as RdcIconClock, IconSchool as RdcIconSchool, IconBarChart as RdcIconBarChart, IconBarChartFilled as RdcIconBarChartFilled, IconList as RdcIconList, ContentSwitch as RdcContentSwitch, ContentSwitchGroup as RdcContentSwitchGroup, InlineMessage as RdcInlineMessage } from "@rdc-npm/rdc-ui";
 // ── Local theme (replaces @rdc-npm/rdc-ui rdcUiTheme) ───────────────────────
 const rdcUiTheme = {
   color: {
@@ -186,30 +186,10 @@ function Accordion({ title, tags, size, children }) {
 }
 
 function InlineMessage({ styleType, showIcon, children, style }) {
-  const isError = styleType === 'error';
-  const isSuccess = styleType === 'success';
-  const bg = isError ? '#FEE2E3' : isSuccess ? rdcUiTheme.color.status.successSubtle : '#E9EFFB';
-  const color = isError ? '#7F1D20' : isSuccess ? rdcUiTheme.color.status.success : rdcUiTheme.color.status.info;
-  const icon = isError ? '⚠' : isSuccess ? '✓' : 'ℹ';
   return (
-    <div
-      role={isError ? 'alert' : 'status'}
-      style={{
-        display: 'flex',
-        alignItems: 'flex-start',
-        gap: '8px',
-        padding: '12px 16px',
-        borderRadius: rdcUiTheme.size.borderRadius['200'],
-        background: bg,
-        color,
-        fontSize: rdcUiTheme.typography.scale.body300.size,
-        lineHeight: rdcUiTheme.typography.scale.body300.lineHeight,
-        ...style,
-      }}
-    >
-      {showIcon && <span aria-hidden="true">{icon}</span>}
-      <span>{children}</span>
-    </div>
+    <RdcInlineMessage styleType={styleType} showIcon={showIcon} style={{ fontFamily: FONT, ...style }}>
+      {children}
+    </RdcInlineMessage>
   );
 }
 
