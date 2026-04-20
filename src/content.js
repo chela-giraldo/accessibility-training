@@ -97,7 +97,7 @@ export const MODULES_DATA = [
           heading:"Perceivable Guidelines",
           href:"https://www.w3.org/TR/WCAG22/#perceivable",
           intro:[
-            "This principle focuses on making web content perceivable to all users, regardless of their sensory abilities. This principle ensures that information and user interface components are presented in ways that can be perceived by everyone. There are 4 guidelines to follow and in the next pages, we will explain how you can design with these guidelines in mind:"
+            "This guideline focuses on making web content perceivable to all users, regardless of their sensory abilities. This guideline ensures that information and user interface components are presented in ways that can be perceived by everyone. There are 4 guidelines to follow and in the next pages, we will explain how you can design with these guidelines in mind:"
           ],
           cards:[
             { title:"Text alternatives",  image:"/text-alternatives.svg",  desc:"Making non-text content accessible. Not everyone can access visual information the same way.",                                              href:"https://www.w3.org/TR/WCAG22/#text-alternatives",  tooltip:"WCAG 1.1 — Text alternatives" },
