@@ -3903,7 +3903,7 @@ function IdentifyInputPurposeExample() {
         <div>
           {labelRow("Email")}
           <div style={{ ...inputBase, border: "2px solid #D92228" }}>
-            <span style={{ fontFamily: FONT, fontSize: 16, color: rdcUiTheme.color.text.primary, flex: 1, minWidth: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>johndoe@</span>
+            <span style={{ fontFamily: FONT, fontSize: 16, color: rdcUiTheme.color.text.primary, flex: 1, minWidth: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>jondoe@</span>
             <span style={{ flexShrink: 0, marginLeft: 8 }}>{iconMail}</span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 6 }}>
