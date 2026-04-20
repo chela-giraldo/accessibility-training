@@ -4218,7 +4218,7 @@ function GDCriterionBlock({ criterion, isReadOnly }) {
                   <ChartExample />
                 </div>
               ) : (
-                <div style={{ width: "100%", background: rdcUiTheme.color.gray['50'], border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 16, padding: 40, display: "flex", alignItems: narrow ? "center" : "flex-start", justifyContent: "center", flexDirection: narrow ? "column" : "row", gap: 33, boxSizing: "border-box" }}>
+                <div style={{ width: "100%", background: rdcUiTheme.color.gray['50'], border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 16, padding: 40, display: "flex", alignItems: narrow ? "center" : "flex-start", justifyContent: "center", flexDirection: narrow ? "column" : "row", gap: 33, boxSizing: "border-box", overflow: "hidden" }}>
                   {ex.image && (ex.inlineSuccess || ex.inlineError) ? (
                     <>
                       <img src={ex.image} alt="" aria-hidden="true" style={{ width: "100%", maxWidth: 500, height: "auto", display: "block", borderRadius: 8, flex: "1 1 0", minWidth: 0 }} />
@@ -4238,14 +4238,14 @@ function GDCriterionBlock({ criterion, isReadOnly }) {
                       </div>
                     </>
                   ) : ex.image && ex.imageInteraction ? (
-                    <div style={{ display: "flex", flexDirection: narrow ? "column" : "row", alignItems: narrow ? "center" : "flex-end", width: "100%" }}>
-                      <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center" }}>
-                        <img src={ex.image} alt="" aria-hidden="true" style={{ width: "100%", maxWidth: 600, height: "auto", display: "block" }} />
+                    <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems: "flex-end", width: "100%", gap: 0 }}>
+                      <div style={{ flex: "1 1 400px", minWidth: 400, display: "flex", flexDirection: "column", alignItems: "center" }}>
+                        <img src={ex.image} alt="" aria-hidden="true" style={{ width: "100%", height: "auto", display: "block" }} />
                         <span style={{ marginTop: 8, fontFamily: FONT, fontSize: rdcUiTheme.typography.scale.body200.size, lineHeight: rdcUiTheme.typography.scale.body200.lineHeight, fontWeight: rdcUiTheme.typography.scale.body200.fontWeight, color: rdcUiTheme.color.text.secondary }}>{ex.imageLabel || "Live product"}</span>
                       </div>
-                      <div style={{ width: narrow ? "100%" : 1, height: narrow ? 1 : "auto", alignSelf: "stretch", background: rdcUiTheme.color.border.accent, flexShrink: 0, margin: narrow ? "24px 0" : "0 48px" }} />
-                      <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center" }}>
-                        <img src={ex.imageInteraction} alt="" aria-hidden="true" style={{ width: "100%", maxWidth: 600, height: "auto", display: "block" }} />
+                      <div style={{ flex: "0 0 1px", alignSelf: "stretch", background: rdcUiTheme.color.border.accent, margin: "0 48px" }} />
+                      <div style={{ flex: "1 1 400px", minWidth: 400, display: "flex", flexDirection: "column", alignItems: "center" }}>
+                        <img src={ex.imageInteraction} alt="" aria-hidden="true" style={{ width: "100%", height: "auto", display: "block" }} />
                         <span style={{ marginTop: 8, fontFamily: FONT, fontSize: rdcUiTheme.typography.scale.body200.size, lineHeight: rdcUiTheme.typography.scale.body200.lineHeight, fontWeight: rdcUiTheme.typography.scale.body200.fontWeight, color: rdcUiTheme.color.text.secondary }}>{ex.imageInteractionLabel || "Design documentation"}</span>
                       </div>
                     </div>
