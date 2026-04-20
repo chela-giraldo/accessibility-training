@@ -4238,13 +4238,13 @@ function GDCriterionBlock({ criterion, isReadOnly }) {
                       </div>
                     </>
                   ) : ex.image && ex.imageInteraction ? (
-                    <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", alignItems: "flex-end", width: "100%", gap: 0 }}>
-                      <div style={{ flex: "1 1 400px", minWidth: 400, display: "flex", flexDirection: "column", alignItems: "center" }}>
+                    <div style={{ display: "flex", flexDirection: narrow ? "column" : "row", alignItems: narrow ? "stretch" : "flex-end", width: "100%" }}>
+                      <div style={{ flex: 1, minWidth: narrow ? 0 : 400, display: "flex", flexDirection: "column", alignItems: "center" }}>
                         <img src={ex.image} alt="" aria-hidden="true" style={{ width: "100%", height: "auto", display: "block" }} />
                         <span style={{ marginTop: 8, fontFamily: FONT, fontSize: rdcUiTheme.typography.scale.body200.size, lineHeight: rdcUiTheme.typography.scale.body200.lineHeight, fontWeight: rdcUiTheme.typography.scale.body200.fontWeight, color: rdcUiTheme.color.text.secondary }}>{ex.imageLabel || "Live product"}</span>
                       </div>
-                      <div style={{ flex: "0 0 1px", alignSelf: "stretch", background: rdcUiTheme.color.border.accent, margin: "0 48px" }} />
-                      <div style={{ flex: "1 1 400px", minWidth: 400, display: "flex", flexDirection: "column", alignItems: "center" }}>
+                      <div style={{ width: narrow ? "100%" : 1, height: narrow ? 1 : "auto", alignSelf: "stretch", background: rdcUiTheme.color.border.accent, flexShrink: 0, margin: narrow ? "24px 0" : "0 48px" }} />
+                      <div style={{ flex: 1, minWidth: narrow ? 0 : 400, display: "flex", flexDirection: "column", alignItems: "center" }}>
                         <img src={ex.imageInteraction} alt="" aria-hidden="true" style={{ width: "100%", height: "auto", display: "block" }} />
                         <span style={{ marginTop: 8, fontFamily: FONT, fontSize: rdcUiTheme.typography.scale.body200.size, lineHeight: rdcUiTheme.typography.scale.body200.lineHeight, fontWeight: rdcUiTheme.typography.scale.body200.fontWeight, color: rdcUiTheme.color.text.secondary }}>{ex.imageInteractionLabel || "Design documentation"}</span>
                       </div>
