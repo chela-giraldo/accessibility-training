@@ -3724,6 +3724,209 @@ function MiniLineChart({ data, yLabels }) {
   );
 }
 
+function SensoryCharacteristicsExample() {
+  const btnBase = {
+    display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
+    borderRadius: 100, border: `1px solid ${rdcUiTheme.color.border.base}`,
+    background: rdcUiTheme.color.bg.primary, cursor: "default",
+    fontFamily: FONT, fontWeight: 500, color: rdcUiTheme.color.text.primary,
+    pointerEvents: "none", userSelect: "none",
+  };
+  const heartIcon = (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M10 17s-7-4.35-7-8.5A4.5 4.5 0 0 1 10 5.315 4.5 4.5 0 0 1 17 8.5C17 12.65 10 17 10 17z" stroke={rdcUiTheme.color.text.primary} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  );
+  const shareIcon = (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <circle cx="15" cy="4" r="2" stroke={rdcUiTheme.color.text.primary} strokeWidth="1.5"/>
+      <circle cx="15" cy="16" r="2" stroke={rdcUiTheme.color.text.primary} strokeWidth="1.5"/>
+      <circle cx="5" cy="10" r="2" stroke={rdcUiTheme.color.text.primary} strokeWidth="1.5"/>
+      <path d="M7 9l6-3.5M7 11l6 3.5" stroke={rdcUiTheme.color.text.primary} strokeWidth="1.5" strokeLinecap="round"/>
+    </svg>
+  );
+  const col = (label, good) => (
+    <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 16, alignItems: "center" }}>
+      <div style={{
+        fontFamily: FONT, fontSize: 12, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase",
+        color: good ? "#2D8653" : "#D92228", background: good ? "#D4F0E0" : "#FEE2E3",
+        border: `1px solid ${good ? "#2D8653" : "#D92228"}`, borderRadius: 100,
+        padding: "2px 12px",
+      }}>{good ? "Do" : "Don't"}</div>
+      <div style={{ background: rdcUiTheme.color.bg.primary, border: `1px solid ${rdcUiTheme.color.border.base}`, borderRadius: 16, padding: "32px 40px", width: "100%", boxSizing: "border-box", display: "flex", flexDirection: "column", gap: 16 }}>
+        {good ? (
+          <>
+            <button style={{ ...btnBase, padding: "10px 20px" }}>
+              {heartIcon}
+              <span>Save</span>
+            </button>
+            <button style={{ ...btnBase, padding: "10px 20px" }}>
+              {shareIcon}
+              <span>Share</span>
+            </button>
+          </>
+        ) : (
+          <>
+            <button style={{ ...btnBase, padding: 10, width: 40, height: 40 }} aria-label="Save">
+              {heartIcon}
+            </button>
+            <button style={{ ...btnBase, padding: 10, width: 40, height: 40 }} aria-label="Share">
+              {shareIcon}
+            </button>
+          </>
+        )}
+      </div>
+      <div style={{ fontFamily: FONT, fontSize: 13, color: rdcUiTheme.color.text.secondary, textAlign: "center", maxWidth: 220, lineHeight: "18px" }}>
+        {good
+          ? "Icon paired with a text label — purpose is clear to all users"
+          : "Icon-only button — relies on shape alone to convey meaning"}
+      </div>
+    </div>
+  );
+  return (
+    <div style={{ background: rdcUiTheme.color.bg.primary, border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 12, padding: "40px 48px", width: "100%", boxSizing: "border-box" }}>
+      <div style={{ fontFamily: FONT, fontSize: 22, fontWeight: 600, color: rdcUiTheme.color.text.primary, marginBottom: 8 }}>Listing action buttons</div>
+      <div style={{ fontFamily: FONT, fontSize: 15, color: rdcUiTheme.color.text.secondary, marginBottom: 32, lineHeight: "22px" }}>
+        Don't rely on icon shape alone — pair icons with descriptive text labels so all users understand the action.
+      </div>
+      <div style={{ display: "flex", gap: 40, flexWrap: "wrap" }}>
+        {col("Don't", false)}
+        <div style={{ width: 1, background: rdcUiTheme.color.border.accent, alignSelf: "stretch" }} />
+        {col("Do", true)}
+      </div>
+    </div>
+  );
+}
+
+function OrientationExample() {
+  const [orientation, setOrientation] = useState("portrait");
+  const isPortrait = orientation === "portrait";
+  const screenW = isPortrait ? 120 : 220;
+  const screenH = isPortrait ? 220 : 120;
+  const homeCard = (w) => (
+    <div style={{ background: "#F4F0EB", borderRadius: 8, padding: "12px 14px", width: w - 28, boxSizing: "border-box" }}>
+      <div style={{ background: rdcUiTheme.color.border.accent, borderRadius: 6, height: isPortrait ? 70 : 54, marginBottom: 8 }} />
+      <div style={{ fontFamily: FONT, fontSize: isPortrait ? 11 : 10, fontWeight: 600, color: rdcUiTheme.color.text.primary, lineHeight: "14px", marginBottom: 4 }}>123 Maple St</div>
+      <div style={{ fontFamily: FONT, fontSize: isPortrait ? 10 : 9, color: rdcUiTheme.color.text.secondary }}>$485,000 · 3bd · 2ba</div>
+    </div>
+  );
+  const lockCard = (w) => (
+    <div style={{ background: "#FEE2E3", borderRadius: 8, padding: "16px 14px", width: w - 28, boxSizing: "border-box", display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <rect x="5" y="11" width="14" height="10" rx="2" stroke="#D92228" strokeWidth="1.6"/>
+        <path d="M8 11V7a4 4 0 0 1 8 0v4" stroke="#D92228" strokeWidth="1.6" strokeLinecap="round"/>
+      </svg>
+      <div style={{ fontFamily: FONT, fontSize: 11, color: "#D92228", textAlign: "center", lineHeight: "14px" }}>Rotate your device to continue</div>
+    </div>
+  );
+  return (
+    <div style={{ background: rdcUiTheme.color.bg.primary, border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 12, padding: "40px 48px", width: "100%", boxSizing: "border-box" }}>
+      <div style={{ fontFamily: FONT, fontSize: 22, fontWeight: 600, color: rdcUiTheme.color.text.primary, marginBottom: 8 }}>Search results page</div>
+      <div style={{ fontFamily: FONT, fontSize: 15, color: rdcUiTheme.color.text.secondary, marginBottom: 32, lineHeight: "22px" }}>
+        Content must be usable in both portrait and landscape. Toggle below to see how layout adapts — never lock orientation unless absolutely essential.
+      </div>
+      <div style={{ display: "flex", gap: 40, alignItems: "flex-start", flexWrap: "wrap" }}>
+        {/* Toggle */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 12, flexShrink: 0 }}>
+          <div style={{ fontFamily: FONT, fontSize: 13, fontWeight: 600, color: rdcUiTheme.color.text.secondary, textTransform: "uppercase", letterSpacing: "0.06em" }}>Try it</div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            {["portrait", "landscape"].map(o => (
+              <button key={o} onClick={() => setOrientation(o)} style={{
+                fontFamily: FONT, fontSize: 14, borderRadius: 100,
+                padding: "8px 18px", border: `1px solid ${orientation === o ? rdcUiTheme.color.text.primary : rdcUiTheme.color.border.base}`,
+                background: orientation === o ? rdcUiTheme.color.text.primary : rdcUiTheme.color.bg.primary,
+                color: orientation === o ? "#fff" : rdcUiTheme.color.text.primary,
+                cursor: "pointer", fontWeight: orientation === o ? 600 : 400, transition: "all 0.15s",
+              }}>{o.charAt(0).toUpperCase() + o.slice(1)}</button>
+            ))}
+          </div>
+        </div>
+        {/* Phone mockups */}
+        <div style={{ display: "flex", gap: 32, flexWrap: "wrap", alignItems: "flex-start" }}>
+          {/* Good — adapts */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 12, alignItems: "center" }}>
+            <div style={{
+              width: screenW, height: screenH, borderRadius: isPortrait ? 18 : 14,
+              border: `2px solid ${rdcUiTheme.color.text.primary}`, background: rdcUiTheme.color.bg.primary,
+              overflow: "hidden", display: "flex", flexDirection: "column",
+              alignItems: "center", padding: "10px 6px", gap: 8, boxSizing: "border-box",
+              transition: "all 0.25s ease",
+            }}>
+              <div style={{ background: rdcUiTheme.color.text.primary, borderRadius: 4, height: 4, width: 40, flexShrink: 0 }} />
+              {homeCard(screenW)}
+              {isPortrait && homeCard(screenW)}
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.5" stroke="#2D8653" strokeWidth="1.5"/><path d="M5 8l2 2 4-4" stroke="#2D8653" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              <span style={{ fontFamily: FONT, fontSize: 12, color: "#2D8653", fontWeight: 500 }}>Layout adapts</span>
+            </div>
+          </div>
+          {/* Bad — locked */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 12, alignItems: "center" }}>
+            <div style={{
+              width: 120, height: 220, borderRadius: 18,
+              border: `2px solid ${rdcUiTheme.color.border.base}`, background: rdcUiTheme.color.bg.primary,
+              overflow: "hidden", display: "flex", flexDirection: "column",
+              alignItems: "center", padding: "10px 6px", gap: 8, boxSizing: "border-box",
+            }}>
+              <div style={{ background: rdcUiTheme.color.border.base, borderRadius: 4, height: 4, width: 40, flexShrink: 0 }} />
+              {isPortrait ? homeCard(120) : lockCard(120)}
+              {isPortrait && homeCard(120)}
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.5" stroke="#D92228" strokeWidth="1.5"/><path d="M5 5l6 6M11 5l-6 6" stroke="#D92228" strokeWidth="1.5" strokeLinecap="round"/></svg>
+              <span style={{ fontFamily: FONT, fontSize: 12, color: "#D92228", fontWeight: 500 }}>Orientation locked</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function IdentifyInputPurposeExample() {
+  const field = (label, placeholder, iconPath, helperText, autocomplete) => (
+    <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+      <label style={{ fontFamily: FONT, fontSize: 14, fontWeight: 500, color: rdcUiTheme.color.text.primary, lineHeight: "20px" }}>
+        {label} <span style={{ color: "#D92228" }}>*</span>
+      </label>
+      <div style={{
+        display: "flex", alignItems: "center", gap: 10,
+        border: `1px solid ${rdcUiTheme.color.border.base}`, borderRadius: 10,
+        padding: "10px 14px", background: rdcUiTheme.color.bg.primary,
+        pointerEvents: "none", userSelect: "none",
+      }}>
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">{iconPath}</svg>
+        <span style={{ fontFamily: FONT, fontSize: 15, color: rdcUiTheme.color.text.secondary }}>{placeholder}</span>
+      </div>
+      {helperText && (
+        <span style={{ fontFamily: FONT, fontSize: 12, color: rdcUiTheme.color.text.secondary, lineHeight: "16px" }}>
+          {helperText}
+        </span>
+      )}
+      {autocomplete && (
+        <span style={{ fontFamily: FONT, fontSize: 11, color: "#0D57D4", lineHeight: "16px" }}>
+          autocomplete="{autocomplete}"
+        </span>
+      )}
+    </div>
+  );
+  return (
+    <div style={{ background: rdcUiTheme.color.bg.primary, border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 12, padding: "40px 48px", width: "100%", boxSizing: "border-box", maxWidth: 720, margin: "0 auto" }}>
+      <div style={{ fontFamily: FONT, fontSize: 22, fontWeight: 600, color: rdcUiTheme.color.text.primary, marginBottom: 4 }}>Agent contact form</div>
+      <div style={{ fontFamily: FONT, fontSize: 15, color: rdcUiTheme.color.text.secondary, marginBottom: 32, lineHeight: "22px" }}>
+        Each field uses a contextual icon, explicit label, and <code style={{ fontFamily: "monospace", background: "#F4F0EB", padding: "1px 4px", borderRadius: 3, fontSize: 13 }}>autocomplete</code> attribute so browsers and assistive technologies can identify the field's purpose.
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+        {field("First name", "Jane", <><path d="M10 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" stroke={rdcUiTheme.color.text.secondary} strokeWidth="1.5"/><path d="M3 18a7 7 0 0 1 14 0" stroke={rdcUiTheme.color.text.secondary} strokeWidth="1.5" strokeLinecap="round"/></>, null, "given-name")}
+        {field("Last name", "Doe", <><path d="M10 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" stroke={rdcUiTheme.color.text.secondary} strokeWidth="1.5"/><path d="M3 18a7 7 0 0 1 14 0" stroke={rdcUiTheme.color.text.secondary} strokeWidth="1.5" strokeLinecap="round"/></>, null, "family-name")}
+        {field("Email address", "jane@email.com", <path d="M3 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm0 0l7 6 7-6" stroke={rdcUiTheme.color.text.secondary} strokeWidth="1.5" strokeLinecap="round"/>, "We'll send a confirmation to this address", "email")}
+        {field("Phone number", "(555) 000-0000", <path d="M6.5 3.5h-2a1 1 0 0 0-1 1C3.5 12.06 8.44 17 15.5 17a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1l-2.5-.5a1 1 0 0 0-.9.3l-1 1a10.1 10.1 0 0 1-4.4-4.4l1-1a1 1 0 0 0 .3-.9L7.5 4.5a1 1 0 0 0-1-1z" stroke={rdcUiTheme.color.text.secondary} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>, null, "tel")}
+      </div>
+    </div>
+  );
+}
+
 function InfoRelationshipsExample() {
   const dropdownBase = {
     fontFamily: FONT, fontSize: 18, color: rdcUiTheme.color.text.primary,
@@ -3986,7 +4189,19 @@ function GDCriterionBlock({ criterion, isReadOnly }) {
                   )}
                 </div>
               )}
-              {ex.infoRelationshipsExample ? (
+              {ex.sensoryExample ? (
+                <div style={{ width: "100%", background: rdcUiTheme.color.gray['50'], border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 16, padding: 40, boxSizing: "border-box" }}>
+                  <SensoryCharacteristicsExample />
+                </div>
+              ) : ex.orientationExample ? (
+                <div style={{ width: "100%", background: rdcUiTheme.color.gray['50'], border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 16, padding: 40, boxSizing: "border-box" }}>
+                  <OrientationExample />
+                </div>
+              ) : ex.inputPurposeExample ? (
+                <div style={{ width: "100%", background: rdcUiTheme.color.gray['50'], border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 16, padding: 40, boxSizing: "border-box", display: "flex", justifyContent: "center" }}>
+                  <IdentifyInputPurposeExample />
+                </div>
+              ) : ex.infoRelationshipsExample ? (
                 <div style={{ width: "100%", background: rdcUiTheme.color.gray['50'], border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 16, padding: 40, boxSizing: "border-box", display: "flex", justifyContent: "center" }}>
                   <InfoRelationshipsExample />
                 </div>

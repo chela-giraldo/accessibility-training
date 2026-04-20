@@ -166,10 +166,10 @@ export const MODULES_DATA = [
             examples:[{ title:"Card reading order", image:"/meaningful-sequence-1.svg", imageInteraction:"/meaningful-sequence-2.svg" }] },
           { title:"1.3.3 Sensory Characteristics", level:"A", tags:["1.3.3: Sensory characteristics"], titleUrl:"https://www.w3.org/WAI/WCAG22/Understanding/sensory-characteristics",
             body:"To ensure all users understand an element's purpose, avoid relying exclusively on its shape, color, size, visual location, orientation, or sound to convey meaning. Instead, provide clear instructions or explicit labels. For example, rather than using only an icon button, add a descriptive label alongside the icon to ensure everyone understands the button's function. This improves both accessibility and usability.",
-            examples:[{ title:"Image goes here" }] },
+            examples:[{ title:"Icon buttons with and without labels", sensoryExample: true }] },
           { title:"1.3.4 Orientation", level:"AA", tags:["1.3.4: Orientation"], titleUrl:"https://www.w3.org/WAI/WCAG22/Understanding/orientation",
             body:"Design pages to support both portrait and landscape screen orientations. Restrict orientation only when it is absolutely necessary for the content or functionality (for example, in check deposit or piano applications). Maintaining this flexibility is vital for accessibility, especially for users who may have difficulty rotating their screen, such as those with a device mounted on a wheelchair.",
-            examples:[{ title:"Image goes here" }] },
+            examples:[{ title:"Search results in portrait and landscape", orientationExample: true }] },
           { title:"1.3.5 Identify Input Purpose", level:"AA", tags:["1.3.5: Identify input purpose"], titleUrl:"https://www.w3.org/WAI/WCAG22/Understanding/identify-input-purpose",
             body:"This criteria is about enhancing user experience and accessibility by helping users and technologies understand the purpose of input fields in forms and content. To enhance form accessibility, prioritize clear and concise labeling and incorporate autofill functionality:",
             bodyItems:[
@@ -178,7 +178,7 @@ export const MODULES_DATA = [
               "Implement real-time validation with descriptive error messages.",
               "Ensure support for various input methods, and always verify form functionality with assistive technologies to accommodate users with diverse cognitive and physical needs."
             ],
-            examples:[{ title:"Image goes here" }] }
+            examples:[{ title:"Agent contact form with labeled fields", inputPurposeExample: true }] }
         ]
       }]},
       { sections:[{ type:"guideline-detail",
