@@ -97,7 +97,7 @@ export const MODULES_DATA = [
           heading:"1. Perceivable",
           href:"https://www.w3.org/TR/WCAG22/#perceivable",
           intro:[
-            "To ensure all users, regardless of sensory abilities, can access and understand web content, this guideline focuses on the principle of perceivability. This means information and user interface components must be presented in ways that everyone can perceive.",
+            "The principle of perceivability is essential for web accessibility, ensuring that all users, regardless of their sensory abilities, can perceive information and user interface components. This is foundational to making digital content accessible and inclusive, accommodating users with diverse sight, hearing, movement, and cognitive abilities.",
             "There are four key guidelines to follow:"
           ],
           cards:[
