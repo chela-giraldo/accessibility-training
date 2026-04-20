@@ -3882,8 +3882,8 @@ function IdentifyInputPurposeExample() {
         <div>
           {labelRow("Name")}
           <div style={inputBase}>
-            <span style={{ fontFamily: FONT, fontSize: 16, color: rdcUiTheme.color.text.primary }}>Jon Doe</span>
-            {iconX}
+            <span style={{ fontFamily: FONT, fontSize: 16, color: rdcUiTheme.color.text.primary, flex: 1, minWidth: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>Jon Doe</span>
+            <span style={{ flexShrink: 0, marginLeft: 8 }}>{iconX}</span>
           </div>
         </div>
 
@@ -3891,8 +3891,8 @@ function IdentifyInputPurposeExample() {
         <div>
           {labelRow("Date of Birth")}
           <div style={inputBase}>
-            <span style={{ fontFamily: FONT, fontSize: 16, color: rdcUiTheme.color.text.primary }}>05/09/1962</span>
-            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <span style={{ fontFamily: FONT, fontSize: 16, color: rdcUiTheme.color.text.primary, flex: 1, minWidth: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>05/09/1962</span>
+            <div style={{ display: "flex", alignItems: "center", gap: 12, flexShrink: 0, marginLeft: 8 }}>
               {iconX}
               {iconCalendar}
             </div>
@@ -3903,12 +3903,12 @@ function IdentifyInputPurposeExample() {
         <div>
           {labelRow("Email")}
           <div style={{ ...inputBase, border: "2px solid #D92228" }}>
-            <span style={{ fontFamily: FONT, fontSize: 16, color: rdcUiTheme.color.text.primary }}>johndoe@</span>
-            {iconMail}
+            <span style={{ fontFamily: FONT, fontSize: 16, color: rdcUiTheme.color.text.primary, flex: 1, minWidth: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>johndoe@</span>
+            <span style={{ flexShrink: 0, marginLeft: 8 }}>{iconMail}</span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 6 }}>
-            {iconInfoCircle}
-            <span style={{ fontFamily: FONT, fontSize: 14, color: "#D92228" }}>Please enter a complete email address.</span>
+            <span style={{ flexShrink: 0 }}>{iconInfoCircle}</span>
+            <span style={{ fontFamily: FONT, fontSize: 14, color: "#D92228", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>Please enter a complete email address.</span>
           </div>
         </div>
 
@@ -3916,7 +3916,7 @@ function IdentifyInputPurposeExample() {
         <div style={{ position: "relative" }}>
           {labelRow("Address")}
           <div style={{ ...inputBase, border: "2px solid #0D57D4" }}>
-            <span style={{ fontFamily: FONT, fontSize: 16, color: rdcUiTheme.color.text.secondary }}>123 Main St, Someplace, CA</span>
+            <span style={{ fontFamily: FONT, fontSize: 16, color: rdcUiTheme.color.text.secondary, flex: 1, minWidth: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>123 Main St, Someplace, CA</span>
           </div>
           {/* Autocomplete dropdown */}
           <div style={{
@@ -3925,10 +3925,10 @@ function IdentifyInputPurposeExample() {
             borderRadius: 10, overflow: "hidden", zIndex: 10,
           }}>
             <div style={{ padding: "16px", background: rdcUiTheme.color.bg.secondary, borderBottom: `1px solid ${rdcUiTheme.color.border.accent}` }}>
-              <span style={{ fontFamily: FONT, fontSize: 16, color: rdcUiTheme.color.text.primary }}>123 Main St, Someplace, CA</span>
+              <span style={{ fontFamily: FONT, fontSize: 16, color: rdcUiTheme.color.text.primary, display: "block", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>123 Main St, Someplace, CA</span>
             </div>
             <div style={{ padding: "16px" }}>
-              <span style={{ fontFamily: FONT, fontSize: 16, color: rdcUiTheme.color.text.primary }}>123 Main St, Anytown, USA</span>
+              <span style={{ fontFamily: FONT, fontSize: 16, color: rdcUiTheme.color.text.primary, display: "block", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>123 Main St, Anytown, USA</span>
             </div>
           </div>
         </div>
