@@ -2284,13 +2284,12 @@ function StepIndicator({ total, current, onStepClick }) {
         return (
           <div key={i} role="listitem" style={{ display: "flex", alignItems: "center", flex: i < total - 1 ? 1 : "none" }}>
             <StepDot
-              as="button"
               $past={isPast}
               $active={isActive}
               onClick={() => onStepClick && onStepClick(i)}
               aria-label={isPast ? `Step ${i + 1} complete` : isActive ? `Step ${i + 1} current` : `Step ${i + 1}`}
               aria-current={isActive ? "step" : undefined}
-              style={{ cursor: "pointer", padding: 0, background: "none", outline: "none" }}
+              style={{ cursor: "pointer" }}
             >
               {isPast ? "✓" : i + 1}
             </StepDot>
