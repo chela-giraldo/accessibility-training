@@ -173,8 +173,8 @@ export const MODULES_DATA = [
           { title:"1.3.5 Identify Input Purpose", level:"AA", tags:["1.3.5: Identify input purpose"], titleUrl:"https://www.w3.org/WAI/WCAG22/Understanding/identify-input-purpose",
             body:"This criteria is about enhancing user experience and accessibility by helping users and technologies understand the purpose of input fields in forms and content. To enhance form accessibility, prioritize clear and concise labeling and incorporate autofill functionality:",
             bodyItems:[
-              "Utilize visual elements, such as icons, to clarify input fields, and simplify forms by minimizing the number of fields.",
               "For complex forms, divide them into manageable sections and provide straightforward instructions.",
+              "Utilize visual elements, such as icons, to clarify input fields, and simplify forms by minimizing the number of fields.",
               "Implement real-time validation with descriptive error messages.",
               "Ensure support for various input methods, and always verify form functionality with assistive technologies to accommodate users with diverse cognitive and physical needs."
             ],
