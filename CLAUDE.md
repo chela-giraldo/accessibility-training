@@ -41,7 +41,8 @@ Opens at http://localhost:5173/
 - `isReadOnly` mode shows module recap after completion
 
 ## Workflow
-- After every change, always `git add -A && git commit -m "<description>" && git push`
+- After every change, always run `npm run build` first, then `git add -A && git commit -m "<description>" && git push`
+- `dist/` is committed to the repo — the CI workflow deploys it directly (no build step on the runner)
 - This keeps GitHub and the live site at https://chela-giraldo.github.io/accessibility-training/ up to date automatically
 - No need to ask — just do it after every task
 
