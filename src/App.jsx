@@ -3727,147 +3727,151 @@ function MiniLineChart({ data, yLabels }) {
 }
 
 function SensoryCharacteristicsExample() {
-  const narrow = useNarrow(400);
+  const narrow = useNarrow(700);
   const [tab, setTab] = useState("chart");
 
-  // Chart data — 6 years (2019–2024), 3 series
   const years = ["2019","2020","2021","2022","2023","2024"];
-  const yLabels = ["$500K","$600K","$700K","$800K","$900K"];
-  const yMin = 500, yRange = 400; // in $K
+  const yTicks = [500,600,700,800,900];
+  const yMin = 500, yRange = 400;
   const series = [
-    { label:"Collateral Analysis", color:"#2563EB", dash:"8 5",   values:[640,700,700,730,800,840] },
-    { label:"CoreLogic®",          color:"#7C3AED", dash:null,    values:[530,660,665,700,790,840] },
-    { label:"Quantarium",          color:"#0D9488", dash:"14 7",  values:[600,630,640,660,740,795] },
+    { label:"Collateral Analytics", color:"#2563EB", dash:"6 4",  values:[630,700,710,730,800,860], estimate:"$872,000" },
+    { label:"CoreLogic®",           color:"#7C3AED", dash:null,   values:[510,655,665,700,790,848], estimate:"$849,000" },
+    { label:"Quantarium",           color:"#0D9488", dash:"12 5", values:[590,620,635,655,730,795], estimate:"$876,000" },
   ];
-  const listPrice = { color:"#15803D", value:870 };
+  const LIST_PRICE_VAL = 873, LIST_COLOR = "#15803D";
 
-  const W = 540, H = 200, pad = { t:8, b:32, l:0, r:48 };
-  const chartW = W - pad.l - pad.r;
-  const chartH = H - pad.t - pad.b;
+  const W = 500, H = 220, PR = 52, PT = 10, PB = 28;
+  const chartW = W - PR, chartH = H - PT - PB;
   const xStep = chartW / (years.length - 1);
-  const toY = (v) => pad.t + chartH - ((v - yMin) / yRange) * chartH;
-  const toX = (i) => pad.l + i * xStep;
-  const pts = (vals) => vals.map((v, i) => `${toX(i)},${toY(v)}`).join(" ");
+  const toY = (v) => PT + chartH - ((v - yMin) / yRange) * chartH;
+  const toX = (i) => i * xStep;
+  const pts = (vals) => vals.map((v, i) => `${toX(i).toFixed(1)},${toY(v).toFixed(1)}`).join(" ");
 
-  const chart = (
-    <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", display: "block", overflow: "visible" }} aria-hidden="true">
-      {/* Horizontal grid lines */}
-      {yLabels.map((l, i) => {
-        const yv = 500 + i * 100;
-        const cy = toY(yv);
-        return (
-          <g key={l}>
-            <line x1={pad.l} x2={W - pad.r} y1={cy} y2={cy} stroke="#E5E7EB" strokeWidth="1" />
-            <text x={W - pad.r + 6} y={cy + 4} fontSize="11" fill="#6B7280" fontFamily={FONT}>{l}</text>
-          </g>
-        );
-      })}
-      {/* Vertical cursor line at 2023 */}
-      <line x1={toX(4)} x2={toX(4)} y1={pad.t} y2={H - pad.b} stroke="#9CA3AF" strokeWidth="1" strokeDasharray="3 3" />
-      {/* Series lines */}
-      {series.map(s => (
-        <polyline key={s.label} points={pts(s.values)} fill="none" stroke={s.color} strokeWidth="2.5"
-          strokeDasharray={s.dash || undefined} strokeLinecap="round" strokeLinejoin="round" />
-      ))}
-      {/* Current list price dot at 2024 */}
-      <circle cx={toX(5)} cy={toY(listPrice.value)} r="7" fill={listPrice.color} />
-      {/* X axis labels */}
-      {years.map((y, i) => (
-        <text key={y} x={toX(i)} y={H - 4} textAnchor="middle" fontSize="11" fill="#6B7280" fontFamily={FONT}>{y}</text>
-      ))}
-      {/* Dots at 2023 for blue and purple */}
-      <circle cx={toX(4)} cy={toY(800)} r="5" fill="white" stroke="#2563EB" strokeWidth="2.5" />
-      <circle cx={toX(4)} cy={toY(790)} r="5" fill="white" stroke="#7C3AED" strokeWidth="2.5" />
-      <circle cx={toX(4)} cy={toY(740)} r="5" fill="white" stroke="#0D9488" strokeWidth="2.5" />
-    </svg>
-  );
-
-  const logoMark = (
-    <div style={{ display: "flex", alignItems: "baseline", gap: 0, userSelect: "none", pointerEvents: "none" }}>
-      <span style={{ fontFamily: FONT, fontSize: 20, fontWeight: 700, color: "#D92228" }}>Real</span>
-      <span style={{ fontFamily: FONT, fontSize: 20, fontWeight: 700, color: rdcUiTheme.color.text.primary }}>Estimate</span>
-      <span style={{ fontFamily: FONT, fontSize: 10, fontWeight: 600, color: rdcUiTheme.color.text.primary, verticalAlign: "super", lineHeight: 1 }}>SM</span>
-    </div>
-  );
-
-  const shareBtn = (
-    <div style={{ width: 36, height: 36, borderRadius: "50%", border: `1px solid ${rdcUiTheme.color.border.base}`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, pointerEvents: "none" }}>
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <circle cx="18" cy="5" r="2.5" stroke={rdcUiTheme.color.text.primary} strokeWidth="1.7"/>
-        <circle cx="18" cy="19" r="2.5" stroke={rdcUiTheme.color.text.primary} strokeWidth="1.7"/>
-        <circle cx="6" cy="12" r="2.5" stroke={rdcUiTheme.color.text.primary} strokeWidth="1.7"/>
-        <path d="M8.5 10.5l7-4M8.5 13.5l7 4" stroke={rdcUiTheme.color.text.primary} strokeWidth="1.7" strokeLinecap="round"/>
-      </svg>
-    </div>
-  );
-
-  const legendDash = (s) => (
-    <svg width="28" height="14" viewBox="0 0 28 14" aria-hidden="true">
-      <line x1="0" y1="7" x2="28" y2="7" stroke={s.color} strokeWidth="2.5"
+  const lineDash = (s, w = 30, h = 12) => (
+    <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} style={{ flexShrink: 0 }} aria-hidden="true">
+      <line x1="0" y1={h/2} x2={w} y2={h/2} stroke={s.color} strokeWidth="2.5"
         strokeDasharray={s.dash || undefined} strokeLinecap="round" />
     </svg>
   );
 
+  const chart = (
+    <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ display: "block", overflow: "visible" }} aria-hidden="true">
+      {yTicks.map(v => {
+        const cy = toY(v);
+        return (
+          <g key={v}>
+            <line x1={0} x2={W - PR} y1={cy} y2={cy} stroke="#E5E7EB" strokeWidth="1" />
+            <text x={W - PR + 5} y={cy + 4} fontSize="11" fill="#9CA3AF" fontFamily={FONT}>${v}K</text>
+          </g>
+        );
+      })}
+      <line x1={toX(4)} x2={toX(4)} y1={PT} y2={H - PB} stroke="#D1D5DB" strokeWidth="1" />
+      {series.map(s => (
+        <polyline key={s.label} points={pts(s.values)} fill="none" stroke={s.color} strokeWidth="2"
+          strokeDasharray={s.dash || undefined} strokeLinecap="round" strokeLinejoin="round" />
+      ))}
+      {series.map(s => (
+        <circle key={s.label + "-dot"} cx={toX(4)} cy={toY(s.values[4])} r="4.5"
+          fill="white" stroke={s.color} strokeWidth="2" />
+      ))}
+      <circle cx={toX(5)} cy={toY(LIST_PRICE_VAL)} r="7" fill={LIST_COLOR} />
+      {years.map((y, i) => (
+        <text key={y} x={toX(i)} y={H - 6} textAnchor="middle" fontSize="11" fill="#9CA3AF" fontFamily={FONT}>{y}</text>
+      ))}
+    </svg>
+  );
+
+  const logo = (
+    <span style={{ fontFamily: FONT, fontSize: 18, fontWeight: 700, userSelect: "none" }}>
+      <span style={{ color: "#D92228" }}>Real</span>
+      <span style={{ color: rdcUiTheme.color.text.primary }}>Estimate</span>
+      <sup style={{ fontSize: 9, fontWeight: 600, color: rdcUiTheme.color.text.primary, verticalAlign: "super" }}>SM</sup>
+    </span>
+  );
+
+  const listPriceRow = (
+    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", border: `1px solid ${rdcUiTheme.color.border.base}`, borderRadius: 8, padding: "10px 14px" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+        <div style={{ width: 10, height: 10, borderRadius: "50%", background: LIST_COLOR, flexShrink: 0 }} />
+        <span style={{ fontFamily: FONT, fontSize: 14, color: rdcUiTheme.color.text.primary }}>Current list price</span>
+      </div>
+      <span style={{ fontFamily: FONT, fontSize: 14, fontWeight: 600, color: rdcUiTheme.color.text.primary }}>$873,000</span>
+    </div>
+  );
+
+  const tablePanel = (
+    <div style={{ border: `1px solid ${rdcUiTheme.color.border.base}`, borderRadius: 8, overflow: "hidden" }}>
+      <div style={{ background: rdcUiTheme.color.bg.secondary, padding: "10px 14px", borderBottom: `1px solid ${rdcUiTheme.color.border.base}` }}>
+        <span style={{ fontFamily: FONT, fontSize: 14, fontWeight: 700, color: rdcUiTheme.color.text.primary }}>January 2024</span>
+      </div>
+      <div style={{ display: "flex", justifyContent: "space-between", padding: "8px 14px", borderBottom: `1px solid ${rdcUiTheme.color.border.base}` }}>
+        <span style={{ fontFamily: FONT, fontSize: 12, color: rdcUiTheme.color.text.secondary }}>Valuation provider</span>
+        <span style={{ fontFamily: FONT, fontSize: 12, color: rdcUiTheme.color.text.secondary }}>Estimate</span>
+      </div>
+      {series.map((s, i) => (
+        <div key={s.label} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px 14px", borderBottom: i < series.length - 1 ? `1px solid ${rdcUiTheme.color.border.base}` : undefined }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            {lineDash(s)}
+            <span style={{ fontFamily: FONT, fontSize: 13, color: rdcUiTheme.color.text.primary }}>{s.label}</span>
+          </div>
+          <span style={{ fontFamily: FONT, fontSize: 13, color: rdcUiTheme.color.text.primary }}>{s.estimate}</span>
+        </div>
+      ))}
+    </div>
+  );
+
+  const switcher = (
+    <ContentSwitchGroup size="small">
+      <ContentSwitch selected={tab === "chart"} onClick={() => setTab("chart")}>Chart</ContentSwitch>
+      <ContentSwitch selected={tab === "table"} onClick={() => setTab("table")}>Table</ContentSwitch>
+    </ContentSwitchGroup>
+  );
+
+  const footer = narrow ? (
+    <div style={{ display: "flex", flexDirection: "column", gap: 4, marginTop: 20 }}>
+      <span style={{ fontFamily: FONT, fontSize: 13, color: rdcUiTheme.color.text.primary }}>Want to track your home's value?</span>
+      <span style={{ fontFamily: FONT, fontSize: 13, color: rdcUiTheme.color.text.primary, textDecoration: "underline", fontWeight: 500, cursor: "default" }}>Claim your home</span>
+      <span style={{ fontFamily: FONT, fontSize: 13, color: rdcUiTheme.color.text.primary, textDecoration: "underline", fontWeight: 500, cursor: "default", marginTop: 4 }}>More about RealEstimate℠ data</span>
+    </div>
+  ) : (
+    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 16, paddingTop: 16, borderTop: `1px solid ${rdcUiTheme.color.border.accent}` }}>
+      <span style={{ fontFamily: FONT, fontSize: 13, color: rdcUiTheme.color.text.primary }}>
+        Want to track your home's value?{" "}
+        <span style={{ textDecoration: "underline", fontWeight: 500 }}>Claim your home</span>
+      </span>
+      <span style={{ fontFamily: FONT, fontSize: 13, color: rdcUiTheme.color.text.primary, textDecoration: "underline", fontWeight: 500 }}>More about RealEstimate℠ data</span>
+    </div>
+  );
+
   if (narrow) {
     return (
-      <div style={{ background: rdcUiTheme.color.bg.primary, border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 16, padding: "24px 20px", width: "100%", boxSizing: "border-box" }}>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20 }}>
-          {logoMark}
-        </div>
-        <ContentSwitchGroup size="medium" style={{ width: "100%", marginBottom: 20 }}>
-          <ContentSwitch selected={tab === "chart"} onClick={() => setTab("chart")} style={{ flex: 1, justifyContent: "center" }}>Chart</ContentSwitch>
-          <ContentSwitch selected={tab === "table"} onClick={() => setTab("table")} style={{ flex: 1, justifyContent: "center" }}>Table</ContentSwitch>
-        </ContentSwitchGroup>
+      <div style={{ background: rdcUiTheme.color.bg.primary, border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 16, padding: "20px 16px", width: "100%", boxSizing: "border-box" }}>
+        <div style={{ marginBottom: 16 }}>{logo}</div>
+        <div style={{ marginBottom: 16 }}>{switcher}</div>
         {chart}
+        <div style={{ display: "flex", flexDirection: "column", gap: 8, marginTop: 16 }}>
+          {listPriceRow}
+          {tablePanel}
+        </div>
+        {footer}
       </div>
     );
   }
 
   return (
-    <div style={{ background: rdcUiTheme.color.bg.primary, border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 16, padding: "24px 28px", width: "100%", boxSizing: "border-box" }}>
-      {/* Header */}
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20 }}>
-        {logoMark}
-        {shareBtn}
+    <div style={{ background: rdcUiTheme.color.bg.primary, border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 16, padding: "20px 24px", width: "100%", boxSizing: "border-box" }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
+        {logo}
+        {switcher}
       </div>
-      {/* Body: chart + right panel */}
       <div style={{ display: "flex", gap: 16, alignItems: "flex-start" }}>
-        {/* Chart */}
-        <div style={{ flex: 1, minWidth: 0 }}>
-          {chart}
-        </div>
-        {/* Right legend panel */}
-        <div style={{ width: 200, flexShrink: 0, display: "flex", flexDirection: "column", gap: 8 }}>
-          {/* Current list price pill */}
-          <div style={{ display: "flex", alignItems: "center", gap: 8, border: `1px solid ${rdcUiTheme.color.border.base}`, borderRadius: 100, padding: "6px 14px", alignSelf: "flex-start" }}>
-            <div style={{ width: 10, height: 10, borderRadius: "50%", background: listPrice.color, flexShrink: 0 }} />
-            <span style={{ fontFamily: FONT, fontSize: 13, color: rdcUiTheme.color.text.primary }}>Current list price</span>
-          </div>
-          {/* Table panel */}
-          <div style={{ border: `1px solid ${rdcUiTheme.color.border.base}`, borderRadius: 10, overflow: "hidden" }}>
-            <div style={{ background: rdcUiTheme.color.bg.secondary, padding: "10px 14px", borderBottom: `1px solid ${rdcUiTheme.color.border.accent}` }}>
-              <span style={{ fontFamily: FONT, fontSize: 13, fontWeight: 700, color: rdcUiTheme.color.text.primary }}>January</span>
-            </div>
-            <div style={{ padding: "10px 14px", borderBottom: `1px solid ${rdcUiTheme.color.border.accent}` }}>
-              <span style={{ fontFamily: FONT, fontSize: 11, color: rdcUiTheme.color.text.secondary }}>Valuation provider</span>
-            </div>
-            {series.map(s => (
-              <div key={s.label} style={{ display: "flex", alignItems: "center", gap: 8, padding: "10px 14px", borderBottom: `1px solid ${rdcUiTheme.color.border.accent}` }}>
-                {legendDash(s)}
-                <span style={{ fontFamily: FONT, fontSize: 12, color: rdcUiTheme.color.text.primary }}>{s.label}{s.label === "CoreLogic®" ? " ⓘ" : ""}</span>
-              </div>
-            ))}
-          </div>
+        <div style={{ flex: 1, minWidth: 0 }}>{chart}</div>
+        <div style={{ width: 280, flexShrink: 0, display: "flex", flexDirection: "column", gap: 8 }}>
+          {listPriceRow}
+          {tablePanel}
         </div>
       </div>
-      {/* Footer */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 20, paddingTop: 16, borderTop: `1px solid ${rdcUiTheme.color.border.accent}` }}>
-        <span style={{ fontFamily: FONT, fontSize: 13, color: rdcUiTheme.color.text.primary }}>
-          Want to track your home's value?{" "}
-          <span style={{ textDecoration: "underline", fontWeight: 500 }}>Claim your home</span>
-        </span>
-        <span style={{ fontFamily: FONT, fontSize: 13, color: rdcUiTheme.color.text.primary, textDecoration: "underline", fontWeight: 500 }}>More about</span>
-      </div>
+      {footer}
     </div>
   );
 }
