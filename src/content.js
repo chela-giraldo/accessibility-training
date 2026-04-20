@@ -94,7 +94,7 @@ export const MODULES_DATA = [
     pages:[
       { sections:[
         { type:"guideline-cards",
-          heading:"Perceivable Guidelines",
+          heading:"1. Perceivable",
           href:"https://www.w3.org/TR/WCAG22/#perceivable",
           intro:[
             "To ensure all users, regardless of sensory abilities, can access and understand web content, this guideline focuses on the principle of perceivability.",
