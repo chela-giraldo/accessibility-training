@@ -3738,6 +3738,7 @@ function SensoryCharacteristicsExample() {
     { label:"CoreLogic®",           color:"#7C3AED", dash:null,   values:[510,655,665,700,790,848], estimate:"$849,000" },
     { label:"Quantarium",           color:"#0D9488", dash:"12 5", values:[590,620,635,655,730,795], estimate:"$876,000" },
   ];
+  const LIST_COLOR = "#15803D";
 
   // PL: left pad so "2019" label isn't clipped; PR: right space for y-axis labels; PT/PB: top/bottom
   const W = 500, H = 175, PL = 22, PR = 50, PT = 8, PB = 24;
