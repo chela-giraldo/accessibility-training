@@ -3748,7 +3748,7 @@ function InfoRelationshipsExample() {
   const dropdownBase = {
     fontFamily: FONT, fontSize: 18, color: rdcUiTheme.color.text.primary,
     border: `1px solid ${rdcUiTheme.color.border.base}`, borderRadius: 10,
-    padding: "12px 16px", width: "100%", boxSizing: "border-box",
+    padding: "12px 16px", width: "100%", boxSizing: "border-box", height: 48,
     background: rdcUiTheme.color.bg.primary, display: "flex",
     alignItems: "center", justifyContent: "space-between",
   };
@@ -3764,17 +3764,17 @@ function InfoRelationshipsExample() {
       <div style={{ fontFamily: FONT, fontSize: 16, color: rdcUiTheme.color.text.secondary, marginBottom: 32 }}>Required fields are marked with *</div>
 
       {/* Dropdown 1 — filled, no error */}
-      <div style={{ ...dropdownBase, marginBottom: 20 }}>
-        <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-          <span style={{ fontFamily: FONT, fontSize: 13, color: rdcUiTheme.color.text.secondary }}>Agent's primary state*</span>
-          <span style={{ fontFamily: FONT, fontSize: 18, color: rdcUiTheme.color.text.primary }}>Texas</span>
+      <div style={{ ...dropdownBase, height: 48, marginBottom: 20 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 1 }}>
+          <span style={{ fontFamily: FONT, fontSize: 11, color: rdcUiTheme.color.text.secondary, lineHeight: 1.2 }}>Agent's primary state*</span>
+          <span style={{ fontFamily: FONT, fontSize: 16, color: rdcUiTheme.color.text.primary, lineHeight: 1.2 }}>Texas</span>
         </div>
         {chevron}
       </div>
 
       {/* Dropdown 2 — empty, red error border */}
       <div>
-        <div style={{ ...dropdownError, marginBottom: 8 }}>
+        <div style={{ ...dropdownError, height: 48, marginBottom: 8 }}>
           <span style={{ fontFamily: FONT, fontSize: 18, color: rdcUiTheme.color.text.primary }}>Choose an MLS*</span>
           {chevron}
         </div>
