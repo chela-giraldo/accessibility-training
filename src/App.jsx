@@ -4003,9 +4003,9 @@ function ChartExample() {
       </div>
 
       {tab === "charts" ? (
-        <div style={{ display:"flex", flexDirection: narrow ? "column" : "row", gap:20 }}>
+        <div style={{ display:"flex", flexDirection:"row", flexWrap:"wrap", gap:20 }}>
           {CHART_DATA.map((c,i)=>(
-            <div key={i} style={{ flex:"1 1 400px", minWidth: narrow ? 0 : 400, display:"flex", flexDirection:"column", gap:12 }}>
+            <div key={i} style={{ flex:"1 1 400px", minWidth:400, display:"flex", flexDirection:"column", gap:12 }}>
               <div style={{ background:rdcUiTheme.color.bg.primary, border:`1px solid ${rdcUiTheme.color.border.accent}`, borderRadius:8, padding:24 }}>
                 <div style={{ display:"flex", alignItems:"center", gap:8, marginBottom:4 }}>
                   <span style={{ fontFamily:FONT, fontSize:24, fontWeight:600, letterSpacing:"-0.24px", color:rdcUiTheme.color.text.primary, lineHeight:"28px" }}>{c.value}</span>
