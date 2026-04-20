@@ -3727,7 +3727,7 @@ function MiniLineChart({ data, yLabels }) {
 }
 
 function SensoryCharacteristicsExample() {
-  const narrow = useNarrow(700);
+  const narrow = useNarrow(850);
   const [tab, setTab] = useState("chart");
 
   const years = ["2019","2020","2021","2022","2023","2024"];
@@ -3738,13 +3738,13 @@ function SensoryCharacteristicsExample() {
     { label:"CoreLogic®",           color:"#7C3AED", dash:null,   values:[510,655,665,700,790,848], estimate:"$849,000" },
     { label:"Quantarium",           color:"#0D9488", dash:"12 5", values:[590,620,635,655,730,795], estimate:"$876,000" },
   ];
-  const LIST_PRICE_VAL = 873, LIST_COLOR = "#15803D";
 
-  const W = 500, H = 220, PR = 52, PT = 10, PB = 28;
-  const chartW = W - PR, chartH = H - PT - PB;
+  // PL: left pad so "2019" label isn't clipped; PR: right space for y-axis labels; PT/PB: top/bottom
+  const W = 500, H = 175, PL = 22, PR = 50, PT = 8, PB = 24;
+  const chartW = W - PL - PR, chartH = H - PT - PB;
   const xStep = chartW / (years.length - 1);
   const toY = (v) => PT + chartH - ((v - yMin) / yRange) * chartH;
-  const toX = (i) => i * xStep;
+  const toX = (i) => PL + i * xStep;
   const pts = (vals) => vals.map((v, i) => `${toX(i).toFixed(1)},${toY(v).toFixed(1)}`).join(" ");
 
   const lineDash = (s, w = 30, h = 12) => (
@@ -3755,28 +3755,22 @@ function SensoryCharacteristicsExample() {
   );
 
   const chart = (
-    <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ display: "block", overflow: "visible" }} aria-hidden="true">
+    <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ display: "block" }} aria-hidden="true">
       {yTicks.map(v => {
         const cy = toY(v);
         return (
           <g key={v}>
-            <line x1={0} x2={W - PR} y1={cy} y2={cy} stroke="#E5E7EB" strokeWidth="1" />
+            <line x1={PL} x2={W - PR} y1={cy} y2={cy} stroke="#E5E7EB" strokeWidth="1" />
             <text x={W - PR + 5} y={cy + 4} fontSize="11" fill="#9CA3AF" fontFamily={FONT}>${v}K</text>
           </g>
         );
       })}
-      <line x1={toX(4)} x2={toX(4)} y1={PT} y2={H - PB} stroke="#D1D5DB" strokeWidth="1" />
       {series.map(s => (
         <polyline key={s.label} points={pts(s.values)} fill="none" stroke={s.color} strokeWidth="2"
           strokeDasharray={s.dash || undefined} strokeLinecap="round" strokeLinejoin="round" />
       ))}
-      {series.map(s => (
-        <circle key={s.label + "-dot"} cx={toX(4)} cy={toY(s.values[4])} r="4.5"
-          fill="white" stroke={s.color} strokeWidth="2" />
-      ))}
-      <circle cx={toX(5)} cy={toY(LIST_PRICE_VAL)} r="7" fill={LIST_COLOR} />
       {years.map((y, i) => (
-        <text key={y} x={toX(i)} y={H - 6} textAnchor="middle" fontSize="11" fill="#9CA3AF" fontFamily={FONT}>{y}</text>
+        <text key={y} x={toX(i)} y={H - 4} textAnchor="middle" fontSize="11" fill="#9CA3AF" fontFamily={FONT}>{y}</text>
       ))}
     </svg>
   );
