@@ -3727,74 +3727,146 @@ function MiniLineChart({ data, yLabels }) {
 }
 
 function SensoryCharacteristicsExample() {
-  const btnBase = {
-    display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
-    borderRadius: 100, border: `1px solid ${rdcUiTheme.color.border.base}`,
-    background: rdcUiTheme.color.bg.primary, cursor: "default",
-    fontFamily: FONT, fontWeight: 500, color: rdcUiTheme.color.text.primary,
-    pointerEvents: "none", userSelect: "none",
-  };
-  const heartIcon = (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <path d="M10 17s-7-4.35-7-8.5A4.5 4.5 0 0 1 10 5.315 4.5 4.5 0 0 1 17 8.5C17 12.65 10 17 10 17z" stroke={rdcUiTheme.color.text.primary} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+  const narrow = useNarrow(400);
+  const [tab, setTab] = useState("chart");
+
+  // Chart data — 6 years (2019–2024), 3 series
+  const years = ["2019","2020","2021","2022","2023","2024"];
+  const yLabels = ["$500K","$600K","$700K","$800K","$900K"];
+  const yMin = 500, yRange = 400; // in $K
+  const series = [
+    { label:"Collateral Analysis", color:"#2563EB", dash:"8 5",   values:[640,700,700,730,800,840] },
+    { label:"CoreLogic®",          color:"#7C3AED", dash:null,    values:[530,660,665,700,790,840] },
+    { label:"Quantarium",          color:"#0D9488", dash:"14 7",  values:[600,630,640,660,740,795] },
+  ];
+  const listPrice = { color:"#15803D", value:870 };
+
+  const W = 540, H = 200, pad = { t:8, b:32, l:0, r:48 };
+  const chartW = W - pad.l - pad.r;
+  const chartH = H - pad.t - pad.b;
+  const xStep = chartW / (years.length - 1);
+  const toY = (v) => pad.t + chartH - ((v - yMin) / yRange) * chartH;
+  const toX = (i) => pad.l + i * xStep;
+  const pts = (vals) => vals.map((v, i) => `${toX(i)},${toY(v)}`).join(" ");
+
+  const chart = (
+    <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", display: "block", overflow: "visible" }} aria-hidden="true">
+      {/* Horizontal grid lines */}
+      {yLabels.map((l, i) => {
+        const yv = 500 + i * 100;
+        const cy = toY(yv);
+        return (
+          <g key={l}>
+            <line x1={pad.l} x2={W - pad.r} y1={cy} y2={cy} stroke="#E5E7EB" strokeWidth="1" />
+            <text x={W - pad.r + 6} y={cy + 4} fontSize="11" fill="#6B7280" fontFamily={FONT}>{l}</text>
+          </g>
+        );
+      })}
+      {/* Vertical cursor line at 2023 */}
+      <line x1={toX(4)} x2={toX(4)} y1={pad.t} y2={H - pad.b} stroke="#9CA3AF" strokeWidth="1" strokeDasharray="3 3" />
+      {/* Series lines */}
+      {series.map(s => (
+        <polyline key={s.label} points={pts(s.values)} fill="none" stroke={s.color} strokeWidth="2.5"
+          strokeDasharray={s.dash || undefined} strokeLinecap="round" strokeLinejoin="round" />
+      ))}
+      {/* Current list price dot at 2024 */}
+      <circle cx={toX(5)} cy={toY(listPrice.value)} r="7" fill={listPrice.color} />
+      {/* X axis labels */}
+      {years.map((y, i) => (
+        <text key={y} x={toX(i)} y={H - 4} textAnchor="middle" fontSize="11" fill="#6B7280" fontFamily={FONT}>{y}</text>
+      ))}
+      {/* Dots at 2023 for blue and purple */}
+      <circle cx={toX(4)} cy={toY(800)} r="5" fill="white" stroke="#2563EB" strokeWidth="2.5" />
+      <circle cx={toX(4)} cy={toY(790)} r="5" fill="white" stroke="#7C3AED" strokeWidth="2.5" />
+      <circle cx={toX(4)} cy={toY(740)} r="5" fill="white" stroke="#0D9488" strokeWidth="2.5" />
     </svg>
   );
-  const shareIcon = (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <circle cx="15" cy="4" r="2" stroke={rdcUiTheme.color.text.primary} strokeWidth="1.5"/>
-      <circle cx="15" cy="16" r="2" stroke={rdcUiTheme.color.text.primary} strokeWidth="1.5"/>
-      <circle cx="5" cy="10" r="2" stroke={rdcUiTheme.color.text.primary} strokeWidth="1.5"/>
-      <path d="M7 9l6-3.5M7 11l6 3.5" stroke={rdcUiTheme.color.text.primary} strokeWidth="1.5" strokeLinecap="round"/>
-    </svg>
-  );
-  const col = (label, good) => (
-    <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 16, alignItems: "center" }}>
-      <div style={{
-        fontFamily: FONT, fontSize: 12, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase",
-        color: good ? "#2D8653" : "#D92228", background: good ? "#D4F0E0" : "#FEE2E3",
-        border: `1px solid ${good ? "#2D8653" : "#D92228"}`, borderRadius: 100,
-        padding: "2px 12px",
-      }}>{good ? "Do" : "Don't"}</div>
-      <div style={{ background: rdcUiTheme.color.bg.primary, border: `1px solid ${rdcUiTheme.color.border.base}`, borderRadius: 16, padding: "32px 40px", width: "100%", boxSizing: "border-box", display: "flex", flexDirection: "column", gap: 16 }}>
-        {good ? (
-          <>
-            <button style={{ ...btnBase, padding: "10px 20px" }}>
-              {heartIcon}
-              <span>Save</span>
-            </button>
-            <button style={{ ...btnBase, padding: "10px 20px" }}>
-              {shareIcon}
-              <span>Share</span>
-            </button>
-          </>
-        ) : (
-          <>
-            <button style={{ ...btnBase, padding: 10, width: 40, height: 40 }} aria-label="Save">
-              {heartIcon}
-            </button>
-            <button style={{ ...btnBase, padding: 10, width: 40, height: 40 }} aria-label="Share">
-              {shareIcon}
-            </button>
-          </>
-        )}
-      </div>
-      <div style={{ fontFamily: FONT, fontSize: 13, color: rdcUiTheme.color.text.secondary, textAlign: "center", maxWidth: 220, lineHeight: "18px" }}>
-        {good
-          ? "Icon paired with a text label — purpose is clear to all users"
-          : "Icon-only button — relies on shape alone to convey meaning"}
-      </div>
+
+  const logoMark = (
+    <div style={{ display: "flex", alignItems: "baseline", gap: 0, userSelect: "none", pointerEvents: "none" }}>
+      <span style={{ fontFamily: FONT, fontSize: 20, fontWeight: 700, color: "#D92228" }}>Real</span>
+      <span style={{ fontFamily: FONT, fontSize: 20, fontWeight: 700, color: rdcUiTheme.color.text.primary }}>Estimate</span>
+      <span style={{ fontFamily: FONT, fontSize: 10, fontWeight: 600, color: rdcUiTheme.color.text.primary, verticalAlign: "super", lineHeight: 1 }}>SM</span>
     </div>
   );
-  return (
-    <div style={{ background: rdcUiTheme.color.bg.primary, border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 12, padding: "40px 48px", width: "100%", boxSizing: "border-box" }}>
-      <div style={{ fontFamily: FONT, fontSize: 22, fontWeight: 600, color: rdcUiTheme.color.text.primary, marginBottom: 8 }}>Listing action buttons</div>
-      <div style={{ fontFamily: FONT, fontSize: 15, color: rdcUiTheme.color.text.secondary, marginBottom: 32, lineHeight: "22px" }}>
-        Don't rely on icon shape alone — pair icons with descriptive text labels so all users understand the action.
+
+  const shareBtn = (
+    <div style={{ width: 36, height: 36, borderRadius: "50%", border: `1px solid ${rdcUiTheme.color.border.base}`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, pointerEvents: "none" }}>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="18" cy="5" r="2.5" stroke={rdcUiTheme.color.text.primary} strokeWidth="1.7"/>
+        <circle cx="18" cy="19" r="2.5" stroke={rdcUiTheme.color.text.primary} strokeWidth="1.7"/>
+        <circle cx="6" cy="12" r="2.5" stroke={rdcUiTheme.color.text.primary} strokeWidth="1.7"/>
+        <path d="M8.5 10.5l7-4M8.5 13.5l7 4" stroke={rdcUiTheme.color.text.primary} strokeWidth="1.7" strokeLinecap="round"/>
+      </svg>
+    </div>
+  );
+
+  const legendDash = (s) => (
+    <svg width="28" height="14" viewBox="0 0 28 14" aria-hidden="true">
+      <line x1="0" y1="7" x2="28" y2="7" stroke={s.color} strokeWidth="2.5"
+        strokeDasharray={s.dash || undefined} strokeLinecap="round" />
+    </svg>
+  );
+
+  if (narrow) {
+    return (
+      <div style={{ background: rdcUiTheme.color.bg.primary, border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 16, padding: "24px 20px", width: "100%", boxSizing: "border-box" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20 }}>
+          {logoMark}
+        </div>
+        <ContentSwitchGroup size="medium" style={{ width: "100%", marginBottom: 20 }}>
+          <ContentSwitch selected={tab === "chart"} onClick={() => setTab("chart")} style={{ flex: 1, justifyContent: "center" }}>Chart</ContentSwitch>
+          <ContentSwitch selected={tab === "table"} onClick={() => setTab("table")} style={{ flex: 1, justifyContent: "center" }}>Table</ContentSwitch>
+        </ContentSwitchGroup>
+        {chart}
       </div>
-      <div style={{ display: "flex", gap: 40, flexWrap: "wrap" }}>
-        {col("Don't", false)}
-        <div style={{ width: 1, background: rdcUiTheme.color.border.accent, alignSelf: "stretch" }} />
-        {col("Do", true)}
+    );
+  }
+
+  return (
+    <div style={{ background: rdcUiTheme.color.bg.primary, border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 16, padding: "24px 28px", width: "100%", boxSizing: "border-box" }}>
+      {/* Header */}
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20 }}>
+        {logoMark}
+        {shareBtn}
+      </div>
+      {/* Body: chart + right panel */}
+      <div style={{ display: "flex", gap: 16, alignItems: "flex-start" }}>
+        {/* Chart */}
+        <div style={{ flex: 1, minWidth: 0 }}>
+          {chart}
+        </div>
+        {/* Right legend panel */}
+        <div style={{ width: 200, flexShrink: 0, display: "flex", flexDirection: "column", gap: 8 }}>
+          {/* Current list price pill */}
+          <div style={{ display: "flex", alignItems: "center", gap: 8, border: `1px solid ${rdcUiTheme.color.border.base}`, borderRadius: 100, padding: "6px 14px", alignSelf: "flex-start" }}>
+            <div style={{ width: 10, height: 10, borderRadius: "50%", background: listPrice.color, flexShrink: 0 }} />
+            <span style={{ fontFamily: FONT, fontSize: 13, color: rdcUiTheme.color.text.primary }}>Current list price</span>
+          </div>
+          {/* Table panel */}
+          <div style={{ border: `1px solid ${rdcUiTheme.color.border.base}`, borderRadius: 10, overflow: "hidden" }}>
+            <div style={{ background: rdcUiTheme.color.bg.secondary, padding: "10px 14px", borderBottom: `1px solid ${rdcUiTheme.color.border.accent}` }}>
+              <span style={{ fontFamily: FONT, fontSize: 13, fontWeight: 700, color: rdcUiTheme.color.text.primary }}>January</span>
+            </div>
+            <div style={{ padding: "10px 14px", borderBottom: `1px solid ${rdcUiTheme.color.border.accent}` }}>
+              <span style={{ fontFamily: FONT, fontSize: 11, color: rdcUiTheme.color.text.secondary }}>Valuation provider</span>
+            </div>
+            {series.map(s => (
+              <div key={s.label} style={{ display: "flex", alignItems: "center", gap: 8, padding: "10px 14px", borderBottom: `1px solid ${rdcUiTheme.color.border.accent}` }}>
+                {legendDash(s)}
+                <span style={{ fontFamily: FONT, fontSize: 12, color: rdcUiTheme.color.text.primary }}>{s.label}{s.label === "CoreLogic®" ? " ⓘ" : ""}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      {/* Footer */}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 20, paddingTop: 16, borderTop: `1px solid ${rdcUiTheme.color.border.accent}` }}>
+        <span style={{ fontFamily: FONT, fontSize: 13, color: rdcUiTheme.color.text.primary }}>
+          Want to track your home's value?{" "}
+          <span style={{ textDecoration: "underline", fontWeight: 500 }}>Claim your home</span>
+        </span>
+        <span style={{ fontFamily: FONT, fontSize: 13, color: rdcUiTheme.color.text.primary, textDecoration: "underline", fontWeight: 500 }}>More about</span>
       </div>
     </div>
   );
