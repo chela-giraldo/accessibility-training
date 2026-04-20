@@ -3839,8 +3839,8 @@ function IdentifyInputPurposeExample() {
   };
   const labelRow = (label) => (
     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 6 }}>
-      <span style={{ fontFamily: FONT, fontSize: 15, fontWeight: 700, color: rdcUiTheme.color.text.primary }}>{label}</span>
-      <span style={{ fontFamily: FONT, fontSize: 15, color: rdcUiTheme.color.text.secondary }}>required</span>
+      <span style={{ fontFamily: FONT, fontSize: 14, fontWeight: 700, color: rdcUiTheme.color.text.primary }}>{label}</span>
+      <span style={{ fontFamily: FONT, fontSize: 14, color: rdcUiTheme.color.text.secondary }}>required</span>
     </div>
   );
   const iconX = (
@@ -3869,7 +3869,7 @@ function IdentifyInputPurposeExample() {
   return (
     <div style={{ background: rdcUiTheme.color.bg.primary, border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 16, padding: "40px 48px", width: "100%", maxWidth: 800, boxSizing: "border-box", margin: "0 auto" }}>
       {/* Step header */}
-      <div style={{ fontFamily: FONT, fontSize: 22, color: rdcUiTheme.color.text.primary, marginBottom: 12 }}>
+      <div style={{ fontFamily: FONT, fontSize: 16, color: rdcUiTheme.color.text.primary, marginBottom: 12 }}>
         <span style={{ fontWeight: 700 }}>Step 1 of 4:</span>{"  "}Verify your personal information
       </div>
       {/* Progress bar */}
@@ -3882,7 +3882,7 @@ function IdentifyInputPurposeExample() {
         <div>
           {labelRow("Name")}
           <div style={inputBase}>
-            <span style={{ fontFamily: FONT, fontSize: 17, color: rdcUiTheme.color.text.primary }}>Jon Doe</span>
+            <span style={{ fontFamily: FONT, fontSize: 16, color: rdcUiTheme.color.text.primary }}>Jon Doe</span>
             {iconX}
           </div>
         </div>
@@ -3891,7 +3891,7 @@ function IdentifyInputPurposeExample() {
         <div>
           {labelRow("Date of Birth")}
           <div style={inputBase}>
-            <span style={{ fontFamily: FONT, fontSize: 17, color: rdcUiTheme.color.text.primary }}>05/09/1962</span>
+            <span style={{ fontFamily: FONT, fontSize: 16, color: rdcUiTheme.color.text.primary }}>05/09/1962</span>
             <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
               {iconX}
               {iconCalendar}
@@ -3903,12 +3903,12 @@ function IdentifyInputPurposeExample() {
         <div>
           {labelRow("Email")}
           <div style={{ ...inputBase, border: "2px solid #D92228" }}>
-            <span style={{ fontFamily: FONT, fontSize: 17, color: rdcUiTheme.color.text.primary }}>johndoe@</span>
+            <span style={{ fontFamily: FONT, fontSize: 16, color: rdcUiTheme.color.text.primary }}>johndoe@</span>
             {iconMail}
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 6 }}>
             {iconInfoCircle}
-            <span style={{ fontFamily: FONT, fontSize: 15, color: "#D92228" }}>Please enter a complete email address.</span>
+            <span style={{ fontFamily: FONT, fontSize: 14, color: "#D92228" }}>Please enter a complete email address.</span>
           </div>
         </div>
 
@@ -3916,19 +3916,19 @@ function IdentifyInputPurposeExample() {
         <div style={{ position: "relative" }}>
           {labelRow("Address")}
           <div style={{ ...inputBase, border: "2px solid #0D57D4" }}>
-            <span style={{ fontFamily: FONT, fontSize: 17, color: rdcUiTheme.color.text.secondary }}>123 Main St, Someplace, CA</span>
+            <span style={{ fontFamily: FONT, fontSize: 16, color: rdcUiTheme.color.text.secondary }}>123 Main St, Someplace, CA</span>
           </div>
           {/* Autocomplete dropdown */}
           <div style={{
-            position: "absolute", top: "calc(100% - 1px)", left: 0, right: 0,
+            position: "absolute", top: "calc(100% + 4px)", left: 0, right: 0,
             background: rdcUiTheme.color.bg.primary, border: `1px solid ${rdcUiTheme.color.border.base}`,
-            borderRadius: "0 0 10px 10px", overflow: "hidden", zIndex: 10,
+            borderRadius: 10, overflow: "hidden", zIndex: 10,
           }}>
-            <div style={{ padding: "18px 16px", background: rdcUiTheme.color.bg.secondary, borderBottom: `1px solid ${rdcUiTheme.color.border.accent}` }}>
-              <span style={{ fontFamily: FONT, fontSize: 17, color: rdcUiTheme.color.text.primary }}>123 Main St, Someplace, CA</span>
+            <div style={{ padding: "16px", background: rdcUiTheme.color.bg.secondary, borderBottom: `1px solid ${rdcUiTheme.color.border.accent}` }}>
+              <span style={{ fontFamily: FONT, fontSize: 16, color: rdcUiTheme.color.text.primary }}>123 Main St, Someplace, CA</span>
             </div>
-            <div style={{ padding: "18px 16px" }}>
-              <span style={{ fontFamily: FONT, fontSize: 17, color: rdcUiTheme.color.text.primary }}>123 Main St, Anytown, USA</span>
+            <div style={{ padding: "16px" }}>
+              <span style={{ fontFamily: FONT, fontSize: 16, color: rdcUiTheme.color.text.primary }}>123 Main St, Anytown, USA</span>
             </div>
           </div>
         </div>
