@@ -35,7 +35,7 @@ const rdcUiTheme = {
   },
   typography: {
     scale: {
-      body200:    { size: '14px', lineHeight: '16px', fontWeight: 400 },
+      body200:    { size: '12px', lineHeight: '16px', fontWeight: 400 },
       body300:    { size: '14px', lineHeight: '20px', fontWeight: 400 },
       body400:    { size: '16px', lineHeight: '24px', fontWeight: 400 },
       display700: { size: '24px', lineHeight: '32px', letterSpacing: '-0.24px' },
@@ -761,7 +761,7 @@ const NavBarDone = styled.span`
   border-radius: 40px;
   padding: 4px 12px;
   color: ${CAT.green.bold};
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
   margin-bottom: 6px;
   display: inline-block;
@@ -1264,7 +1264,7 @@ const PourRichContent = styled.div`
 
 const PourRichEyebrow = styled.div`
   color: #726A60;
-  font-size: 14px;
+  font-size: 12px;
   font-family: ${FONT};
   font-weight: 500;
   line-height: 16px;
@@ -1325,7 +1325,7 @@ const LevelNum = styled.div`
 `;
 
 const LevelDesc = styled.div`
-  font-size: 14px;
+  font-size: 12px;
   color: ${rdcUiTheme.color.text.secondary};
   line-height: 1.5;
   font-family: ${FONT};
@@ -1550,7 +1550,7 @@ const GuidelineTags = styled.div`
 const WcagTagSpan = styled.span`
   background: ${CAT.blue.subtle};
   color: ${CAT.blue.bold};
-  font-size: 14px;
+  font-size: 12px;
   line-height: 16px;
   border-radius: ${rdcUiTheme.size.borderRadius['100']};
   padding: 2px 8px;
@@ -1619,7 +1619,7 @@ const GDTagRow = styled.div`
 const GDTagLink = styled.a`
   background: ${CAT.blue.subtle};
   color: ${CAT.blue.bold};
-  font-size: 14px;
+  font-size: 12px;
   line-height: 16px;
   border-radius: ${rdcUiTheme.size.borderRadius['100']};
   padding: 2px 8px;
@@ -1741,7 +1741,7 @@ const PluginName = styled.div`
 `;
 
 const PluginUse = styled.div`
-  font-size: 14px;
+  font-size: 12px;
   color: ${rdcUiTheme.color.text.secondary};
   line-height: 1.5;
   font-family: ${FONT};
@@ -1777,7 +1777,7 @@ const AnnotationLabel = styled.div`
 `;
 
 const AnnotationDesc = styled.div`
-  font-size: 14px;
+  font-size: 12px;
   color: ${rdcUiTheme.color.text.secondary};
   font-family: ${FONT};
 `;
@@ -1790,7 +1790,7 @@ const NamingGrid = styled.div`
 `;
 
 const NamingHeader = styled.div`
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
   text-align: center;
   font-family: ${FONT};
@@ -1801,7 +1801,7 @@ const NamingCell = styled.div`
   border: 1px solid ${p => p.$border};
   border-radius: ${rdcUiTheme.size.borderRadius['100']};
   padding: 8px 10px;
-  font-size: 14px;
+  font-size: 12px;
   font-family: monospace;
   color: ${p => p.$color};
 `;
@@ -1832,7 +1832,7 @@ const StepGuideNum = styled.div`
   align-items: center;
   justify-content: center;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 12px;
   color: #ffffff;
   flex-shrink: 0;
   font-family: ${FONT};
@@ -1955,7 +1955,7 @@ const PourCompactDesc = styled.div`
 `;
 
 const PourCompactExample = styled.div`
-  font-size: 14px;
+  font-size: 12px;
   color: ${p => p.$bold};
   font-style: italic;
   font-family: ${FONT};
@@ -1997,7 +1997,7 @@ const ResourceTitle = styled.div`
 `;
 
 const ResourceDesc = styled.div`
-  font-size: 14px;
+  font-size: 12px;
   color: ${rdcUiTheme.color.text.secondary};
   font-family: ${FONT};
 `;
@@ -2064,7 +2064,7 @@ const CriteriaName = styled.div`
 `;
 
 const CriteriaDesc = styled.div`
-  font-size: 14px;
+  font-size: 12px;
   color: ${rdcUiTheme.color.text.secondary};
   font-family: ${FONT};
   line-height: 1.5;
@@ -2195,7 +2195,7 @@ const ChecklistProgress = styled.div`
 
 const ChecklistCatName = styled.div`
   font-weight: 600;
-  font-size: 14px;
+  font-size: 12px;
   color: ${rdcUiTheme.color.text.secondary};
   margin-bottom: 8px;
   font-family: ${FONT};
@@ -2793,7 +2793,7 @@ function CostChart() {
               />
               <foreignObject x={tx + 12} y={ty + 12} width={TW - 24} height={TH - 24}>
                 <div xmlns="http://www.w3.org/1999/xhtml"
-                  style={{ fontSize: 14, lineHeight: 1.55, color: '#fff', fontFamily: F }}>
+                  style={{ fontSize: 12, lineHeight: 1.55, color: '#fff', fontFamily: F }}>
                   {d.tooltip}
                 </div>
               </foreignObject>
@@ -2836,7 +2836,7 @@ const ExMockInput = styled.div`
   border: 1px solid #D3CFCA;
   border-radius: 6px;
   padding: 6px 10px;
-  font-size: 14px;
+  font-size: 12px;
   background: #fff;
   color: #1A1816;
   margin: 3px 0;
@@ -2934,7 +2934,7 @@ function WcagExample({ id }) {
           <ExPane>
             <ExPaneLabel style={{ color: '#1A1816' }}>Reading order</ExPaneLabel>
             {['① Header', '② Navigation', '③ Main content', '④ Footer'].map((item, i) => (
-              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '4px 0', fontSize: 14, borderBottom: i < 3 ? '1px solid #D3CFCA' : 'none' }}>
+              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '4px 0', fontSize: 12, borderBottom: i < 3 ? '1px solid #D3CFCA' : 'none' }}>
                 <span style={{ color: '#0D2C62', fontWeight: 600 }}>{item}</span>
                 {i < 3 && <span style={{ marginLeft: 'auto', color: '#726A60', fontSize: 10 }}>↓</span>}
               </div>
@@ -2948,11 +2948,11 @@ function WcagExample({ id }) {
           <ExRow>
             <ExPane $bad>
               <ExPaneLabel>Don&apos;t</ExPaneLabel>
-              <div style={{ fontSize: 14 }}>Click the <span style={{ color: '#2D8653', fontWeight: 700 }}>green button</span> to continue</div>
+              <div style={{ fontSize: 12 }}>Click the <span style={{ color: '#2D8653', fontWeight: 700 }}>green button</span> to continue</div>
             </ExPane>
             <ExPane $good>
               <ExPaneLabel>Do</ExPaneLabel>
-              <div style={{ fontSize: 14 }}>Click the <strong>Submit button</strong> to continue</div>
+              <div style={{ fontSize: 12 }}>Click the <strong>Submit button</strong> to continue</div>
             </ExPane>
           </ExRow>
         </ExWrap>
@@ -3096,14 +3096,14 @@ function WcagExample({ id }) {
             <ExPane $bad>
               <ExPaneLabel>Don&apos;t</ExPaneLabel>
               <div style={{ background: '#fff', padding: 8, borderRadius: 6 }}>
-                <div style={{ border: '1.5px solid #E0DEDA', borderRadius: 6, padding: '6px 12px', fontSize: 14, color: '#1A1816', display: 'inline-block' }}>Button</div>
+                <div style={{ border: '1.5px solid #E0DEDA', borderRadius: 6, padding: '6px 12px', fontSize: 12, color: '#1A1816', display: 'inline-block' }}>Button</div>
               </div>
               <ExCaption>Border barely visible   fails 3:1</ExCaption>
             </ExPane>
             <ExPane $good>
               <ExPaneLabel>Do</ExPaneLabel>
               <div style={{ background: '#fff', padding: 8, borderRadius: 6 }}>
-                <div style={{ border: '1.5px solid #1A1816', borderRadius: 6, padding: '6px 12px', fontSize: 14, color: '#1A1816', display: 'inline-block' }}>Button</div>
+                <div style={{ border: '1.5px solid #1A1816', borderRadius: 6, padding: '6px 12px', fontSize: 12, color: '#1A1816', display: 'inline-block' }}>Button</div>
               </div>
               <ExCaption>Clear border   passes 3:1</ExCaption>
             </ExPane>
@@ -3116,11 +3116,11 @@ function WcagExample({ id }) {
           <ExRow>
             <ExPane $bad>
               <ExPaneLabel>Don&apos;t</ExPaneLabel>
-              <div style={{ fontSize: 14, lineHeight: 1.1, letterSpacing: '-0.5px', color: '#1A1816' }}>Cramped text with minimal line height and tight letter spacing makes reading very hard.</div>
+              <div style={{ fontSize: 12, lineHeight: 1.1, letterSpacing: '-0.5px', color: '#1A1816' }}>Cramped text with minimal line height and tight letter spacing makes reading very hard.</div>
             </ExPane>
             <ExPane $good>
               <ExPaneLabel>Do</ExPaneLabel>
-              <div style={{ fontSize: 14, lineHeight: 1.8, letterSpacing: '0.3px', color: '#1A1816' }}>Generous line height and letter spacing keeps text comfortable to read.</div>
+              <div style={{ fontSize: 12, lineHeight: 1.8, letterSpacing: '0.3px', color: '#1A1816' }}>Generous line height and letter spacing keeps text comfortable to read.</div>
             </ExPane>
           </ExRow>
         </ExWrap>
@@ -3130,7 +3130,7 @@ function WcagExample({ id }) {
         <ExWrap>
           <ExPane $good>
             <ExPaneLabel>Do   dismissable tooltip</ExPaneLabel>
-            <div style={{ position: 'relative', background: '#1A1816', color: '#fff', borderRadius: 8, padding: '10px 12px', fontSize: 14, marginTop: 4 }}>
+            <div style={{ position: 'relative', background: '#1A1816', color: '#fff', borderRadius: 8, padding: '10px 12px', fontSize: 12, marginTop: 4 }}>
               <div>More info: this field accepts phone numbers in E.164 format.</div>
               <div style={{ position: 'absolute', top: 6, right: 8, fontSize: 14, cursor: 'pointer', color: '#ccc' }}>✕</div>
             </div>
@@ -3144,14 +3144,14 @@ function WcagExample({ id }) {
           <ExRow>
             <ExPane $bad>
               <ExPaneLabel>Don&apos;t</ExPaneLabel>
-              <div style={{ border: '1px solid #D3CFCA', borderRadius: 8, padding: 10, background: '#fff', fontSize: 14 }}>
+              <div style={{ border: '1px solid #D3CFCA', borderRadius: 8, padding: 10, background: '#fff', fontSize: 12 }}>
                 <div style={{ fontWeight: 600, marginBottom: 6 }}>Modal dialog</div>
                 <div style={{ color: '#999' }}>No way to close this modal…</div>
               </div>
             </ExPane>
             <ExPane $good>
               <ExPaneLabel>Do</ExPaneLabel>
-              <div style={{ border: '1px solid #D3CFCA', borderRadius: 8, padding: 10, background: '#fff', fontSize: 14, position: 'relative' }}>
+              <div style={{ border: '1px solid #D3CFCA', borderRadius: 8, padding: 10, background: '#fff', fontSize: 12, position: 'relative' }}>
                 <div style={{ fontWeight: 600, marginBottom: 4 }}>Modal dialog</div>
                 <ExMockBtn style={{ fontSize: 11 }}>✕ Close</ExMockBtn>
                 <div style={{ color: '#726A60', fontSize: 10, marginTop: 4 }}>Press Esc to close</div>
@@ -3165,7 +3165,7 @@ function WcagExample({ id }) {
         <ExWrap>
           <ExPane $good>
             <ExPaneLabel>Do   user controls shortcuts</ExPaneLabel>
-            <div style={{ background: '#fff', border: '1px solid #D3CFCA', borderRadius: 8, padding: 10, fontSize: 14 }}>
+            <div style={{ background: '#fff', border: '1px solid #D3CFCA', borderRadius: 8, padding: 10, fontSize: 12 }}>
               <div style={{ fontWeight: 600, marginBottom: 4 }}>Keyboard shortcuts</div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <span>Save: <code style={{ background: '#F0F0F0', padding: '1px 5px', borderRadius: 4 }}>Ctrl+S</code></span>
@@ -3183,7 +3183,7 @@ function WcagExample({ id }) {
         <ExWrap>
           <ExPane $good>
             <ExPaneLabel>Do   show time and allow extension</ExPaneLabel>
-            <div style={{ background: '#fff', border: '1px solid #D3CFCA', borderRadius: 8, padding: 10, fontSize: 14 }}>
+            <div style={{ background: '#fff', border: '1px solid #D3CFCA', borderRadius: 8, padding: 10, fontSize: 12 }}>
               <div style={{ fontWeight: 600, marginBottom: 6 }}>Session timeout</div>
               <div style={{ background: '#E9EFFB', borderRadius: 4, height: 8, marginBottom: 6 }}>
                 <div style={{ background: '#0D2C62', borderRadius: 4, height: 8, width: '50%' }} />
@@ -3202,14 +3202,14 @@ function WcagExample({ id }) {
           <ExRow>
             <ExPane $bad>
               <ExPaneLabel>Don&apos;t</ExPaneLabel>
-              <div style={{ background: '#fff', border: '1px solid #D3CFCA', borderRadius: 8, padding: 10, fontSize: 14 }}>
+              <div style={{ background: '#fff', border: '1px solid #D3CFCA', borderRadius: 8, padding: 10, fontSize: 12 }}>
                 <div style={{ fontWeight: 600, marginBottom: 4 }}>Live feed</div>
                 <div style={{ color: '#999', fontSize: 11 }}>Auto-updating… no controls</div>
               </div>
             </ExPane>
             <ExPane $good>
               <ExPaneLabel>Do</ExPaneLabel>
-              <div style={{ background: '#fff', border: '1px solid #D3CFCA', borderRadius: 8, padding: 10, fontSize: 14 }}>
+              <div style={{ background: '#fff', border: '1px solid #D3CFCA', borderRadius: 8, padding: 10, fontSize: 12 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
                   <span style={{ fontWeight: 600 }}>Live feed</span>
                   <ExMockBtn $outline style={{ fontSize: 10, marginTop: 0 }}>⏸ Pause</ExMockBtn>
@@ -3225,7 +3225,7 @@ function WcagExample({ id }) {
         <ExWrap>
           <ExPane>
             <ExPaneLabel style={{ color: '#1A1816' }}>Flash threshold guideline</ExPaneLabel>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 0', fontSize: 14 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 0', fontSize: 12 }}>
               <span style={{ fontSize: 20 }}>⚠️</span>
               <span>Max <strong>3 flashes/second</strong>   avoid rapid strobing effects that may trigger seizures</span>
             </div>
@@ -3237,7 +3237,7 @@ function WcagExample({ id }) {
         <ExWrap>
           <ExPane $good>
             <ExPaneLabel>Do   skip link at top of page</ExPaneLabel>
-            <div style={{ border: '1px solid #D3CFCA', borderRadius: 8, overflow: 'hidden', fontSize: 14 }}>
+            <div style={{ border: '1px solid #D3CFCA', borderRadius: 8, overflow: 'hidden', fontSize: 12 }}>
               <div style={{ background: '#0D2C62', color: '#fff', padding: '6px 12px', fontSize: 11, fontWeight: 600 }}>
                 ⌨ Skip to main content
               </div>
@@ -3288,14 +3288,14 @@ function WcagExample({ id }) {
           <ExRow>
             <ExPane $bad>
               <ExPaneLabel>Don&apos;t</ExPaneLabel>
-              <div style={{ fontSize: 14, display: 'flex', flexDirection: 'column', gap: 6 }}>
+              <div style={{ fontSize: 12, display: 'flex', flexDirection: 'column', gap: 6 }}>
                 <a href="#" style={{ color: '#0D2C62' }}>Read more →</a>
                 <a href="#" style={{ color: '#0D2C62' }}>Read more →</a>
               </div>
             </ExPane>
             <ExPane $good>
               <ExPaneLabel>Do</ExPaneLabel>
-              <div style={{ fontSize: 14, display: 'flex', flexDirection: 'column', gap: 6 }}>
+              <div style={{ fontSize: 12, display: 'flex', flexDirection: 'column', gap: 6 }}>
                 <a href="#" style={{ color: '#0D2C62' }}>Read the full accessibility guide →</a>
                 <a href="#" style={{ color: '#0D2C62' }}>View the contrast checker →</a>
               </div>
@@ -3310,7 +3310,7 @@ function WcagExample({ id }) {
             <ExPaneLabel>Do   multiple navigation paths</ExPaneLabel>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginTop: 4 }}>
               {[['🔍', 'Search bar'], ['☰', 'Navigation menu'], ['🗺', 'Sitemap link']].map(([icon, label], i) => (
-                <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'center', background: '#fff', border: '1px solid #D3CFCA', borderRadius: 6, padding: '5px 10px', fontSize: 14 }}>
+                <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'center', background: '#fff', border: '1px solid #D3CFCA', borderRadius: 6, padding: '5px 10px', fontSize: 12 }}>
                   <span>{icon}</span><span>{label}</span>
                 </div>
               ))}
@@ -3323,11 +3323,11 @@ function WcagExample({ id }) {
         <ExWrap>
           <ExPane $good>
             <ExPaneLabel>Do   logical heading hierarchy</ExPaneLabel>
-            <div style={{ fontSize: 14, display: 'flex', flexDirection: 'column', gap: 4, marginTop: 4 }}>
+            <div style={{ fontSize: 12, display: 'flex', flexDirection: 'column', gap: 4, marginTop: 4 }}>
               <div style={{ fontWeight: 700, fontSize: 14 }}>H1: Page Title</div>
               <div style={{ fontWeight: 600, fontSize: 13, marginLeft: 12 }}>H2: Section</div>
-              <div style={{ fontWeight: 500, fontSize: 14, marginLeft: 24, color: '#555' }}>H3: Sub-section</div>
-              <div style={{ fontWeight: 500, fontSize: 14, marginLeft: 24, color: '#555' }}>H3: Sub-section</div>
+              <div style={{ fontWeight: 500, fontSize: 12, marginLeft: 24, color: '#555' }}>H3: Sub-section</div>
+              <div style={{ fontWeight: 500, fontSize: 12, marginLeft: 24, color: '#555' }}>H3: Sub-section</div>
               <div style={{ fontWeight: 600, fontSize: 13, marginLeft: 12 }}>H2: Section</div>
             </div>
           </ExPane>
@@ -3339,14 +3339,14 @@ function WcagExample({ id }) {
           <ExRow>
             <ExPane $bad>
               <ExPaneLabel>Don&apos;t</ExPaneLabel>
-              <div style={{ fontSize: 14, textAlign: 'center', padding: '8px 0' }}>
+              <div style={{ fontSize: 12, textAlign: 'center', padding: '8px 0' }}>
                 <div style={{ fontSize: 20, marginBottom: 4 }}>🤏</div>
                 <div>Pinch to zoom only</div>
               </div>
             </ExPane>
             <ExPane $good>
               <ExPaneLabel>Do</ExPaneLabel>
-              <div style={{ fontSize: 14, textAlign: 'center', padding: '4px 0' }}>
+              <div style={{ fontSize: 12, textAlign: 'center', padding: '4px 0' }}>
                 <div style={{ fontSize: 20, marginBottom: 4 }}>🤏</div>
                 <div>Pinch to zoom</div>
                 <div style={{ display: 'flex', gap: 6, justifyContent: 'center', marginTop: 6 }}>
@@ -3381,7 +3381,7 @@ function WcagExample({ id }) {
           <ExRow>
             <ExPane $bad>
               <ExPaneLabel>Don&apos;t</ExPaneLabel>
-              <div style={{ fontSize: 14 }}>
+              <div style={{ fontSize: 12 }}>
                 {['Item A', 'Item B', 'Item C'].map((item, i) => (
                   <div key={i} style={{ background: '#fff', border: '1px solid #D3CFCA', borderRadius: 5, padding: '4px 10px', marginBottom: 4, cursor: 'grab', fontSize: 11 }}>⠿ {item}</div>
                 ))}
@@ -3390,7 +3390,7 @@ function WcagExample({ id }) {
             </ExPane>
             <ExPane $good>
               <ExPaneLabel>Do</ExPaneLabel>
-              <div style={{ fontSize: 14 }}>
+              <div style={{ fontSize: 12 }}>
                 {['Item A', 'Item B', 'Item C'].map((item, i) => (
                   <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#fff', border: '1px solid #D3CFCA', borderRadius: 5, padding: '4px 10px', marginBottom: 4, fontSize: 11 }}>
                     <span>⠿ {item}</span>
@@ -3431,7 +3431,7 @@ function WcagExample({ id }) {
         <ExWrap>
           <ExPane $good>
             <ExPaneLabel>Do   language picker upfront</ExPaneLabel>
-            <div style={{ background: '#fff', border: '1px solid #D3CFCA', borderRadius: 8, padding: 10, fontSize: 14 }}>
+            <div style={{ background: '#fff', border: '1px solid #D3CFCA', borderRadius: 8, padding: 10, fontSize: 12 }}>
               <div style={{ fontWeight: 600, marginBottom: 8 }}>Select your language</div>
               {['🇺🇸 English', '🇪🇸 Español', '🇫🇷 Français'].map((lang, i) => (
                 <div key={i} style={{ padding: '4px 8px', borderRadius: 5, background: i === 0 ? '#E9EFFB' : 'transparent', cursor: 'pointer', marginBottom: 2 }}>{lang}</div>
@@ -3578,7 +3578,7 @@ function WcagExample({ id }) {
         <ExWrap>
           <ExPane $good>
             <ExPaneLabel>Do   confirm before finalizing</ExPaneLabel>
-            <div style={{ background: '#fff', border: '1px solid #D3CFCA', borderRadius: 8, padding: 12, fontSize: 14 }}>
+            <div style={{ background: '#fff', border: '1px solid #D3CFCA', borderRadius: 8, padding: 12, fontSize: 12 }}>
               <div style={{ fontWeight: 600, marginBottom: 6 }}>Confirm purchase</div>
               <div style={{ color: '#555', marginBottom: 10 }}>You are about to purchase for <strong>$299</strong>. Are you sure?</div>
               <div style={{ display: 'flex', gap: 8 }}>
@@ -3614,7 +3614,7 @@ function WcagExample({ id }) {
         <ExWrap>
           <ExPane $good>
             <ExPaneLabel>Do   multiple auth options</ExPaneLabel>
-            <div style={{ background: '#fff', border: '1px solid #D3CFCA', borderRadius: 8, padding: 10, fontSize: 14 }}>
+            <div style={{ background: '#fff', border: '1px solid #D3CFCA', borderRadius: 8, padding: 10, fontSize: 12 }}>
               <div style={{ fontWeight: 600, marginBottom: 8, textAlign: 'center' }}>Sign in</div>
               {[['🔑', 'Passkey'], ['👤', 'Password'], ['📱', 'Face ID']].map(([icon, label], i) => (
                 <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'center', padding: '5px 8px', borderRadius: 5, border: '1px solid #D3CFCA', marginBottom: 4, cursor: 'pointer' }}>
@@ -3727,7 +3727,7 @@ function MiniLineChart({ data, yLabels }) {
 }
 
 function SensoryCharacteristicsExample() {
-  const narrow = useNarrow(640);
+  const narrow = useNarrow(700);
   const [tab, setTab] = useState("chart");
 
   const years = ["2019","2020","2021","2022","2023","2024"];
@@ -3738,14 +3738,13 @@ function SensoryCharacteristicsExample() {
     { label:"CoreLogic®",           color:"#7C3AED", dash:null,   values:[510,655,665,700,790,848], estimate:"$849,000" },
     { label:"Quantarium",           color:"#0D9488", dash:"12 5", values:[590,620,635,655,730,795], estimate:"$876,000" },
   ];
-  const LIST_COLOR = "#15803D";
+  const LIST_PRICE_VAL = 873, LIST_COLOR = "#15803D";
 
-  // PL: left pad so "2019" label isn't clipped; PR: right space for y-axis labels; PT/PB: top/bottom
-  const W = 500, H = 175, PL = 22, PR = 50, PT = 8, PB = 24;
-  const chartW = W - PL - PR, chartH = H - PT - PB;
+  const W = 500, H = 220, PR = 52, PT = 10, PB = 28;
+  const chartW = W - PR, chartH = H - PT - PB;
   const xStep = chartW / (years.length - 1);
   const toY = (v) => PT + chartH - ((v - yMin) / yRange) * chartH;
-  const toX = (i) => PL + i * xStep;
+  const toX = (i) => i * xStep;
   const pts = (vals) => vals.map((v, i) => `${toX(i).toFixed(1)},${toY(v).toFixed(1)}`).join(" ");
 
   const lineDash = (s, w = 30, h = 12) => (
@@ -3756,22 +3755,28 @@ function SensoryCharacteristicsExample() {
   );
 
   const chart = (
-    <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ display: "block" }} aria-hidden="true">
+    <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ display: "block", overflow: "visible" }} aria-hidden="true">
       {yTicks.map(v => {
         const cy = toY(v);
         return (
           <g key={v}>
-            <line x1={PL} x2={W - PR} y1={cy} y2={cy} stroke="#E5E7EB" strokeWidth="1" />
-            <text x={W - PR + 5} y={cy + 4} fontSize="9" fill="#9CA3AF" fontFamily={FONT}>${v}K</text>
+            <line x1={0} x2={W - PR} y1={cy} y2={cy} stroke="#E5E7EB" strokeWidth="1" />
+            <text x={W - PR + 5} y={cy + 4} fontSize="11" fill="#9CA3AF" fontFamily={FONT}>${v}K</text>
           </g>
         );
       })}
+      <line x1={toX(4)} x2={toX(4)} y1={PT} y2={H - PB} stroke="#D1D5DB" strokeWidth="1" />
       {series.map(s => (
         <polyline key={s.label} points={pts(s.values)} fill="none" stroke={s.color} strokeWidth="2"
           strokeDasharray={s.dash || undefined} strokeLinecap="round" strokeLinejoin="round" />
       ))}
+      {series.map(s => (
+        <circle key={s.label + "-dot"} cx={toX(4)} cy={toY(s.values[4])} r="4.5"
+          fill="white" stroke={s.color} strokeWidth="2" />
+      ))}
+      <circle cx={toX(5)} cy={toY(LIST_PRICE_VAL)} r="7" fill={LIST_COLOR} />
       {years.map((y, i) => (
-        <text key={y} x={toX(i)} y={H - 4} textAnchor="middle" fontSize="9" fill="#9CA3AF" fontFamily={FONT}>{y}</text>
+        <text key={y} x={toX(i)} y={H - 6} textAnchor="middle" fontSize="11" fill="#9CA3AF" fontFamily={FONT}>{y}</text>
       ))}
     </svg>
   );
@@ -3800,8 +3805,8 @@ function SensoryCharacteristicsExample() {
         <span style={{ fontFamily: FONT, fontSize: 14, fontWeight: 700, color: rdcUiTheme.color.text.primary }}>January 2024</span>
       </div>
       <div style={{ display: "flex", justifyContent: "space-between", padding: "8px 14px", borderBottom: `1px solid ${rdcUiTheme.color.border.base}` }}>
-        <span style={{ fontFamily: FONT, fontSize: 14, color: rdcUiTheme.color.text.secondary }}>Valuation provider</span>
-        <span style={{ fontFamily: FONT, fontSize: 14, color: rdcUiTheme.color.text.secondary }}>Estimate</span>
+        <span style={{ fontFamily: FONT, fontSize: 12, color: rdcUiTheme.color.text.secondary }}>Valuation provider</span>
+        <span style={{ fontFamily: FONT, fontSize: 12, color: rdcUiTheme.color.text.secondary }}>Estimate</span>
       </div>
       {series.map((s, i) => (
         <div key={s.label} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px 14px", borderBottom: i < series.length - 1 ? `1px solid ${rdcUiTheme.color.border.base}` : undefined }}>
