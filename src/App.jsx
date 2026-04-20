@@ -4350,7 +4350,7 @@ function GDCriterionBlock({ criterion, isReadOnly }) {
 function GuidelineDetailSection({ s, isReadOnly }) {
   return (
     <div>
-      <div style={{ background: rdcUiTheme.color.gray['50'], border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 16, padding: 24, marginBottom: 32 }}>
+      <div style={{ background: rdcUiTheme.color.gray['50'], border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 16, padding: "24px 24px 100px", marginBottom: 32 }}>
         <GDSuccessLabel>WCAG Guideline</GDSuccessLabel>
         <GDHeading>
           {s.headingUrl
