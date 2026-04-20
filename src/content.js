@@ -169,7 +169,7 @@ export const MODULES_DATA = [
             examples:[{ title:"Icon buttons with and without labels", sensoryExample: true }] },
           { title:"1.3.4 Orientation", level:"AA", tags:["1.3.4: Orientation"], titleUrl:"https://www.w3.org/WAI/WCAG22/Understanding/orientation",
             body:"Design pages to support both portrait and landscape screen orientations. Restrict orientation only when it is absolutely necessary for the content or functionality (for example, in check deposit or piano applications). Maintaining this flexibility is vital for accessibility, especially for users who may have difficulty rotating their screen, such as those with a device mounted on a wheelchair.",
-            examples:[{ title:"Search results in portrait and landscape", orientationExample: true }] },
+            examples:[{ title:"Orientation", image:"/orientation.svg" }] },
           { title:"1.3.5 Identify Input Purpose", level:"AA", tags:["1.3.5: Identify input purpose"], titleUrl:"https://www.w3.org/WAI/WCAG22/Understanding/identify-input-purpose",
             body:"This criteria is about enhancing user experience and accessibility by helping users and technologies understand the purpose of input fields in forms and content. To enhance form accessibility, prioritize clear and concise labeling and incorporate autofill functionality:",
             bodyItems:[
