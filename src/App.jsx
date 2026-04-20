@@ -4126,14 +4126,14 @@ function GDCriterionBlock({ criterion, isReadOnly }) {
                       ))}
                     </ul>
                   )}
-                  {ex.descFooter && (
-                    <GDExDesc>
-                      {ex.descFooter.startsWith("Pro Tip") ? (
-                        <><span style={{ fontWeight: 600 }}>{ex.descFooter.split(":")[0]}:</span>{ex.descFooter.slice(ex.descFooter.indexOf(":") + 1)}</>
-                      ) : ex.descFooter}
-                    </GDExDesc>
-                  )}
                 </div>
+              )}
+              {ex.descFooter && (
+                <GDExDesc style={{ marginBottom: 16 }}>
+                  {ex.descFooter.startsWith("Pro Tip") ? (
+                    <><span style={{ fontWeight: 600 }}>{ex.descFooter.split(":")[0]}:</span>{ex.descFooter.slice(ex.descFooter.indexOf(":") + 1)}</>
+                  ) : ex.descFooter}
+                </GDExDesc>
               )}
               {ex.sensoryExample ? (
                 <div style={{ width: "100%", background: rdcUiTheme.color.gray['50'], border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 16, padding: 40, boxSizing: "border-box" }}>
