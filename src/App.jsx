@@ -3947,7 +3947,7 @@ function VideoCardExample() {
 
 function GDCriterionBlock({ criterion, isReadOnly }) {
   const examples = criterion.examples || [];
-  const narrow = useNarrow(750);
+  const narrow = useNarrow(800);
 
   const multiExample = examples.length > 1;
 
