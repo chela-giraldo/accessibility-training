@@ -1122,9 +1122,9 @@ const SpectrumCardText = styled.div`
   color: ${rdcUiTheme.color.text.primary};
   text-align: center;
   font-family: ${FONT};
-  font-size: ${rdcUiTheme.typography.scale.body200.size};
-  font-weight: ${rdcUiTheme.typography.scale.body200.fontWeight};
-  line-height: ${rdcUiTheme.typography.scale.body200.lineHeight};
+  font-size: ${rdcUiTheme.typography.scale.body300.size};
+  font-weight: ${rdcUiTheme.typography.scale.body300.fontWeight};
+  line-height: ${rdcUiTheme.typography.scale.body300.lineHeight};
   white-space: nowrap;
 `;
 
