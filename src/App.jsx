@@ -3801,87 +3801,21 @@ function SensoryCharacteristicsExample() {
 }
 
 function OrientationExample() {
-  const [orientation, setOrientation] = useState("portrait");
-  const isPortrait = orientation === "portrait";
-  const screenW = isPortrait ? 120 : 220;
-  const screenH = isPortrait ? 220 : 120;
-  const homeCard = (w) => (
-    <div style={{ background: "#F4F0EB", borderRadius: 8, padding: "12px 14px", width: w - 28, boxSizing: "border-box" }}>
-      <div style={{ background: rdcUiTheme.color.border.accent, borderRadius: 6, height: isPortrait ? 70 : 54, marginBottom: 8 }} />
-      <div style={{ fontFamily: FONT, fontSize: isPortrait ? 11 : 10, fontWeight: 600, color: rdcUiTheme.color.text.primary, lineHeight: "14px", marginBottom: 4 }}>123 Maple St</div>
-      <div style={{ fontFamily: FONT, fontSize: isPortrait ? 10 : 9, color: rdcUiTheme.color.text.secondary }}>$485,000 · 3bd · 2ba</div>
-    </div>
-  );
-  const lockCard = (w) => (
-    <div style={{ background: "#FEE2E3", borderRadius: 8, padding: "16px 14px", width: w - 28, boxSizing: "border-box", display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <rect x="5" y="11" width="14" height="10" rx="2" stroke="#D92228" strokeWidth="1.6"/>
-        <path d="M8 11V7a4 4 0 0 1 8 0v4" stroke="#D92228" strokeWidth="1.6" strokeLinecap="round"/>
-      </svg>
-      <div style={{ fontFamily: FONT, fontSize: 11, color: "#D92228", textAlign: "center", lineHeight: "14px" }}>Rotate your device to continue</div>
-    </div>
-  );
+  const [tab, setTab] = useState("portrait");
+  const BASE = import.meta.env.BASE_URL ?? "/";
+  const src = tab === "portrait" ? `${BASE}portrait.svg` : `${BASE}landscape.svg`;
   return (
-    <div style={{ background: rdcUiTheme.color.bg.primary, border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 12, padding: "40px 48px", width: "100%", boxSizing: "border-box" }}>
-      <div style={{ fontFamily: FONT, fontSize: 22, fontWeight: 600, color: rdcUiTheme.color.text.primary, marginBottom: 8 }}>Search results page</div>
-      <div style={{ fontFamily: FONT, fontSize: 15, color: rdcUiTheme.color.text.secondary, marginBottom: 32, lineHeight: "22px" }}>
-        Content must be usable in both portrait and landscape. Toggle below to see how layout adapts — never lock orientation unless absolutely essential.
-      </div>
-      <div style={{ display: "flex", gap: 40, alignItems: "flex-start", flexWrap: "wrap" }}>
-        {/* Toggle */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 12, flexShrink: 0 }}>
-          <div style={{ fontFamily: FONT, fontSize: 13, fontWeight: 600, color: rdcUiTheme.color.text.secondary, textTransform: "uppercase", letterSpacing: "0.06em" }}>Try it</div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-            {["portrait", "landscape"].map(o => (
-              <button key={o} onClick={() => setOrientation(o)} style={{
-                fontFamily: FONT, fontSize: 14, borderRadius: 100,
-                padding: "8px 18px", border: `1px solid ${orientation === o ? rdcUiTheme.color.text.primary : rdcUiTheme.color.border.base}`,
-                background: orientation === o ? rdcUiTheme.color.text.primary : rdcUiTheme.color.bg.primary,
-                color: orientation === o ? "#fff" : rdcUiTheme.color.text.primary,
-                cursor: "pointer", fontWeight: orientation === o ? 600 : 400, transition: "all 0.15s",
-              }}>{o.charAt(0).toUpperCase() + o.slice(1)}</button>
-            ))}
-          </div>
-        </div>
-        {/* Phone mockups */}
-        <div style={{ display: "flex", gap: 32, flexWrap: "wrap", alignItems: "flex-start" }}>
-          {/* Good — adapts */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 12, alignItems: "center" }}>
-            <div style={{
-              width: screenW, height: screenH, borderRadius: isPortrait ? 18 : 14,
-              border: `2px solid ${rdcUiTheme.color.text.primary}`, background: rdcUiTheme.color.bg.primary,
-              overflow: "hidden", display: "flex", flexDirection: "column",
-              alignItems: "center", padding: "10px 6px", gap: 8, boxSizing: "border-box",
-              transition: "all 0.25s ease",
-            }}>
-              <div style={{ background: rdcUiTheme.color.text.primary, borderRadius: 4, height: 4, width: 40, flexShrink: 0 }} />
-              {homeCard(screenW)}
-              {isPortrait && homeCard(screenW)}
-            </div>
-            <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.5" stroke="#2D8653" strokeWidth="1.5"/><path d="M5 8l2 2 4-4" stroke="#2D8653" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-              <span style={{ fontFamily: FONT, fontSize: 12, color: "#2D8653", fontWeight: 500 }}>Layout adapts</span>
-            </div>
-          </div>
-          {/* Bad — locked */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 12, alignItems: "center" }}>
-            <div style={{
-              width: 120, height: 220, borderRadius: 18,
-              border: `2px solid ${rdcUiTheme.color.border.base}`, background: rdcUiTheme.color.bg.primary,
-              overflow: "hidden", display: "flex", flexDirection: "column",
-              alignItems: "center", padding: "10px 6px", gap: 8, boxSizing: "border-box",
-            }}>
-              <div style={{ background: rdcUiTheme.color.border.base, borderRadius: 4, height: 4, width: 40, flexShrink: 0 }} />
-              {isPortrait ? homeCard(120) : lockCard(120)}
-              {isPortrait && homeCard(120)}
-            </div>
-            <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.5" stroke="#D92228" strokeWidth="1.5"/><path d="M5 5l6 6M11 5l-6 6" stroke="#D92228" strokeWidth="1.5" strokeLinecap="round"/></svg>
-              <span style={{ fontFamily: FONT, fontSize: 12, color: "#D92228", fontWeight: 500 }}>Orientation locked</span>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div style={{ display: "flex", flexDirection: "column", gap: 16, alignItems: "flex-start", width: "100%" }}>
+      <ContentSwitchGroup size="small">
+        <span style={{ position: "relative" }}>
+          <ContentSwitch selected={tab === "portrait"} onClick={() => setTab("portrait")}>Portrait</ContentSwitch>
+        </span>
+        <span style={{ position: "relative" }}>
+          <ContentSwitch selected={tab === "landscape"} onClick={() => setTab("landscape")}>Landscape</ContentSwitch>
+          {tab !== "landscape" && <PulseDot />}
+        </span>
+      </ContentSwitchGroup>
+      <img src={src} alt={tab === "portrait" ? "Portrait orientation example" : "Landscape orientation example"} style={{ width: "100%", display: "block" }} />
     </div>
   );
 }
