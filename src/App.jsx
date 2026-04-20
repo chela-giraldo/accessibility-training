@@ -3808,11 +3808,11 @@ function OrientationExample() {
   // At that scale landscape is 972px wide × 500px tall.
   const isPortrait = tab === "portrait";
   const imgStyle = isPortrait
-    ? { display: "block", maxWidth: 500, width: "100%", height: "auto" }
-    : { display: "block", maxHeight: 500, width: "auto", maxWidth: "100%" };
+    ? { display: "block", maxWidth: 400, width: "100%", height: "auto" }
+    : { display: "block", maxHeight: 400, width: "auto", maxWidth: "100%" };
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 16, alignItems: "center", width: "100%" }}>
-      <ContentSwitchGroup size="small" style={{ alignSelf: "flex-start" }}>
+      <ContentSwitchGroup size="small">
         <span style={{ position: "relative" }}>
           <ContentSwitch selected={tab === "portrait"} onClick={() => setTab("portrait")}>Portrait</ContentSwitch>
         </span>
