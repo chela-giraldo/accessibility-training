@@ -3727,7 +3727,7 @@ function MiniLineChart({ data, yLabels }) {
 }
 
 function SensoryCharacteristicsExample() {
-  const narrow = useNarrow(700);
+  const narrow = useNarrow(1000);
   const [tab, setTab] = useState("chart");
 
   const years = ["2019","2020","2021","2022","2023","2024"];
@@ -3767,7 +3767,7 @@ function SensoryCharacteristicsExample() {
       })}
       <line x1={toX(4)} x2={toX(4)} y1={PT} y2={H - PB} stroke="#D1D5DB" strokeWidth="1" />
       {series.map(s => (
-        <polyline key={s.label} points={pts(s.values)} fill="none" stroke={s.color} strokeWidth="2"
+        <polyline key={s.label} points={pts(s.values)} fill="none" stroke={s.color} strokeWidth="1.6"
           strokeDasharray={s.dash || undefined} strokeLinecap="round" strokeLinejoin="round" />
       ))}
       {series.map(s => (
@@ -3804,12 +3804,12 @@ function SensoryCharacteristicsExample() {
       <div style={{ background: rdcUiTheme.color.bg.secondary, padding: "10px 14px", borderBottom: `1px solid ${rdcUiTheme.color.border.base}` }}>
         <span style={{ fontFamily: FONT, fontSize: 14, fontWeight: 700, color: rdcUiTheme.color.text.primary }}>January 2024</span>
       </div>
-      <div style={{ display: "flex", justifyContent: "space-between", padding: "8px 14px", borderBottom: `1px solid ${rdcUiTheme.color.border.base}` }}>
+      <div style={{ display: "flex", justifyContent: "space-between", padding: "8px 14px" }}>
         <span style={{ fontFamily: FONT, fontSize: 12, color: rdcUiTheme.color.text.secondary }}>Valuation provider</span>
         <span style={{ fontFamily: FONT, fontSize: 12, color: rdcUiTheme.color.text.secondary }}>Estimate</span>
       </div>
-      {series.map((s, i) => (
-        <div key={s.label} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px 14px", borderBottom: i < series.length - 1 ? `1px solid ${rdcUiTheme.color.border.base}` : undefined }}>
+      {series.map((s) => (
+        <div key={s.label} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "8px 14px" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
             {lineDash(s)}
             <span style={{ fontFamily: FONT, fontSize: 13, color: rdcUiTheme.color.text.primary }}>{s.label}</span>
