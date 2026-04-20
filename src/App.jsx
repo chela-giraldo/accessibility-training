@@ -3745,63 +3745,48 @@ function MiniLineChart({ data, yLabels }) {
 }
 
 function InfoRelationshipsExample() {
-  const narrow = useNarrow(600);
-  const labelStyle = { fontFamily: FONT, fontSize: 14, fontWeight: 600, color: rdcUiTheme.color.text.primary, marginBottom: 6, display: "block" };
-  const inputStyle = { fontFamily: FONT, fontSize: 16, color: rdcUiTheme.color.text.primary, border: `1px solid ${rdcUiTheme.color.border.base}`, borderRadius: 8, padding: "10px 14px", width: "100%", boxSizing: "border-box", background: rdcUiTheme.color.bg.primary, outline: "none" };
-  const errorInputStyle = { ...inputStyle, border: "2px solid #D92228" };
-  const errorMsgStyle = { fontFamily: FONT, fontSize: 13, color: "#D92228", marginTop: 6, display: "flex", alignItems: "center", gap: 4 };
-  const hintStyle = { fontFamily: FONT, fontSize: 13, color: rdcUiTheme.color.text.secondary, marginBottom: 16 };
-  const sectionLabel = { fontFamily: FONT, fontSize: 13, fontWeight: 700, color: rdcUiTheme.color.text.secondary, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 16 };
-  const divider = { height: 1, background: rdcUiTheme.color.border.accent, margin: "28px 0" };
-
+  const dropdownBase = {
+    fontFamily: FONT, fontSize: 18, color: rdcUiTheme.color.text.primary,
+    border: `1px solid ${rdcUiTheme.color.border.base}`, borderRadius: 10,
+    padding: "16px 20px", width: "100%", boxSizing: "border-box",
+    background: rdcUiTheme.color.bg.primary, display: "flex",
+    alignItems: "center", justifyContent: "space-between",
+  };
+  const dropdownError = { ...dropdownBase, border: "2px solid #D92228" };
+  const chevron = (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M5 7.5l5 5 5-5" stroke={rdcUiTheme.color.text.primary} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  );
   return (
-    <div style={{ background: rdcUiTheme.color.bg.primary, border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 12, padding: narrow ? 24 : 40, width: "100%", maxWidth: 800, boxSizing: "border-box", margin: "0 auto" }}>
+    <div style={{ background: rdcUiTheme.color.bg.primary, border: `1px solid ${rdcUiTheme.color.border.base}`, borderRadius: 12, padding: "40px 48px", width: "100%", maxWidth: 800, boxSizing: "border-box", margin: "0 auto" }}>
+      <div style={{ fontFamily: FONT, fontSize: 28, fontWeight: 700, color: rdcUiTheme.color.text.primary, marginBottom: 8 }}>Agent search</div>
+      <div style={{ fontFamily: FONT, fontSize: 16, color: rdcUiTheme.color.text.secondary, marginBottom: 32 }}>Required fields are marked with *</div>
 
-      {/* Scenario 1 — Asterisk */}
-      <div style={sectionLabel}>Scenario A — Asterisk with text explanation</div>
-      <p style={hintStyle}>* Required fields are marked with an asterisk</p>
-      <div style={{ display: "grid", gridTemplateColumns: narrow ? "1fr" : "1fr 1fr", gap: 20 }}>
-        <div>
-          <label style={labelStyle}>First name *</label>
-          <input type="text" value="Maria" readOnly style={inputStyle} />
+      {/* Dropdown 1 — filled, no error */}
+      <div style={{ ...dropdownBase, marginBottom: 20 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+          <span style={{ fontFamily: FONT, fontSize: 13, color: rdcUiTheme.color.text.secondary }}>Agent's primary state*</span>
+          <span style={{ fontFamily: FONT, fontSize: 18, color: rdcUiTheme.color.text.primary }}>Texas</span>
         </div>
-        <div>
-          <label style={labelStyle}>Last name *</label>
-          <input type="text" value="Garcia" readOnly style={inputStyle} />
-        </div>
-        <div style={{ gridColumn: narrow ? undefined : "1 / -1" }}>
-          <label style={labelStyle}>Email address *</label>
-          <input type="email" value="maria@example.com" readOnly style={inputStyle} />
-        </div>
-        <div>
-          <label style={labelStyle}>Phone number</label>
-          <input type="tel" value="" readOnly placeholder="Optional" style={{ ...inputStyle, color: rdcUiTheme.color.text.secondary }} />
-        </div>
+        {chevron}
       </div>
 
-      <div style={divider} />
-
-      {/* Scenario 2 — Red border + error message */}
-      <div style={sectionLabel}>Scenario B — Red border with explicit error message</div>
-      <div style={{ display: "grid", gridTemplateColumns: narrow ? "1fr" : "1fr 1fr", gap: 20 }}>
-        <div>
-          <label style={labelStyle}>First name</label>
-          <input type="text" value="Maria" readOnly style={inputStyle} />
+      {/* Dropdown 2 — empty, red error border */}
+      <div>
+        <div style={{ ...dropdownError, marginBottom: 8 }}>
+          <span style={{ fontFamily: FONT, fontSize: 18, color: rdcUiTheme.color.text.primary }}>Choose an MLS*</span>
+          {chevron}
         </div>
-        <div>
-          <label style={labelStyle}>Last name</label>
-          <input type="text" value="Garcia" readOnly style={inputStyle} />
-        </div>
-        <div style={{ gridColumn: narrow ? undefined : "1 / -1" }}>
-          <label style={labelStyle}>Email address</label>
-          <input type="email" value="" readOnly style={errorInputStyle} />
-          <div style={errorMsgStyle}>
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7.25" stroke="#D92228" strokeWidth="1.5"/><path d="M8 4.5v4" stroke="#D92228" strokeWidth="1.5" strokeLinecap="round"/><circle cx="8" cy="11" r="0.75" fill="#D92228"/></svg>
-            This field is required
-          </div>
+        <div style={{ fontFamily: FONT, fontSize: 15, color: "#D92228", display: "flex", alignItems: "center", gap: 6 }}>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <circle cx="8" cy="8" r="7.25" stroke="#D92228" strokeWidth="1.5"/>
+            <path d="M8 4.5v4" stroke="#D92228" strokeWidth="1.5" strokeLinecap="round"/>
+            <circle cx="8" cy="11" r="1" fill="#D92228"/>
+          </svg>
+          Select an option to continue.
         </div>
       </div>
-
     </div>
   );
 }
