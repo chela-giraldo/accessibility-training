@@ -3831,43 +3831,110 @@ function OrientationExample() {
 }
 
 function IdentifyInputPurposeExample() {
-  const field = (label, placeholder, iconPath, helperText, autocomplete) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-      <label style={{ fontFamily: FONT, fontSize: 14, fontWeight: 500, color: rdcUiTheme.color.text.primary, lineHeight: "20px" }}>
-        {label} <span style={{ color: "#D92228" }}>*</span>
-      </label>
-      <div style={{
-        display: "flex", alignItems: "center", gap: 10,
-        border: `1px solid ${rdcUiTheme.color.border.base}`, borderRadius: 10,
-        padding: "10px 14px", background: rdcUiTheme.color.bg.primary,
-        pointerEvents: "none", userSelect: "none",
-      }}>
-        <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">{iconPath}</svg>
-        <span style={{ fontFamily: FONT, fontSize: 15, color: rdcUiTheme.color.text.secondary }}>{placeholder}</span>
-      </div>
-      {helperText && (
-        <span style={{ fontFamily: FONT, fontSize: 12, color: rdcUiTheme.color.text.secondary, lineHeight: "16px" }}>
-          {helperText}
-        </span>
-      )}
-      {autocomplete && (
-        <span style={{ fontFamily: FONT, fontSize: 11, color: "#0D57D4", lineHeight: "16px" }}>
-          autocomplete="{autocomplete}"
-        </span>
-      )}
+  const inputBase = {
+    display: "flex", alignItems: "center", justifyContent: "space-between",
+    border: `1px solid ${rdcUiTheme.color.border.base}`, borderRadius: 10,
+    padding: "14px 16px", background: rdcUiTheme.color.bg.primary,
+    width: "100%", boxSizing: "border-box", pointerEvents: "none", userSelect: "none",
+  };
+  const labelRow = (label) => (
+    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 6 }}>
+      <span style={{ fontFamily: FONT, fontSize: 15, fontWeight: 700, color: rdcUiTheme.color.text.primary }}>{label}</span>
+      <span style={{ fontFamily: FONT, fontSize: 15, color: rdcUiTheme.color.text.secondary }}>required</span>
     </div>
   );
+  const iconX = (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M18 6L6 18M6 6l12 12" stroke={rdcUiTheme.color.text.primary} strokeWidth="2" strokeLinecap="round"/>
+    </svg>
+  );
+  const iconCalendar = (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect x="3" y="4" width="18" height="18" rx="3" stroke={rdcUiTheme.color.text.primary} strokeWidth="1.8"/>
+      <path d="M3 9h18M8 2v4M16 2v4" stroke={rdcUiTheme.color.text.primary} strokeWidth="1.8" strokeLinecap="round"/>
+    </svg>
+  );
+  const iconMail = (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect x="2" y="5" width="20" height="15" rx="2" stroke={rdcUiTheme.color.text.primary} strokeWidth="1.8"/>
+      <path d="M2 8l10 7 10-7" stroke={rdcUiTheme.color.text.primary} strokeWidth="1.8" strokeLinecap="round"/>
+    </svg>
+  );
+  const iconInfoCircle = (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="12" r="9" stroke="#D92228" strokeWidth="1.8"/>
+      <path d="M12 8v1M12 11v5" stroke="#D92228" strokeWidth="2" strokeLinecap="round"/>
+    </svg>
+  );
   return (
-    <div style={{ background: rdcUiTheme.color.bg.primary, border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 12, padding: "40px 48px", width: "100%", boxSizing: "border-box", maxWidth: 720, margin: "0 auto" }}>
-      <div style={{ fontFamily: FONT, fontSize: 22, fontWeight: 600, color: rdcUiTheme.color.text.primary, marginBottom: 4 }}>Agent contact form</div>
-      <div style={{ fontFamily: FONT, fontSize: 15, color: rdcUiTheme.color.text.secondary, marginBottom: 32, lineHeight: "22px" }}>
-        Each field uses a contextual icon, explicit label, and <code style={{ fontFamily: "monospace", background: "#F4F0EB", padding: "1px 4px", borderRadius: 3, fontSize: 13 }}>autocomplete</code> attribute so browsers and assistive technologies can identify the field's purpose.
+    <div style={{ background: rdcUiTheme.color.bg.primary, border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 16, padding: "40px 48px", width: "100%", maxWidth: 800, boxSizing: "border-box", margin: "0 auto" }}>
+      {/* Step header */}
+      <div style={{ fontFamily: FONT, fontSize: 22, color: rdcUiTheme.color.text.primary, marginBottom: 12 }}>
+        <span style={{ fontWeight: 700 }}>Step 1 of 4:</span>{"  "}Verify your personal information
       </div>
-      <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-        {field("First name", "Jane", <><path d="M10 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" stroke={rdcUiTheme.color.text.secondary} strokeWidth="1.5"/><path d="M3 18a7 7 0 0 1 14 0" stroke={rdcUiTheme.color.text.secondary} strokeWidth="1.5" strokeLinecap="round"/></>, null, "given-name")}
-        {field("Last name", "Doe", <><path d="M10 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" stroke={rdcUiTheme.color.text.secondary} strokeWidth="1.5"/><path d="M3 18a7 7 0 0 1 14 0" stroke={rdcUiTheme.color.text.secondary} strokeWidth="1.5" strokeLinecap="round"/></>, null, "family-name")}
-        {field("Email address", "jane@email.com", <path d="M3 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm0 0l7 6 7-6" stroke={rdcUiTheme.color.text.secondary} strokeWidth="1.5" strokeLinecap="round"/>, "We'll send a confirmation to this address", "email")}
-        {field("Phone number", "(555) 000-0000", <path d="M6.5 3.5h-2a1 1 0 0 0-1 1C3.5 12.06 8.44 17 15.5 17a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1l-2.5-.5a1 1 0 0 0-.9.3l-1 1a10.1 10.1 0 0 1-4.4-4.4l1-1a1 1 0 0 0 .3-.9L7.5 4.5a1 1 0 0 0-1-1z" stroke={rdcUiTheme.color.text.secondary} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>, null, "tel")}
+      {/* Progress bar */}
+      <div style={{ height: 6, background: rdcUiTheme.color.border.accent, borderRadius: 99, marginBottom: 36, overflow: "hidden" }}>
+        <div style={{ width: "25%", height: "100%", background: rdcUiTheme.color.text.primary, borderRadius: 99 }} />
+      </div>
+
+      <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
+        {/* Name */}
+        <div>
+          {labelRow("Name")}
+          <div style={inputBase}>
+            <span style={{ fontFamily: FONT, fontSize: 17, color: rdcUiTheme.color.text.primary }}>Jon Doe</span>
+            {iconX}
+          </div>
+        </div>
+
+        {/* Date of Birth */}
+        <div>
+          {labelRow("Date of Birth")}
+          <div style={inputBase}>
+            <span style={{ fontFamily: FONT, fontSize: 17, color: rdcUiTheme.color.text.primary }}>05/09/1962</span>
+            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+              {iconX}
+              {iconCalendar}
+            </div>
+          </div>
+        </div>
+
+        {/* Email — error state */}
+        <div>
+          {labelRow("Email")}
+          <div style={{ ...inputBase, border: "2px solid #D92228" }}>
+            <span style={{ fontFamily: FONT, fontSize: 17, color: rdcUiTheme.color.text.primary }}>johndoe@</span>
+            {iconMail}
+          </div>
+          <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 6 }}>
+            {iconInfoCircle}
+            <span style={{ fontFamily: FONT, fontSize: 15, color: "#D92228" }}>Please enter a complete email address.</span>
+          </div>
+        </div>
+
+        {/* Address — focused with autocomplete dropdown */}
+        <div style={{ position: "relative" }}>
+          {labelRow("Address")}
+          <div style={{ ...inputBase, border: "2px solid #0D57D4" }}>
+            <span style={{ fontFamily: FONT, fontSize: 17, color: rdcUiTheme.color.text.secondary }}>123 Main St, Someplace, CA</span>
+          </div>
+          {/* Autocomplete dropdown */}
+          <div style={{
+            position: "absolute", top: "calc(100% - 1px)", left: 0, right: 0,
+            background: rdcUiTheme.color.bg.primary, border: `1px solid ${rdcUiTheme.color.border.base}`,
+            borderRadius: "0 0 10px 10px", overflow: "hidden", zIndex: 10,
+          }}>
+            <div style={{ padding: "18px 16px", background: rdcUiTheme.color.bg.secondary, borderBottom: `1px solid ${rdcUiTheme.color.border.accent}` }}>
+              <span style={{ fontFamily: FONT, fontSize: 17, color: rdcUiTheme.color.text.primary }}>123 Main St, Someplace, CA</span>
+            </div>
+            <div style={{ padding: "18px 16px" }}>
+              <span style={{ fontFamily: FONT, fontSize: 17, color: rdcUiTheme.color.text.primary }}>123 Main St, Anytown, USA</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Spacer so dropdown doesn't clip the outer box */}
+        <div style={{ height: 80 }} />
       </div>
     </div>
   );
