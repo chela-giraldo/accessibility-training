@@ -613,9 +613,9 @@ The same principle plays out across design, again and again:`,items:[`High contr
   color: ${R.color.text.primary};
   text-align: center;
   font-family: ${H};
-  font-size: ${R.typography.scale.body200.size};
-  font-weight: ${R.typography.scale.body200.fontWeight};
-  line-height: ${R.typography.scale.body200.lineHeight};
+  font-size: ${R.typography.scale.body300.size};
+  font-weight: ${R.typography.scale.body300.fontWeight};
+  line-height: ${R.typography.scale.body300.lineHeight};
 `,Bs=M.div`
   display: grid;
   gap: 32px;
