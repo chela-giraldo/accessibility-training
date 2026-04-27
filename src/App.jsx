@@ -3729,7 +3729,7 @@ function SensoryCharacteristicsExample() {
   const narrow = useNarrow(1000);
   const [tab, setTab] = useState("chart");
   const chartContainerRef = useRef(null);
-  const [containerW, setContainerW] = useState(800);
+  const [containerW, setContainerW] = useState(null);
 
   useEffect(() => {
     const el = chartContainerRef.current;
@@ -3753,7 +3753,7 @@ function SensoryCharacteristicsExample() {
   const LIST_PRICE_VAL = 873, LIST_COLOR = "#15803D";
 
   // W tracks container width so only x-spacing compresses on resize, not font sizes
-  const W = containerW, H = 220, PL = 24, PR = 56, PT = 10, PB = 28;
+  const W = containerW || 0, H = 220, PL = 24, PR = 56, PT = 10, PB = 28;
   const chartW = W - PL - PR, chartH = H - PT - PB;
   const xStep = chartW / (years.length - 1);
   const toY = (v) => PT + chartH - ((v - yMin) / yRange) * chartH;
@@ -3769,7 +3769,7 @@ function SensoryCharacteristicsExample() {
 
   const chart = (
     <div ref={chartContainerRef} style={{ width: "100%", overflow: "hidden" }}>
-    <svg viewBox={`0 0 ${W} ${H}`} width={W} height={H} style={{ display: "block" }} aria-hidden="true">
+    {containerW && <svg viewBox={`0 0 ${W} ${H}`} width={W} height={H} style={{ display: "block" }} aria-hidden="true">
       {yTicks.map(v => {
         const cy = toY(v);
         return (
@@ -3786,7 +3786,7 @@ function SensoryCharacteristicsExample() {
       {years.map((y, i) => (
         <text key={y} x={toX(i)} y={H - 6} textAnchor="middle" fontSize="11" fill="#9CA3AF" fontFamily={FONT}>{y}</text>
       ))}
-    </svg>
+    </svg>}
     </div>
   );
 
