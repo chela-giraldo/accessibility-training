@@ -3774,7 +3774,7 @@ function SensoryCharacteristicsExample() {
         return (
           <g key={v}>
             <line x1={PL} x2={W - PR} y1={cy} y2={cy} stroke="#E5E7EB" strokeWidth="1" />
-            <text x={W - PR + 5} y={cy + 4} fontSize="11" fill="#9CA3AF" fontFamily={FONT}>${v}K</text>
+            <text x={W - PR + 5} y={cy + 4} fontSize="12" fill="#9CA3AF" fontFamily={FONT}>${v}K</text>
           </g>
         );
       })}
@@ -3783,7 +3783,7 @@ function SensoryCharacteristicsExample() {
           strokeDasharray={s.dash || undefined} strokeLinecap="round" strokeLinejoin="round" />
       ))}
       {years.map((y, i) => (
-        <text key={y} x={toX(i)} y={H - 6} textAnchor="middle" fontSize="11" fill="#9CA3AF" fontFamily={FONT}>{y}</text>
+        <text key={y} x={toX(i)} y={H - 6} textAnchor="middle" fontSize="12" fill="#9CA3AF" fontFamily={FONT}>{y}</text>
       ))}
     </svg>}
     </div>
