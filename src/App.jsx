@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import styled, { createGlobalStyle, keyframes, css } from "styled-components";
 import { MODULES_DATA } from "./content.js";
 import { IconChevronLeft as RdcIconChevronLeft, IconClock as RdcIconClock, IconSchool as RdcIconSchool, IconBarChart as RdcIconBarChart, IconBarChartFilled as RdcIconBarChartFilled, IconList as RdcIconList, ContentSwitch as RdcContentSwitch, ContentSwitchGroup as RdcContentSwitchGroup, InlineMessage as RdcInlineMessage } from "@rdc-npm/rdc-ui";
@@ -3728,18 +3728,17 @@ function MiniLineChart({ data, yLabels }) {
 function SensoryCharacteristicsExample() {
   const narrow = useNarrow(1000);
   const [tab, setTab] = useState("chart");
-  const chartContainerRef = useRef(null);
   const [containerW, setContainerW] = useState(null);
-
-  useEffect(() => {
-    const el = chartContainerRef.current;
+  const roRef = useRef(null);
+  const chartContainerRef = useCallback((el) => {
+    if (roRef.current) { roRef.current.disconnect(); roRef.current = null; }
     if (!el) return;
     const ro = new ResizeObserver(entries => {
       const w = entries[0].contentRect.width;
       if (w > 0) setContainerW(Math.round(w));
     });
     ro.observe(el);
-    return () => ro.disconnect();
+    roRef.current = ro;
   }, []);
 
   const years = ["2019","2020","2021","2022","2023","2024"];
