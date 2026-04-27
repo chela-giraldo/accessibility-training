@@ -177,7 +177,7 @@ export const MODULES_DATA = [
               "For complex forms, divide them into manageable sections and provide straightforward instructions.",
               "Utilize visual elements, such as icons, to clarify input fields, and simplify forms by minimizing the number of fields.",
               "Implement real-time validation with descriptive error messages.",
-              "Ensure support for various input methods, and always verify form functionality with assistive technologies to accommodate users with diverse cognitive and physical needs."
+              "Implement autocomplete features to reduce physical typing effort, lower cognitive load, and minimize spelling errors, benefiting users with motor, cognitive, or visual impairments."
             ],
             examples:[{ title:"Agent contact form with labeled fields", inputPurposeExample: true }] }
         ]
