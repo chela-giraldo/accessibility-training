@@ -3768,8 +3768,8 @@ function SensoryCharacteristicsExample() {
   );
 
   const chart = (
-    <div ref={chartContainerRef} style={{ width: "100%" }}>
-    <svg viewBox={`0 0 ${W} ${H}`} width={W} height={H} style={{ display: "block", width: "100%", height: "auto" }} aria-hidden="true">
+    <div ref={chartContainerRef} style={{ width: "100%", overflow: "hidden" }}>
+    <svg viewBox={`0 0 ${W} ${H}`} width={W} height={H} style={{ display: "block" }} aria-hidden="true">
       {yTicks.map(v => {
         const cy = toY(v);
         return (
