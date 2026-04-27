@@ -3728,6 +3728,19 @@ function MiniLineChart({ data, yLabels }) {
 function SensoryCharacteristicsExample() {
   const narrow = useNarrow(1000);
   const [tab, setTab] = useState("chart");
+  const chartContainerRef = useRef(null);
+  const [containerW, setContainerW] = useState(800);
+
+  useEffect(() => {
+    const el = chartContainerRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(entries => {
+      const w = entries[0].contentRect.width;
+      if (w > 0) setContainerW(Math.round(w));
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   const years = ["2019","2020","2021","2022","2023","2024"];
   const yTicks = [500,600,700,800,900];
@@ -3739,8 +3752,8 @@ function SensoryCharacteristicsExample() {
   ];
   const LIST_PRICE_VAL = 873, LIST_COLOR = "#15803D";
 
-  // W=800 matches ~actual rendered width so fontSize units ≈ CSS px
-  const W = 800, H = 220, PL = 24, PR = 56, PT = 10, PB = 28;
+  // W tracks container width so only x-spacing compresses on resize, not font sizes
+  const W = containerW, H = 220, PL = 24, PR = 56, PT = 10, PB = 28;
   const chartW = W - PL - PR, chartH = H - PT - PB;
   const xStep = chartW / (years.length - 1);
   const toY = (v) => PT + chartH - ((v - yMin) / yRange) * chartH;
@@ -3755,7 +3768,8 @@ function SensoryCharacteristicsExample() {
   );
 
   const chart = (
-    <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{ display: "block" }} aria-hidden="true">
+    <div ref={chartContainerRef} style={{ width: "100%" }}>
+    <svg viewBox={`0 0 ${W} ${H}`} width={W} height={H} style={{ display: "block", width: "100%", height: "auto" }} aria-hidden="true">
       {yTicks.map(v => {
         const cy = toY(v);
         return (
@@ -3773,6 +3787,7 @@ function SensoryCharacteristicsExample() {
         <text key={y} x={toX(i)} y={H - 6} textAnchor="middle" fontSize="11" fill="#9CA3AF" fontFamily={FONT}>{y}</text>
       ))}
     </svg>
+    </div>
   );
 
   const logo = (
