@@ -183,8 +183,9 @@ export const MODULES_DATA = [
         ]
       }]},
       { sections:[{ type:"guideline-detail",
-        heading:"Distinguishable",
-        intro:"Content must be distinguishable — easy to see and hear. This guideline covers the sensory presentation of content, including color contrast, text sizing, and the handling of audio and visual presentation.",
+        heading:"1.4 Distinguishable",
+        headingUrl:"https://www.w3.org/WAI/WCAG22/Understanding/distinguishable",
+        intro:"This principle focuses on making web content more accessible through better visual presentation. It addresses the needs of users who have visual impairments like color blindness, low vision, or sensitivity to brightness, ensuring that information is not conveyed through color alone, text is readable and understandable, and the content is visible and distinguishable.",
         criteria:[
           { title:"Avoid color dependency", level:"A", tags:["1.4.1: Use of color"], body:"Don't rely solely on color to convey information. Add visual cues that help users distinguish the difference between elements.", examples:[{ title:"Selected state indicator", desc:"A selected tab or filter should not rely only on a color change to communicate selection.", dont:{ caption:"Don't indicate selection using color change alone — users with color vision deficiency may not perceive the difference." }, do:{ caption:"Do pair the color change with a visual indicator like a bold border, underline, or filled background shape." } }] },
           { title:"Respect small text: 4.5:1 contrast ratio", level:"AA", tags:["1.4.3: Contrast (minimum)"], body:"Small text needs to pass the 4.5:1 color contrast ratio. Bold text = 13pt and below. Regular text = 17pt and below.", examples:[{ title:"Body text on colored background", desc:"Text on branded or colored backgrounds must still meet contrast requirements even when the color is part of the brand palette.", dont:{ caption:"Don't place light gray text on a white background — even if it looks elegant, it fails the 4.5:1 contrast requirement." }, do:{ caption:"Do verify text color combinations with a contrast checker and adjust until the 4.5:1 ratio is met." } }] },
