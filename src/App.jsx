@@ -4324,7 +4324,7 @@ function UseOfColorExample() {
           <span style={{ fontFamily: FONT, fontSize: 15, fontWeight: 500, color: rdcUiTheme.color.text.primary, textDecoration: "underline", cursor: "default" }}>Cancel</span>
           {/* Disabled button — no icon inside, cursor SVG sits on top */}
           <div style={{ position: "relative", display: "inline-flex" }}>
-            <Button disabled>Assign</Button>
+            <Button disabled style={{ pointerEvents: "none", transition: "none", outline: "none" }}>Assign</Button>
             <img
               src={`${BASE}cursor-not-allowed.svg`}
               alt=""
