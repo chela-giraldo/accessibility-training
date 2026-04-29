@@ -4252,12 +4252,18 @@ function GDCriterionBlock({ criterion, isReadOnly }) {
         </div>
       )}
       <GDBody>{criterion.body}</GDBody>
+      {criterion.bodyParagraphs && criterion.bodyParagraphs.map((para, i) => (
+        <GDBody key={i} style={{ marginTop: 12 }}>{para}</GDBody>
+      ))}
       {criterion.bodyItems && (
         <ul style={{ margin: "8px 0 16px", paddingLeft: 20 }}>
           {criterion.bodyItems.map((item, i) => (
             <li key={i} style={{ fontSize: 18, color: rdcUiTheme.color.text.primary, fontFamily: FONT, lineHeight: 1.65, marginBottom: 6 }}>{item}</li>
           ))}
         </ul>
+      )}
+      {criterion.bodyNote && (
+        <GDBody style={{ marginTop: 8 }}>{criterion.bodyNote}</GDBody>
       )}
       {criterion.examplesIntro && <GDExamplesIntro>{criterion.examplesIntro}</GDExamplesIntro>}
 
