@@ -4867,15 +4867,22 @@ const MODULES = withBase(MODULES_DATA);
 // ── App ───────────────────────────────────────────────────────────────────────
 
 export default function App() {
-  const [active,     setActive]     = useState(null);
-  const [completed,  setCompleted]  = useState([]);
-  const [showQuiz,   setShowQuiz]   = useState(false);
+  const [active,     setActive]     = useState(() => { try { const id = localStorage.getItem("at_activeId"); return id ? MODULES.find(m => m.id === id) || null : null; } catch { return null; } });
+  const [completed,  setCompleted]  = useState(() => { try { return JSON.parse(localStorage.getItem("at_completed") || "[]"); } catch { return []; } });
+  const [showQuiz,   setShowQuiz]   = useState(() => { try { return localStorage.getItem("at_showQuiz") === "1"; } catch { return false; } });
   const [quizDone,   setQuizDone]   = useState(false);
-  const [allDone,    setAllDone]    = useState(false);
-  const [page,       setPage]       = useState(0);
+  const [allDone,    setAllDone]    = useState(() => { try { return localStorage.getItem("at_allDone") === "1"; } catch { return false; } });
+  const [page,       setPage]       = useState(() => { try { return parseInt(localStorage.getItem("at_page") || "0", 10); } catch { return 0; } });
   const [attempt,    setAttempt]    = useState(0);
-  const [started,    setStarted]    = useState([]);
+  const [started,    setStarted]    = useState(() => { try { return JSON.parse(localStorage.getItem("at_started") || "[]"); } catch { return []; } });
   const [showInfo,   setShowInfo]   = useState(true);
+
+  useEffect(() => { try { localStorage.setItem("at_activeId",  active ? active.id : ""); } catch {} }, [active]);
+  useEffect(() => { try { localStorage.setItem("at_completed", JSON.stringify(completed)); } catch {} }, [completed]);
+  useEffect(() => { try { localStorage.setItem("at_showQuiz",  showQuiz ? "1" : "0"); } catch {} }, [showQuiz]);
+  useEffect(() => { try { localStorage.setItem("at_allDone",   allDone  ? "1" : "0"); } catch {} }, [allDone]);
+  useEffect(() => { try { localStorage.setItem("at_page",      String(page)); } catch {} }, [page]);
+  useEffect(() => { try { localStorage.setItem("at_started",   JSON.stringify(started)); } catch {} }, [started]);
 
   const moduleHeadingRef = useRef(null);
 
