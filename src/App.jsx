@@ -4259,7 +4259,16 @@ function GDCriterionBlock({ criterion, isReadOnly }) {
           ))}
         </ul>
       )}
-      {criterion.examplesIntro && <GDExamplesIntro>{criterion.examplesIntro}</GDExamplesIntro>}
+      {criterion.examplesIntro && (
+        <div style={{ marginBottom: 36 }}>
+          <GDExamplesIntro style={{ marginBottom: 12 }}>{criterion.examplesIntro}</GDExamplesIntro>
+          <ul style={{ margin: 0, paddingLeft: 24 }}>
+            {examples.map((ex, i) => (
+              <li key={i} style={{ fontSize: 18, color: rdcUiTheme.color.text.primary, fontFamily: FONT, lineHeight: 1.65, marginBottom: 4 }}>{ex.title}</li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       {examples.length > 0 && (
         <div>
