@@ -4275,45 +4275,17 @@ function UseOfColorExample() {
             Leads can only be reassigned to agents who have an active proposal on UpNest by Realtor.com. Both agents will be notified via email once the reassignment is finalized.
           </p>
 
-          {/* Dropdown + tooltip side by side */}
-          <div style={{ display: "flex", alignItems: "flex-start", gap: 16, paddingBottom: 28 }}>
-            {/* Dropdown */}
-            <div style={{ flex: "0 0 auto", width: "50%" }}>
-              <div style={{ fontFamily: FONT, fontSize: 14, color: rdcUiTheme.color.text.primary, marginBottom: 8 }}>Assign this lead to</div>
-              <div style={{
-                display: "flex", alignItems: "center", justifyContent: "space-between",
-                border: `1px solid ${rdcUiTheme.color.border.base}`,
-                borderRadius: 10, padding: "13px 16px",
-                background: rdcUiTheme.color.bg.primary,
-              }}>
-                <span style={{ fontFamily: FONT, fontSize: 15, color: rdcUiTheme.color.text.secondary }}>Select from agents</span>
-                {chevronDown}
-              </div>
-            </div>
-
-            {/* Tooltip — aligned with dropdown top, arrow at bottom-right pointing down */}
-            <div style={{ flex: 1, position: "relative" }}>
-              <div style={{
-                background: "#2B2B2B",
-                color: "#FFFFFF",
-                fontFamily: FONT,
-                fontSize: 15,
-                lineHeight: "22px",
-                borderRadius: 10,
-                padding: "12px 16px",
-                position: "relative",
-              }}>
-                Select an agent before you can assign this lead.
-                <div style={{
-                  position: "absolute",
-                  top: "100%",
-                  right: 16,
-                  width: 0, height: 0,
-                  borderLeft: "8px solid transparent",
-                  borderRight: "8px solid transparent",
-                  borderTop: "8px solid #2B2B2B",
-                }} />
-              </div>
+          {/* Dropdown */}
+          <div style={{ paddingBottom: 28, width: "50%" }}>
+            <div style={{ fontFamily: FONT, fontSize: 14, color: rdcUiTheme.color.text.primary, marginBottom: 8 }}>Assign this lead to</div>
+            <div style={{
+              display: "flex", alignItems: "center", justifyContent: "space-between",
+              border: `1px solid ${rdcUiTheme.color.border.base}`,
+              borderRadius: 10, padding: "13px 16px",
+              background: rdcUiTheme.color.bg.primary,
+            }}>
+              <span style={{ fontFamily: FONT, fontSize: 15, color: rdcUiTheme.color.text.secondary }}>Select from agents</span>
+              {chevronDown}
             </div>
           </div>
         </div>
@@ -4321,8 +4293,34 @@ function UseOfColorExample() {
         {/* Footer */}
         <div style={{ padding: "20px 32px", borderTop: `1px solid ${rdcUiTheme.color.border.base}`, display: "flex", justifyContent: "flex-end", alignItems: "center", gap: 16 }}>
           <span style={{ fontFamily: FONT, fontSize: 15, fontWeight: 500, color: rdcUiTheme.color.text.primary, textDecoration: "underline", cursor: "default" }}>Cancel</span>
-          {/* Disabled button — no icon inside, cursor SVG sits on top */}
+          {/* Disabled button with tooltip 8px above and cursor SVG on top */}
           <div style={{ position: "relative", display: "inline-flex" }}>
+            {/* Tooltip */}
+            <div style={{
+              position: "absolute",
+              bottom: "calc(100% + 8px)",
+              right: 0,
+              background: "#2B2B2B",
+              color: "#FFFFFF",
+              fontFamily: FONT,
+              fontSize: 14,
+              lineHeight: "20px",
+              borderRadius: 10,
+              padding: "12px 16px",
+              width: 220,
+              whiteSpace: "normal",
+            }}>
+              Select an agent before you can assign this lead.
+              <div style={{
+                position: "absolute",
+                top: "100%",
+                right: 20,
+                width: 0, height: 0,
+                borderLeft: "8px solid transparent",
+                borderRight: "8px solid transparent",
+                borderTop: "8px solid #2B2B2B",
+              }} />
+            </div>
             <Button disabled style={{ pointerEvents: "none", transition: "none", outline: "none" }}>Assign</Button>
             <img
               src={`${BASE}cursor-not-allowed.svg`}
