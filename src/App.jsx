@@ -4226,6 +4226,7 @@ function VideoCardExample() {
 }
 
 function UseOfColorExample() {
+  const BASE = import.meta.env.BASE_URL ?? "/";
   const chevronDown = (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <path d="M6 9l6 6 6-6" stroke={rdcUiTheme.color.text.primary} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -4236,14 +4237,15 @@ function UseOfColorExample() {
       <path d="M18 6L6 18M6 6l12 12" stroke={rdcUiTheme.color.text.primary} strokeWidth="2.2" strokeLinecap="round"/>
     </svg>
   );
+  const cell = { fontFamily: FONT, fontSize: 15, color: rdcUiTheme.color.text.primary };
 
   return (
-    <div style={{ width: "100%", maxWidth: 760, margin: "0 auto" }}>
+    <div style={{ width: "100%", maxWidth: 760, margin: "0 auto", position: "relative" }}>
       <div style={{
         background: rdcUiTheme.color.bg.primary,
         borderRadius: 16,
         boxShadow: "0 4px 32px rgba(0,0,0,0.16)",
-        overflow: "hidden",
+        overflow: "visible",
       }}>
 
         {/* Header */}
@@ -4260,10 +4262,10 @@ function UseOfColorExample() {
             ))}
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1.2fr 0.6fr 1fr", padding: "16px 0 20px", borderBottom: `1px solid ${rdcUiTheme.color.border.accent}` }}>
-            <span style={{ fontFamily: FONT, fontSize: 15, fontWeight: 700, color: rdcUiTheme.color.text.primary }}>George Straight</span>
-            <span style={{ fontFamily: FONT, fontSize: 15, color: rdcUiTheme.color.text.primary }}>6/15/24, 4:59pm CDT</span>
-            <span style={{ fontFamily: FONT, fontSize: 15, color: rdcUiTheme.color.text.primary }}>29585</span>
-            <span style={{ fontFamily: FONT, fontSize: 15, color: rdcUiTheme.color.text.primary }}>Angelica Garza</span>
+            <span style={cell}>George Straight</span>
+            <span style={cell}>6/15/24, 4:59pm CDT</span>
+            <span style={cell}>29585</span>
+            <span style={cell}>Angelica Garza</span>
           </div>
         </div>
 
@@ -4274,10 +4276,10 @@ function UseOfColorExample() {
             Leads can only be reassigned to agents who have an active proposal on UpNest by Realtor.com. Both agents will be notified via email once the reassignment is finalized.
           </p>
 
-          {/* Dropdown + tooltip row */}
-          <div style={{ display: "flex", alignItems: "flex-start", gap: 20, paddingBottom: 28 }}>
+          {/* Dropdown + tooltip side by side */}
+          <div style={{ display: "flex", alignItems: "flex-start", gap: 16, paddingBottom: 28 }}>
             {/* Dropdown */}
-            <div style={{ flex: "0 0 auto", width: "53%" }}>
+            <div style={{ flex: "0 0 auto", width: "50%" }}>
               <div style={{ fontFamily: FONT, fontSize: 14, color: rdcUiTheme.color.text.primary, marginBottom: 8 }}>Assign this lead to</div>
               <div style={{
                 display: "flex", alignItems: "center", justifyContent: "space-between",
@@ -4290,8 +4292,8 @@ function UseOfColorExample() {
               </div>
             </div>
 
-            {/* Tooltip to the right, arrow pointing down-right toward Assign button */}
-            <div style={{ flex: 1, position: "relative", marginTop: 30 }}>
+            {/* Tooltip — aligned with dropdown top, arrow at bottom-right pointing down */}
+            <div style={{ flex: 1, position: "relative" }}>
               <div style={{
                 background: "#2B2B2B",
                 color: "#FFFFFF",
@@ -4306,7 +4308,7 @@ function UseOfColorExample() {
                 <div style={{
                   position: "absolute",
                   top: "100%",
-                  right: 20,
+                  right: 16,
                   width: 0, height: 0,
                   borderLeft: "8px solid transparent",
                   borderRight: "8px solid transparent",
@@ -4320,18 +4322,15 @@ function UseOfColorExample() {
         {/* Footer */}
         <div style={{ padding: "20px 32px", borderTop: `1px solid ${rdcUiTheme.color.border.base}`, display: "flex", justifyContent: "flex-end", alignItems: "center", gap: 16 }}>
           <span style={{ fontFamily: FONT, fontSize: 15, fontWeight: 500, color: rdcUiTheme.color.text.primary, textDecoration: "underline", cursor: "default" }}>Cancel</span>
-          {/* Disabled Assign button with not-allowed cursor positioned outside */}
+          {/* Disabled button — no icon inside, cursor SVG sits on top */}
           <div style={{ position: "relative", display: "inline-flex" }}>
             <Button disabled>Assign</Button>
-            {/* Not-allowed cursor overlaid outside bottom-right of button, like a real cursor */}
-            <svg
-              width="22" height="22" viewBox="0 0 24 24" fill="none"
+            <img
+              src={`${BASE}cursor-not-allowed.svg`}
+              alt=""
               aria-hidden="true"
-              style={{ position: "absolute", bottom: -10, right: -10, pointerEvents: "none" }}
-            >
-              <circle cx="12" cy="12" r="9" stroke="#3F3B36" strokeWidth="2"/>
-              <path d="M6 18L18 6" stroke="#3F3B36" strokeWidth="2" strokeLinecap="round"/>
-            </svg>
+              style={{ position: "absolute", bottom: -14, right: -14, width: 28, height: 40, pointerEvents: "none" }}
+            />
           </div>
         </div>
       </div>
