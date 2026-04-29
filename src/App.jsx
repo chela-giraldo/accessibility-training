@@ -4320,6 +4320,10 @@ function GDCriterionBlock({ criterion, isReadOnly }) {
                 <div style={{ width: "100%", background: rdcUiTheme.color.gray['50'], border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 16, padding: 40, boxSizing: "border-box" }}>
                   <ChartExample />
                 </div>
+              ) : ex.useOfColorExample ? (
+                <div style={{ width: "100%", background: rdcUiTheme.color.gray['50'], border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 16, padding: 40, boxSizing: "border-box", display: "flex", justifyContent: "center" }}>
+                  <img src={`${import.meta.env.BASE_URL}use-of-color.svg`} alt="" aria-hidden="true" style={{ display: "block", width: "100%", maxWidth: 800, height: "auto" }} />
+                </div>
               ) : (
                 <div style={{ width: "100%", background: rdcUiTheme.color.gray['50'], border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 16, padding: 40, display: "flex", alignItems: narrow ? "stretch" : "flex-start", justifyContent: "center", flexDirection: narrow ? "column" : "row", gap: 33, boxSizing: "border-box", overflow: "hidden" }}>
                   {ex.image && (ex.inlineSuccess || ex.inlineError) ? (
