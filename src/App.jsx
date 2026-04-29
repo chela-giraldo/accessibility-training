@@ -4298,7 +4298,7 @@ function UseOfColorExample() {
             {/* Tooltip */}
             <div style={{
               position: "absolute",
-              bottom: "100%",
+              bottom: "calc(100% - 8px)",
               right: 0,
               background: "#2B2B2B",
               color: "#FFFFFF",
