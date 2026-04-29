@@ -4466,6 +4466,8 @@ function GDCriterionBlock({ criterion, isReadOnly }) {
                         <span style={{ marginTop: 8, fontFamily: FONT, fontSize: rdcUiTheme.typography.scale.body200.size, lineHeight: rdcUiTheme.typography.scale.body200.lineHeight, fontWeight: rdcUiTheme.typography.scale.body200.fontWeight, color: rdcUiTheme.color.text.secondary }}>{ex.imageInteractionLabel || "Design documentation"}</span>
                       </div>
                     </div>
+                  ) : ex.image && ex.audioControlExample ? (
+                    <img src={ex.image} alt="" aria-hidden="true" style={{ width: "100%", maxWidth: 800, height: "auto", display: "block" }} />
                   ) : ex.image ? (
                     <img src={ex.image} alt="" aria-hidden="true" style={{ width: "100%", maxWidth: 600, height: "auto", display: "block" }} />
                   ) : (
