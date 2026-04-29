@@ -4227,37 +4227,18 @@ function VideoCardExample() {
 
 function UseOfColorExample() {
   const chevronDown = (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <path d="M6 9l6 6 6-6" stroke={rdcUiTheme.color.text.primary} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   );
   const iconX = (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M18 6L6 18M6 6l12 12" stroke={rdcUiTheme.color.text.primary} strokeWidth="2" strokeLinecap="round"/>
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M18 6L6 18M6 6l12 12" stroke={rdcUiTheme.color.text.primary} strokeWidth="2.2" strokeLinecap="round"/>
     </svg>
-  );
-  const notAllowedCursor = (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" style={{ flexShrink: 0 }}>
-      <circle cx="12" cy="12" r="9" stroke="#3F3B36" strokeWidth="1.8"/>
-      <path d="M5.5 18.5L18.5 5.5" stroke="#3F3B36" strokeWidth="1.8" strokeLinecap="round"/>
-    </svg>
-  );
-
-  const disabledBtn = (
-    <div style={{
-      display: "inline-flex", alignItems: "center", gap: 6,
-      padding: "10px 20px", borderRadius: 100,
-      border: `1px solid ${rdcUiTheme.color.border.base}`,
-      background: rdcUiTheme.color.bg.primary,
-      opacity: 0.5,
-      fontFamily: FONT, fontSize: 14, fontWeight: 500, color: rdcUiTheme.color.text.primary,
-    }}>
-      Assign {notAllowedCursor}
-    </div>
   );
 
   return (
-    <div style={{ width: "100%", maxWidth: 760, margin: "0 auto", userSelect: "none", pointerEvents: "none" }}>
+    <div style={{ width: "100%", maxWidth: 760, margin: "0 auto" }}>
       <div style={{
         background: rdcUiTheme.color.bg.primary,
         borderRadius: 16,
@@ -4266,71 +4247,70 @@ function UseOfColorExample() {
       }}>
 
         {/* Header */}
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "20px 24px", borderBottom: `1px solid ${rdcUiTheme.color.border.base}` }}>
-          <span style={{ fontFamily: FONT, fontSize: 20, fontWeight: 700, color: rdcUiTheme.color.text.primary }}>Assign lead</span>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "28px 32px 24px", borderBottom: `1px solid ${rdcUiTheme.color.border.base}` }}>
+          <span style={{ fontFamily: FONT, fontSize: 24, fontWeight: 700, color: rdcUiTheme.color.text.primary }}>Assign lead</span>
           {iconX}
         </div>
 
         {/* Table */}
-        <div style={{ padding: "0 24px" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 0.6fr 1fr", padding: "12px 0 8px", borderBottom: `1px solid ${rdcUiTheme.color.border.base}` }}>
+        <div style={{ padding: "0 32px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1.2fr 0.6fr 1fr", padding: "20px 0 12px", borderBottom: `1px solid ${rdcUiTheme.color.border.base}` }}>
             {["Lead name","Date received","ZIP code","Current agent(s)"].map(h => (
-              <span key={h} style={{ fontFamily: FONT, fontSize: 12, color: rdcUiTheme.color.text.secondary }}>{h}</span>
+              <span key={h} style={{ fontFamily: FONT, fontSize: 13, fontWeight: 500, color: rdcUiTheme.color.text.secondary }}>{h}</span>
             ))}
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 0.6fr 1fr", padding: "12px 0 16px", borderBottom: `1px solid ${rdcUiTheme.color.border.accent}` }}>
-            <span style={{ fontFamily: FONT, fontSize: 14, fontWeight: 600, color: rdcUiTheme.color.text.primary }}>George Straight</span>
-            <span style={{ fontFamily: FONT, fontSize: 14, color: rdcUiTheme.color.text.primary }}>6/15/24, 4:59pm CDT</span>
-            <span style={{ fontFamily: FONT, fontSize: 14, color: rdcUiTheme.color.text.primary }}>29585</span>
-            <span style={{ fontFamily: FONT, fontSize: 14, color: rdcUiTheme.color.text.primary }}>Angelica Garza</span>
+          <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1.2fr 0.6fr 1fr", padding: "16px 0 20px", borderBottom: `1px solid ${rdcUiTheme.color.border.accent}` }}>
+            <span style={{ fontFamily: FONT, fontSize: 15, fontWeight: 700, color: rdcUiTheme.color.text.primary }}>George Straight</span>
+            <span style={{ fontFamily: FONT, fontSize: 15, color: rdcUiTheme.color.text.primary }}>6/15/24, 4:59pm CDT</span>
+            <span style={{ fontFamily: FONT, fontSize: 15, color: rdcUiTheme.color.text.primary }}>29585</span>
+            <span style={{ fontFamily: FONT, fontSize: 15, color: rdcUiTheme.color.text.primary }}>Angelica Garza</span>
           </div>
         </div>
 
         {/* Agents section */}
-        <div style={{ padding: "20px 24px 0" }}>
-          <div style={{ fontFamily: FONT, fontSize: 18, fontWeight: 700, color: rdcUiTheme.color.text.primary, marginBottom: 8 }}>Agents</div>
-          <p style={{ fontFamily: FONT, fontSize: 14, color: rdcUiTheme.color.text.primary, lineHeight: "20px", margin: "0 0 20px" }}>
+        <div style={{ padding: "24px 32px 0" }}>
+          <div style={{ fontFamily: FONT, fontSize: 20, fontWeight: 700, color: rdcUiTheme.color.text.primary, marginBottom: 10 }}>Agents</div>
+          <p style={{ fontFamily: FONT, fontSize: 16, color: rdcUiTheme.color.text.primary, lineHeight: "24px", margin: "0 0 24px" }}>
             Leads can only be reassigned to agents who have an active proposal on UpNest by Realtor.com. Both agents will be notified via email once the reassignment is finalized.
           </p>
 
           {/* Dropdown + tooltip row */}
-          <div style={{ display: "flex", alignItems: "flex-start", gap: 16, marginBottom: 0 }}>
+          <div style={{ display: "flex", alignItems: "flex-start", gap: 20, paddingBottom: 28 }}>
             {/* Dropdown */}
-            <div style={{ flex: "0 0 auto", width: "52%" }}>
-              <div style={{ fontFamily: FONT, fontSize: 14, color: rdcUiTheme.color.text.primary, marginBottom: 6 }}>Assign this lead to</div>
+            <div style={{ flex: "0 0 auto", width: "53%" }}>
+              <div style={{ fontFamily: FONT, fontSize: 14, color: rdcUiTheme.color.text.primary, marginBottom: 8 }}>Assign this lead to</div>
               <div style={{
                 display: "flex", alignItems: "center", justifyContent: "space-between",
                 border: `1px solid ${rdcUiTheme.color.border.base}`,
-                borderRadius: 8, padding: "10px 14px",
+                borderRadius: 10, padding: "13px 16px",
                 background: rdcUiTheme.color.bg.primary,
               }}>
-                <span style={{ fontFamily: FONT, fontSize: 14, color: rdcUiTheme.color.text.secondary }}>Select from agents</span>
+                <span style={{ fontFamily: FONT, fontSize: 15, color: rdcUiTheme.color.text.secondary }}>Select from agents</span>
                 {chevronDown}
               </div>
             </div>
 
-            {/* Tooltip — to the right, arrow pointing down toward the Assign button */}
-            <div style={{ position: "relative", flex: 1 }}>
+            {/* Tooltip to the right, arrow pointing down-right toward Assign button */}
+            <div style={{ flex: 1, position: "relative", marginTop: 30 }}>
               <div style={{
                 background: "#2B2B2B",
                 color: "#FFFFFF",
                 fontFamily: FONT,
-                fontSize: 13,
-                lineHeight: "18px",
-                borderRadius: 8,
-                padding: "10px 14px",
+                fontSize: 15,
+                lineHeight: "22px",
+                borderRadius: 10,
+                padding: "12px 16px",
                 position: "relative",
               }}>
                 Select an agent before you can assign this lead.
-                {/* Arrow pointing down */}
                 <div style={{
                   position: "absolute",
                   top: "100%",
-                  right: 28,
+                  right: 20,
                   width: 0, height: 0,
-                  borderLeft: "7px solid transparent",
-                  borderRight: "7px solid transparent",
-                  borderTop: "7px solid #2B2B2B",
+                  borderLeft: "8px solid transparent",
+                  borderRight: "8px solid transparent",
+                  borderTop: "8px solid #2B2B2B",
                 }} />
               </div>
             </div>
@@ -4338,9 +4318,21 @@ function UseOfColorExample() {
         </div>
 
         {/* Footer */}
-        <div style={{ padding: "16px 24px", borderTop: `1px solid ${rdcUiTheme.color.border.base}`, display: "flex", justifyContent: "flex-end", alignItems: "center", gap: 12 }}>
-          <span style={{ fontFamily: FONT, fontSize: 14, fontWeight: 500, color: rdcUiTheme.color.text.primary, textDecoration: "underline" }}>Cancel</span>
-          {disabledBtn}
+        <div style={{ padding: "20px 32px", borderTop: `1px solid ${rdcUiTheme.color.border.base}`, display: "flex", justifyContent: "flex-end", alignItems: "center", gap: 16 }}>
+          <span style={{ fontFamily: FONT, fontSize: 15, fontWeight: 500, color: rdcUiTheme.color.text.primary, textDecoration: "underline", cursor: "default" }}>Cancel</span>
+          {/* Disabled Assign button with not-allowed cursor positioned outside */}
+          <div style={{ position: "relative", display: "inline-flex" }}>
+            <Button disabled>Assign</Button>
+            {/* Not-allowed cursor overlaid outside bottom-right of button, like a real cursor */}
+            <svg
+              width="22" height="22" viewBox="0 0 24 24" fill="none"
+              aria-hidden="true"
+              style={{ position: "absolute", bottom: -10, right: -10, pointerEvents: "none" }}
+            >
+              <circle cx="12" cy="12" r="9" stroke="#3F3B36" strokeWidth="2"/>
+              <path d="M6 18L18 6" stroke="#3F3B36" strokeWidth="2" strokeLinecap="round"/>
+            </svg>
+          </div>
         </div>
       </div>
     </div>
