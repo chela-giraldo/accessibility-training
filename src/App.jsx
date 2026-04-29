@@ -4225,6 +4225,128 @@ function VideoCardExample() {
   );
 }
 
+function UseOfColorExample() {
+  const chevronDown = (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M6 9l6 6 6-6" stroke={rdcUiTheme.color.text.primary} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  );
+  const iconX = (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M18 6L6 18M6 6l12 12" stroke={rdcUiTheme.color.text.primary} strokeWidth="2" strokeLinecap="round"/>
+    </svg>
+  );
+  const notAllowedCursor = (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" style={{ flexShrink: 0 }}>
+      <circle cx="12" cy="12" r="9" stroke="#3F3B36" strokeWidth="1.8"/>
+      <path d="M5.5 18.5L18.5 5.5" stroke="#3F3B36" strokeWidth="1.8" strokeLinecap="round"/>
+    </svg>
+  );
+
+  const disabledBtn = (
+    <div style={{
+      display: "inline-flex", alignItems: "center", gap: 6,
+      padding: "10px 20px", borderRadius: 100,
+      border: `1px solid ${rdcUiTheme.color.border.base}`,
+      background: rdcUiTheme.color.bg.primary,
+      opacity: 0.5,
+      fontFamily: FONT, fontSize: 14, fontWeight: 500, color: rdcUiTheme.color.text.primary,
+    }}>
+      Assign {notAllowedCursor}
+    </div>
+  );
+
+  return (
+    <div style={{ width: "100%", maxWidth: 760, margin: "0 auto", userSelect: "none", pointerEvents: "none" }}>
+      <div style={{
+        background: rdcUiTheme.color.bg.primary,
+        borderRadius: 16,
+        boxShadow: "0 4px 32px rgba(0,0,0,0.16)",
+        overflow: "hidden",
+      }}>
+
+        {/* Header */}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "20px 24px", borderBottom: `1px solid ${rdcUiTheme.color.border.base}` }}>
+          <span style={{ fontFamily: FONT, fontSize: 20, fontWeight: 700, color: rdcUiTheme.color.text.primary }}>Assign lead</span>
+          {iconX}
+        </div>
+
+        {/* Table */}
+        <div style={{ padding: "0 24px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 0.6fr 1fr", padding: "12px 0 8px", borderBottom: `1px solid ${rdcUiTheme.color.border.base}` }}>
+            {["Lead name","Date received","ZIP code","Current agent(s)"].map(h => (
+              <span key={h} style={{ fontFamily: FONT, fontSize: 12, color: rdcUiTheme.color.text.secondary }}>{h}</span>
+            ))}
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 0.6fr 1fr", padding: "12px 0 16px", borderBottom: `1px solid ${rdcUiTheme.color.border.accent}` }}>
+            <span style={{ fontFamily: FONT, fontSize: 14, fontWeight: 600, color: rdcUiTheme.color.text.primary }}>George Straight</span>
+            <span style={{ fontFamily: FONT, fontSize: 14, color: rdcUiTheme.color.text.primary }}>6/15/24, 4:59pm CDT</span>
+            <span style={{ fontFamily: FONT, fontSize: 14, color: rdcUiTheme.color.text.primary }}>29585</span>
+            <span style={{ fontFamily: FONT, fontSize: 14, color: rdcUiTheme.color.text.primary }}>Angelica Garza</span>
+          </div>
+        </div>
+
+        {/* Agents section */}
+        <div style={{ padding: "20px 24px 0" }}>
+          <div style={{ fontFamily: FONT, fontSize: 18, fontWeight: 700, color: rdcUiTheme.color.text.primary, marginBottom: 8 }}>Agents</div>
+          <p style={{ fontFamily: FONT, fontSize: 14, color: rdcUiTheme.color.text.primary, lineHeight: "20px", margin: "0 0 20px" }}>
+            Leads can only be reassigned to agents who have an active proposal on UpNest by Realtor.com. Both agents will be notified via email once the reassignment is finalized.
+          </p>
+
+          {/* Dropdown + tooltip row */}
+          <div style={{ display: "flex", alignItems: "flex-start", gap: 16, marginBottom: 0 }}>
+            {/* Dropdown */}
+            <div style={{ flex: "0 0 auto", width: "52%" }}>
+              <div style={{ fontFamily: FONT, fontSize: 14, color: rdcUiTheme.color.text.primary, marginBottom: 6 }}>Assign this lead to</div>
+              <div style={{
+                display: "flex", alignItems: "center", justifyContent: "space-between",
+                border: `1px solid ${rdcUiTheme.color.border.base}`,
+                borderRadius: 8, padding: "10px 14px",
+                background: rdcUiTheme.color.bg.primary,
+              }}>
+                <span style={{ fontFamily: FONT, fontSize: 14, color: rdcUiTheme.color.text.secondary }}>Select from agents</span>
+                {chevronDown}
+              </div>
+            </div>
+
+            {/* Tooltip — to the right, arrow pointing down toward the Assign button */}
+            <div style={{ position: "relative", flex: 1 }}>
+              <div style={{
+                background: "#2B2B2B",
+                color: "#FFFFFF",
+                fontFamily: FONT,
+                fontSize: 13,
+                lineHeight: "18px",
+                borderRadius: 8,
+                padding: "10px 14px",
+                position: "relative",
+              }}>
+                Select an agent before you can assign this lead.
+                {/* Arrow pointing down */}
+                <div style={{
+                  position: "absolute",
+                  top: "100%",
+                  right: 28,
+                  width: 0, height: 0,
+                  borderLeft: "7px solid transparent",
+                  borderRight: "7px solid transparent",
+                  borderTop: "7px solid #2B2B2B",
+                }} />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div style={{ padding: "16px 24px", borderTop: `1px solid ${rdcUiTheme.color.border.base}`, display: "flex", justifyContent: "flex-end", alignItems: "center", gap: 12 }}>
+          <span style={{ fontFamily: FONT, fontSize: 14, fontWeight: 500, color: rdcUiTheme.color.text.primary, textDecoration: "underline" }}>Cancel</span>
+          {disabledBtn}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function GDCriterionBlock({ criterion, isReadOnly }) {
   const examples = criterion.examples || [];
   const narrow = useNarrow(960);
@@ -4321,8 +4443,8 @@ function GDCriterionBlock({ criterion, isReadOnly }) {
                   <ChartExample />
                 </div>
               ) : ex.useOfColorExample ? (
-                <div style={{ width: "100%", background: rdcUiTheme.color.gray['50'], border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 16, padding: 40, boxSizing: "border-box", display: "flex", justifyContent: "center" }}>
-                  <img src={`${import.meta.env.BASE_URL}use-of-color.svg`} alt="" aria-hidden="true" style={{ display: "block", width: "100%", maxWidth: 800, height: "auto" }} />
+                <div style={{ width: "100%", background: rdcUiTheme.color.gray['50'], border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 16, padding: 40, boxSizing: "border-box" }}>
+                  <UseOfColorExample />
                 </div>
               ) : (
                 <div style={{ width: "100%", background: rdcUiTheme.color.gray['50'], border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 16, padding: 40, display: "flex", alignItems: narrow ? "stretch" : "flex-start", justifyContent: "center", flexDirection: narrow ? "column" : "row", gap: 33, boxSizing: "border-box", overflow: "hidden" }}>
