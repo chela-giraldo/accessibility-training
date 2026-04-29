@@ -4226,6 +4226,7 @@ function VideoCardExample() {
 
 function UseOfColorExample() {
   const BASE = import.meta.env.BASE_URL ?? "/";
+  const compact = useNarrow(400);
   const chevronDown = (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <path d="M6 9l6 6 6-6" stroke={rdcUiTheme.color.text.primary} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -4236,7 +4237,7 @@ function UseOfColorExample() {
       <path d="M18 6L6 18M6 6l12 12" stroke={rdcUiTheme.color.text.primary} strokeWidth="2.2" strokeLinecap="round"/>
     </svg>
   );
-  const cell = { fontFamily: FONT, fontSize: 15, color: rdcUiTheme.color.text.primary };
+  const cell = { fontFamily: FONT, fontSize: 15, color: rdcUiTheme.color.text.primary, ...(compact && { whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }) };
 
   return (
     <div style={{ width: "100%", maxWidth: 760, margin: "0 auto", position: "relative" }}>
@@ -4257,7 +4258,7 @@ function UseOfColorExample() {
         <div style={{ padding: "0 32px" }}>
           <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1.2fr 0.6fr 1fr", padding: "20px 0 12px", borderBottom: `1px solid ${rdcUiTheme.color.border.base}` }}>
             {["Lead name","Date received","ZIP code","Current agent(s)"].map(h => (
-              <span key={h} style={{ fontFamily: FONT, fontSize: 13, fontWeight: 500, color: rdcUiTheme.color.text.secondary }}>{h}</span>
+              <span key={h} style={{ fontFamily: FONT, fontSize: 13, fontWeight: 500, color: rdcUiTheme.color.text.secondary, ...(compact && { whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }) }}>{h}</span>
             ))}
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1.2fr 0.6fr 1fr", padding: "16px 0 20px", borderBottom: `1px solid ${rdcUiTheme.color.border.accent}` }}>
@@ -4284,7 +4285,7 @@ function UseOfColorExample() {
               borderRadius: 10, padding: "13px 16px",
               background: rdcUiTheme.color.bg.primary,
             }}>
-              <span style={{ fontFamily: FONT, fontSize: 15, color: rdcUiTheme.color.text.secondary }}>Select from agents</span>
+              <span style={{ fontFamily: FONT, fontSize: 15, color: rdcUiTheme.color.text.secondary, ...(compact && { whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }) }}>Select from agents</span>
               {chevronDown}
             </div>
           </div>
