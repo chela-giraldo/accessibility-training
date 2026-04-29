@@ -4371,7 +4371,7 @@ function GDCriterionBlock({ criterion, isReadOnly }) {
       {criterion.bodyItems && (
         <ul style={{ margin: "8px 0 16px", paddingLeft: 20 }}>
           {criterion.bodyItems.map((item, i) => (
-            <li key={i} style={{ fontSize: 18, color: rdcUiTheme.color.text.primary, fontFamily: FONT, lineHeight: 1.65, marginBottom: 6 }}>{item}</li>
+            <li key={i} style={{ fontSize: 18, color: rdcUiTheme.color.text.primary, fontFamily: FONT, lineHeight: 1.65, marginBottom: 6 }}>{(() => { const m = item.match(/^([^:]+:)([\s\S]*)$/); return m ? <><span style={{ fontWeight: 600 }}>{m[1]}</span>{m[2]}</> : item; })()}</li>
           ))}
         </ul>
       )}
