@@ -141,7 +141,7 @@ export const MODULES_DATA = [
                 { label:"1.2.3 - Audio Description or Media Alternative (Prerecorded)", url:"https://www.w3.org/WAI/WCAG22/Understanding/audio-description-or-media-alternative-prerecorded" }
               ],
               body:"Any audio or video content needs a transcript, captions, or both. Users with hearing or vision disabilities can then access the content through reading or through a screen reader announcing the text alternative.",
-              examplesIntro:"Here are 2 examples of the role that designers play in this guideline:",
+              examplesIntro:"Here are 2 example scenarios of the role that designers play in this guideline:",
               examples:[
                 { title:"You're providing the content", desc:"Include button controls that let users toggle captions on and off, and/or download the transcript. Loop in the content team early so they can deliver the written content.", videoExample: true },
                 { title:"You're designing a platform where others upload content", desc:"Make caption and transcript fields required. If you don't, people will skip them every time.", uploadExample: true },
