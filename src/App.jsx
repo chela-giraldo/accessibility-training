@@ -4377,6 +4377,7 @@ function GDCriterionBlock({ criterion, isReadOnly }) {
         <GDBody style={{ marginTop: 8 }}>
           {Array.isArray(criterion.bodyNote)
             ? criterion.bodyNote.map((part, i) => {
+                if (typeof part !== "string" && part.semiboldItalic) return <span key={i} style={{ fontWeight: 600, fontStyle: "italic" }}>{part.text}</span>;
                 if (typeof part !== "string") return <a key={i} href={part.href} target="_blank" rel="noopener noreferrer" style={{ color: rdcUiTheme.color.text.primary }}>{part.text}</a>;
                 if (i === 0 && part.startsWith("Pro Tip:")) return <span key={i}><span style={{ fontWeight: 600 }}>Pro Tip:</span>{part.slice("Pro Tip:".length)}</span>;
                 return part;
