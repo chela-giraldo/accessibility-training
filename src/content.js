@@ -204,7 +204,7 @@ export const MODULES_DATA = [
     pages:[
       { sections:[
         { type:"guideline-cards",
-          heading:"Operable Guidelines",
+          heading:"2. Operable",
           href:"https://www.w3.org/TR/WCAG22/#operable",
           intro:["This principle ensures that all users can interact with your interface, regardless of how they navigate. Whether someone uses a keyboard, switch device, voice control, or touch, every function must be reachable and operable. There are 5 guidelines to follow and in the next pages, we will explain how you can design with these guidelines in mind:"],
           cards:[
