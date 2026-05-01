@@ -208,7 +208,7 @@ export const MODULES_DATA = [
           href:"https://www.w3.org/TR/WCAG22/#operable",
           intro:["This principle ensures that all users can interact with your interface, regardless of how they navigate. Whether someone uses a keyboard, switch device, voice control, or touch, every function must be reachable and operable. There are 5 guidelines to follow and in the next pages, we will explain how you can design with these guidelines in mind:"],
           cards:[
-            { title:"Keyboard accessible", desc:"All functionality must be operable through a keyboard interface without requiring specific timing." },
+            { title:"2.1 Keyboard Accessible", titleUrl:"https://www.w3.org/WAI/WCAG22/Understanding/keyboard-accessible", desc:"All functionality must be operable through a keyboard interface without requiring specific timing." },
             { title:"Enough time",         desc:"Users must be given enough time to read and interact with content." },
             { title:"Seizures and physical reactions", desc:"Content must not be designed in a way that is known to cause seizures or physical reactions." },
             { title:"Navigable",           desc:"Users must be able to navigate, find content, and determine where they are." },
@@ -218,7 +218,8 @@ export const MODULES_DATA = [
       ]},
       { sections:[
         { type:"guideline-detail",
-          heading:"Keyboard accessible",
+          heading:"2.1 Keyboard Accessible",
+          headingUrl:"https://www.w3.org/WAI/WCAG22/Understanding/keyboard-accessible",
           intro:"Keyboard operability is essential: all functionality must be accessible without a mouse. Users who depend on keyboard navigation, including those using switch access, voice control, or screen readers, must be able to navigate menus, activate buttons and links, fill out forms, and control media players using only the keyboard interface.",
           criteria:[
             { title:"Allow users to exit a situation", level:"A", tags:["2.1.2: No keyboard trap"], body:"Enable users to easily get out of a situation by providing a clear closing option. Users should never become stuck inside a modal, dropdown, or interactive widget with no way out.", examples:[{ title:"Keyboard trap in a modal", desc:"A modal dialog that traps keyboard focus must always provide a way to dismiss it without using a mouse.", dont:{ caption:"Don't open a modal with no close button or Escape key handling — keyboard users become trapped inside with no way out." }, do:{ caption:"Do include a visible close button and support the Escape key so keyboard users can always dismiss the modal and return focus to the trigger." } }] },

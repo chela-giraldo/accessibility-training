@@ -4652,7 +4652,7 @@ function Section({ section: s, acc, isReadOnly }) {
               {card.image
                 ? <GuidelineCardImg src={card.image} alt="" aria-hidden="true" />
                 : <div style={{ width: "100%", maxWidth: 140, height: 100, background: rdcUiTheme.color.gray['50'], borderRadius: 8, border: `1px solid ${rdcUiTheme.color.border.accent}` }} />}
-              <GuidelineCardTitle>{card.title}</GuidelineCardTitle>
+              <GuidelineCardTitle>{card.titleUrl ? <a href={card.titleUrl} target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "underline", textUnderlineOffset: 3 }}>{card.title}</a> : card.title}</GuidelineCardTitle>
               <GuidelineCardDesc>{card.desc}</GuidelineCardDesc>
             </GuidelineCardLink>
           </GuidelineCardWrap>
