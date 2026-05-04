@@ -240,10 +240,11 @@ export const MODULES_DATA = [
       ]},
       { sections:[
         { type:"guideline-detail",
-          heading:"Seizures and physical reactions",
-          intro:"Designs must avoid content that could trigger physical reactions. Flashing or strobing visuals can provoke seizures in people with photosensitive epilepsy — even a single page visit can cause harm.",
+          heading:"2.3 Seizures and Physical Reactions",
+          headingUrl:"https://www.w3.org/WAI/WCAG22/Understanding/seizures-and-physical-reactions",
+          intro:"This guideline requires that web content does not contain anything that flashes more than three times in any one-second period, to prevent the risk of seizures.",
           criteria:[
-            { title:"Reduce blinking and flashing elements", level:"A", tags:["2.3.1: Three flashes or below threshold"], body:"Avoid using flashing elements that may provoke seizures. If you use flashing elements, make sure the flash rate is 3 times per second or less.", examples:[{ title:"Attention-grabbing animation", desc:"Rapid flashing or strobing effects used for emphasis are a direct risk to users with photosensitive epilepsy.", dont:{ caption:"Don't use rapid flashing animations to draw attention — content that flashes more than 3 times per second can trigger seizures." }, do:{ caption:"Do use subtle, slow transitions or static emphasis instead of flashing. If animation is necessary, keep it below 3 flashes per second and cover less than 25% of the viewport." } }] }
+            { title:"2.3.1 Three Flashes or Below Threshold", level:"A", titleUrl:"https://www.w3.org/WAI/WCAG22/Understanding/three-flashes-or-below-threshold", tags:["2.3.1: Three flashes or below threshold"], body:"Avoid using flashing elements that may provoke seizures. If you use flashing elements, make sure the flash rate is 3 times per second or less. Be careful when using a lot of vibrant colors, many different shapes and moving objects. Try to reduce the flashing movements and the size of the flashing element.", examples:[{ title:"Attention-grabbing animation", desc:"Rapid flashing or strobing effects used for emphasis are a direct risk to users with photosensitive epilepsy.", dont:{ caption:"Don't use rapid flashing animations to draw attention — content that flashes more than 3 times per second can trigger seizures." }, do:{ caption:"Do use subtle, slow transitions or static emphasis instead of flashing. If animation is necessary, keep it below 3 flashes per second and cover less than 25% of the viewport." } }] }
           ]
         },
       ]},
