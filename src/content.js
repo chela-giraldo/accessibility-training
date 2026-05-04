@@ -210,9 +210,9 @@ export const MODULES_DATA = [
           cards:[
             { title:"Keyboard Accessible", image:"/Images/Operable/Keyboard accessible.svg", desc:"All functionality in an interface must be operable through a keyboard inputs alone." },
             { title:"Enough time", image:"/Images/Operable/Enough time.svg", desc:"Users must be given enough time to read and interact with content." },
-            { title:"Seizures and physical reactions", desc:"Content must not be designed in a way that is known to cause seizures or physical reactions." },
-            { title:"Navigable",           desc:"Users must be able to navigate, find content, and determine where they are." },
-            { title:"Input modalities",    desc:"Users must be able to operate functionality through various input methods beyond keyboard and mouse." }
+            { title:"Seizures and physical reactions", image:"/Images/Operable/Seizures and physical reactions.svg", desc:"Content must not be designed in a way that is known to cause seizures or physical reactions." },
+            { title:"Navigable", image:"/Images/Operable/Navigable.svg", desc:"Users must be able to navigate, find content, and determine where they are." },
+            { title:"Input modalities", image:"/Images/Operable/Input modalities.svg", desc:"Users must be able to operate functionality through various input methods beyond keyboard and mouse." }
           ]
         }
       ]},
