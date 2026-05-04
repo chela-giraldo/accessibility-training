@@ -208,7 +208,7 @@ export const MODULES_DATA = [
           href:"https://www.w3.org/TR/WCAG22/#operable",
           intro:["This principle ensures that all users can interact with your interface, regardless of how they navigate. Whether someone uses a keyboard, switch device, voice control, or touch, every function must be reachable and operable. There are 5 guidelines to follow and in the next pages, we will explain how you can design with these guidelines in mind:"],
           cards:[
-            { title:"Keyboard Accessible", desc:"All functionality must be operable through a keyboard interface without requiring specific timing." },
+            { title:"Keyboard Accessible", image:"/Images/Operable/Keyboard accessible.svg", desc:"All functionality must be operable through a keyboard interface without requiring specific timing." },
             { title:"Enough time",         desc:"Users must be given enough time to read and interact with content." },
             { title:"Seizures and physical reactions", desc:"Content must not be designed in a way that is known to cause seizures or physical reactions." },
             { title:"Navigable",           desc:"Users must be able to navigate, find content, and determine where they are." },
