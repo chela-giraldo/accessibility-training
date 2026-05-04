@@ -1592,7 +1592,7 @@ const GDIntro = styled.p`
 `;
 const GDDivider = styled.hr`
   border: none;
-  border-top: 1px solid ${rdcUiTheme.color.border.accent};
+  border-top: 1px solid ${rdcUiTheme.color.border.base};
   margin: 0 0 24px;
 `;
 const GDSuccessLabel = styled.div`
@@ -1639,7 +1639,7 @@ const GDExamplesIntro = styled.p`
   margin: 0 0 36px;
 `;
 const GDExCard = styled.div`
-  border: 1px solid ${rdcUiTheme.color.border.accent};
+  border: 1px solid ${rdcUiTheme.color.border.base};
   border-radius: 12px;
   padding: 20px;
 `;
@@ -4420,19 +4420,19 @@ function GDCriterionBlock({ criterion, isReadOnly }) {
                 </ul>
               )}
               {ex.sensoryExample ? (
-                <div style={{ width: "100%", background: rdcUiTheme.color.gray['50'], border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 16, padding: 40, boxSizing: "border-box" }}>
+                <div style={{ width: "100%", background: rdcUiTheme.color.gray['50'], border: `1px solid ${rdcUiTheme.color.border.base}`, borderRadius: 16, padding: 40, boxSizing: "border-box" }}>
                   <SensoryCharacteristicsExample />
                 </div>
               ) : ex.orientationExample ? (
-                <div style={{ width: "100%", background: rdcUiTheme.color.gray['50'], border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 16, padding: 40, boxSizing: "border-box" }}>
+                <div style={{ width: "100%", background: rdcUiTheme.color.gray['50'], border: `1px solid ${rdcUiTheme.color.border.base}`, borderRadius: 16, padding: 40, boxSizing: "border-box" }}>
                   <OrientationExample />
                 </div>
               ) : ex.inputPurposeExample ? (
-                <div style={{ width: "100%", background: rdcUiTheme.color.gray['50'], border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 16, padding: 40, boxSizing: "border-box", display: "flex", justifyContent: "center" }}>
+                <div style={{ width: "100%", background: rdcUiTheme.color.gray['50'], border: `1px solid ${rdcUiTheme.color.border.base}`, borderRadius: 16, padding: 40, boxSizing: "border-box", display: "flex", justifyContent: "center" }}>
                   <IdentifyInputPurposeExample />
                 </div>
               ) : ex.infoRelationshipsExample ? (
-                <div style={{ width: "100%", background: rdcUiTheme.color.gray['50'], border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 16, padding: 40, boxSizing: "border-box", display: "flex", justifyContent: "center" }}>
+                <div style={{ width: "100%", background: rdcUiTheme.color.gray['50'], border: `1px solid ${rdcUiTheme.color.border.base}`, borderRadius: 16, padding: 40, boxSizing: "border-box", display: "flex", justifyContent: "center" }}>
                   <InfoRelationshipsExample />
                 </div>
               ) : ex.videoExample ? (
@@ -4440,19 +4440,19 @@ function GDCriterionBlock({ criterion, isReadOnly }) {
                   <VideoCardExample />
                 </div>
               ) : ex.uploadExample ? (
-                <div style={{ width: "100%", background: rdcUiTheme.color.gray['50'], border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 16, padding: 24, boxSizing: "border-box" }}>
+                <div style={{ width: "100%", background: rdcUiTheme.color.gray['50'], border: `1px solid ${rdcUiTheme.color.border.base}`, borderRadius: 16, padding: 24, boxSizing: "border-box" }}>
                   <GreetingUploadExample />
                 </div>
               ) : ex.chartExample ? (
-                <div style={{ width: "100%", background: rdcUiTheme.color.gray['50'], border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 16, padding: 40, boxSizing: "border-box" }}>
+                <div style={{ width: "100%", background: rdcUiTheme.color.gray['50'], border: `1px solid ${rdcUiTheme.color.border.base}`, borderRadius: 16, padding: 40, boxSizing: "border-box" }}>
                   <ChartExample />
                 </div>
               ) : ex.useOfColorExample ? (
-                <div style={{ width: "100%", background: rdcUiTheme.color.gray['50'], border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 16, padding: 40, boxSizing: "border-box" }}>
+                <div style={{ width: "100%", background: rdcUiTheme.color.gray['50'], border: `1px solid ${rdcUiTheme.color.border.base}`, borderRadius: 16, padding: 40, boxSizing: "border-box" }}>
                   <UseOfColorExample />
                 </div>
               ) : (
-                <div style={{ width: "100%", background: rdcUiTheme.color.gray['50'], border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 16, padding: 40, display: "flex", alignItems: narrow ? "stretch" : "flex-start", justifyContent: "center", flexDirection: narrow ? "column" : "row", gap: 33, boxSizing: "border-box", overflow: "hidden" }}>
+                <div style={{ width: "100%", background: rdcUiTheme.color.gray['50'], border: `1px solid ${rdcUiTheme.color.border.base}`, borderRadius: 16, padding: 40, display: "flex", alignItems: narrow ? "stretch" : "flex-start", justifyContent: "center", flexDirection: narrow ? "column" : "row", gap: 33, boxSizing: "border-box", overflow: "hidden" }}>
                   {ex.image && (ex.inlineSuccess || ex.inlineError) ? (
                     <>
                       <img src={ex.image} alt="" aria-hidden="true" style={{ width: "100%", height: "auto", display: "block", borderRadius: 8, flex: "1 1 0", minWidth: 0 }} />
@@ -4477,7 +4477,7 @@ function GDCriterionBlock({ criterion, isReadOnly }) {
                         <img src={ex.image} alt="" aria-hidden="true" style={{ width: "100%", maxWidth: ex.imageMaxWidth || "none", height: "auto", display: "block" }} />
                         <span style={{ marginTop: 8, fontFamily: FONT, fontSize: rdcUiTheme.typography.scale.body200.size, lineHeight: rdcUiTheme.typography.scale.body200.lineHeight, fontWeight: rdcUiTheme.typography.scale.body200.fontWeight, color: rdcUiTheme.color.text.secondary }}>{ex.imageLabel || "Live product"}</span>
                       </div>
-                      <div style={{ width: narrow ? "100%" : 1, height: narrow ? 1 : "auto", alignSelf: "stretch", background: rdcUiTheme.color.border.accent, flexShrink: 0, margin: narrow ? "24px 0" : "0 48px" }} />
+                      <div style={{ width: narrow ? "100%" : 1, height: narrow ? 1 : "auto", alignSelf: "stretch", background: rdcUiTheme.color.border.base, flexShrink: 0, margin: narrow ? "24px 0" : "0 48px" }} />
                       <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", alignItems: "center" }}>
                         <img src={ex.imageInteraction} alt="" aria-hidden="true" style={{ width: "100%", maxWidth: ex.imageMaxWidth || "none", height: "auto", display: "block" }} />
                         <span style={{ marginTop: 8, fontFamily: FONT, fontSize: rdcUiTheme.typography.scale.body200.size, lineHeight: rdcUiTheme.typography.scale.body200.lineHeight, fontWeight: rdcUiTheme.typography.scale.body200.fontWeight, color: rdcUiTheme.color.text.secondary }}>{ex.imageInteractionLabel || "Design documentation"}</span>
@@ -4503,7 +4503,7 @@ function GDCriterionBlock({ criterion, isReadOnly }) {
 function GuidelineDetailSection({ s, isReadOnly }) {
   return (
     <div>
-      <div style={{ background: rdcUiTheme.color.gray['50'], border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 16, padding: 24, marginBottom: 100 }}>
+      <div style={{ background: rdcUiTheme.color.gray['50'], border: `1px solid ${rdcUiTheme.color.border.base}`, borderRadius: 16, padding: 24, marginBottom: 100 }}>
         <GDSuccessLabel>WCAG Guideline</GDSuccessLabel>
         <GDHeading>
           {s.headingUrl
