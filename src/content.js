@@ -209,7 +209,7 @@ export const MODULES_DATA = [
           intro:["This principle ensures that all users can interact with your interface, regardless of how they navigate. Whether someone uses a keyboard, switch device, voice control, or touch, every function must be reachable and operable. There are 5 guidelines to follow and in the next pages, we will explain how you can design with these guidelines in mind:"],
           cards:[
             { title:"Keyboard Accessible", image:"/Images/Operable/Keyboard accessible.svg", desc:"All functionality in an interface must be operable through a keyboard inputs alone." },
-            { title:"Enough time",         desc:"Users must be given enough time to read and interact with content." },
+            { title:"Enough time", image:"/Images/Operable/Enough time.svg", desc:"Users must be given enough time to read and interact with content." },
             { title:"Seizures and physical reactions", desc:"Content must not be designed in a way that is known to cause seizures or physical reactions." },
             { title:"Navigable",           desc:"Users must be able to navigate, find content, and determine where they are." },
             { title:"Input modalities",    desc:"Users must be able to operate functionality through various input methods beyond keyboard and mouse." }
