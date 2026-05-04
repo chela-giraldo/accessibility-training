@@ -1592,7 +1592,7 @@ const GDIntro = styled.p`
 `;
 const GDDivider = styled.hr`
   border: none;
-  border-top: 1px solid ${rdcUiTheme.color.border.base};
+  border-top: 1px solid ${rdcUiTheme.color.border.accent};
   margin: 0 0 24px;
 `;
 const GDSuccessLabel = styled.div`
@@ -1639,7 +1639,7 @@ const GDExamplesIntro = styled.p`
   margin: 0 0 36px;
 `;
 const GDExCard = styled.div`
-  border: 1px solid ${rdcUiTheme.color.border.base};
+  border: 1px solid ${rdcUiTheme.color.border.accent};
   border-radius: 12px;
   padding: 20px;
 `;

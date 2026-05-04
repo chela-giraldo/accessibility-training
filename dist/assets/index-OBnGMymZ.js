@@ -901,7 +901,7 @@ The same principle plays out across design, again and again:`,items:[`High contr
   margin: 0 0 24px;
 `,Cc=M.hr`
   border: none;
-  border-top: 1px solid ${R.color.border.base};
+  border-top: 1px solid ${R.color.border.accent};
   margin: 0 0 24px;
 `,wc=M.div`
   font-size: 14px;
@@ -941,7 +941,7 @@ The same principle plays out across design, again and again:`,items:[`High contr
   font-family: ${H};
   margin: 0 0 36px;
 `;M.div`
-  border: 1px solid ${R.color.border.base};
+  border: 1px solid ${R.color.border.accent};
   border-radius: 12px;
   padding: 20px;
 `,M.div`
