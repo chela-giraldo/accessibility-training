@@ -229,7 +229,8 @@ export const MODULES_DATA = [
       ]},
       { sections:[
         { type:"guideline-detail",
-          heading:"Enough time",
+          heading:"2.2 Enough Time",
+          headingUrl:"https://www.w3.org/WAI/WCAG22/Understanding/enough-time",
           intro:"Users must be given enough time to read and interact with content. Time limits can create barriers for users who read slowly, have motor impairments, or use assistive technologies that require more time to operate.",
           criteria:[
             { title:"Extend time-dependent functionalities", level:"A", tags:["2.2.1: Timing adjustable"], body:"If you have time-dependent content (e.g. security tokens), users should see the time remaining and have an option to extend it.", examples:[{ title:"Session timeout warning", desc:"When a session is about to expire, users must be warned in advance and given the option to extend it.", dont:{ caption:"Don't silently expire a session without warning — screen reader users or slow typists may lose their progress without ever knowing a timer was running." }, do:{ caption:"Do show a timeout warning at least 20 seconds before expiry and provide a clearly labeled option to extend the session." } }] },
