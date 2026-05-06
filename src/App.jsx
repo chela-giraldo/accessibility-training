@@ -4382,7 +4382,7 @@ function GDCriterionBlock({ criterion, isReadOnly }) {
                 if (i === 0 && part.startsWith("Pro Tip:")) return <span key={i}><span style={{ fontWeight: 600 }}>Pro Tip:</span>{part.slice("Pro Tip:".length)}</span>;
                 return part;
               })
-            : (() => { const n = criterion.bodyNote; const m = n.match(/^(Pro [Tt]ip:)([\s\S]*)$/); return m ? <><span style={{ fontWeight: 600 }}>{m[1]}</span>{m[2]}</> : n; })()}
+            : (() => { const n = criterion.bodyNote; const m = n.match(/^(Pro [Tt]ip:|Note:)([\s\S]*)$/); return m ? <><span style={{ fontWeight: 600 }}>{m[1]}</span>{m[2]}</> : n; })()}
         </GDBody>
       )}
       {criterion.examplesIntro && <GDExamplesIntro>{criterion.examplesIntro}</GDExamplesIntro>}
