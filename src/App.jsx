@@ -369,6 +369,26 @@ function Checkbox() {
 
 // ── Constants ────────────────────────────────────────────────────────────────
 
+// Paste your Google Apps Script deployment URL here after deploying Code.gs
+const SIGNUP_LOGGER_URL = "";
+
+function logSignup(name, email) {
+  if (!SIGNUP_LOGGER_URL) return;
+  try {
+    fetch(SIGNUP_LOGGER_URL, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain" },
+      body: JSON.stringify({
+        name,
+        email,
+        completedAt: new Date().toISOString(),
+        userAgent: navigator.userAgent,
+      }),
+      mode: "no-cors",
+    });
+  } catch {}
+}
+
 const BASE      = import.meta.env.BASE_URL;
 const COVER_IMG = BASE + "a11y-icons.svg";
 const LOGO_IMG  = BASE + "haven-logo.png";
@@ -2216,7 +2236,18 @@ const ChecklistCatName = styled.div`
 
 const CERT_RIGHT_IMG = BASE + "Images/Right elements.svg";
 
+function certNameFontSize(name) {
+  const len = name.length;
+  if (len <= 14) return 56;
+  if (len <= 18) return 48;
+  if (len <= 22) return 40;
+  if (len <= 28) return 34;
+  return 28;
+}
+
 function Certificate({ name, date }) {
+  const nameFontSize = certNameFontSize(name);
+  const nameLineHeight = Math.round(nameFontSize * 1.14) + "px";
   return (
     <div id="certificate-print-root" style={{
       width: 1100, height: 620,
@@ -2226,19 +2257,19 @@ function Certificate({ name, date }) {
       overflow: "hidden",
       flexShrink: 0,
     }}>
-      {/* Right graphic */}
+      {/* Right graphic — bleeds right ~25px and bottom ~17px to match Figma */}
       <img
         src={CERT_RIGHT_IMG}
         alt=""
         aria-hidden="true"
-        style={{ position: "absolute", right: 0, top: 0, height: "100%", width: "auto", display: "block" }}
+        style={{ position: "absolute", right: -25, bottom: -17, height: 637, width: "auto", display: "block" }}
       />
 
-      {/* Left content */}
+      {/* Left content — capped at 500px so it never touches the graphic */}
       <div style={{
-        position: "absolute", left: 64, top: "50%", transform: "translateY(-50%)",
+        position: "absolute", left: 48, top: "50%", transform: "translateY(-50%)",
         display: "flex", flexDirection: "column", justifyContent: "space-between",
-        height: 413, width: 584,
+        height: 413, width: 500,
       }}>
         {/* Top: logo + course title */}
         <div style={{ display: "flex", flexDirection: "column", gap: 30 }}>
@@ -2254,13 +2285,13 @@ function Certificate({ name, date }) {
         </div>
 
         {/* Bottom: name + body + date */}
-        <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", height: 222, width: 519 }}>
+        <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", height: 222, width: 500 }}>
           <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
             <div style={{ display: "flex", flexDirection: "column" }}>
               <span style={{ fontSize: 12, fontWeight: 400, lineHeight: "16px", color: "#ffffff" }}>
                 This certifies that
               </span>
-              <span style={{ fontSize: 56, fontWeight: 600, lineHeight: "64px", color: "#ffffff", letterSpacing: "-1.68px" }}>
+              <span style={{ fontSize: nameFontSize, fontWeight: 600, lineHeight: nameLineHeight, color: "#ffffff", letterSpacing: "-1.68px", whiteSpace: "nowrap" }}>
                 {name}
               </span>
             </div>
@@ -2269,7 +2300,7 @@ function Certificate({ name, date }) {
             </p>
           </div>
           <p style={{ margin: 0, fontSize: 12, lineHeight: "16px", color: "#ffffff" }}>
-            <strong style={{ fontWeight: 600 }}>Date of completion: </strong>
+            <span style={{ fontWeight: 600 }}>Date of completion: </span>
             <span style={{ fontWeight: 400 }}>{date}</span>
           </p>
         </div>
@@ -2278,9 +2309,10 @@ function Certificate({ name, date }) {
   );
 }
 
-async function downloadCertificate() {
+async function downloadCertificate(name) {
   const el = document.getElementById("certificate-print-root");
   if (!el) return;
+  await document.fonts.ready;
   const canvas = await html2canvas(el, {
     width: 1100, height: 620,
     scale: 2,
@@ -2289,7 +2321,7 @@ async function downloadCertificate() {
     logging: false,
   });
   const link = document.createElement("a");
-  link.download = "accessibility-certificate.jpg";
+  link.download = `Accessibility Design Certification - ${name}.jpg`;
   link.href = canvas.toDataURL("image/jpeg", 0.95);
   link.click();
 }
@@ -5044,7 +5076,11 @@ function SignupPage({ onSubmit }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (validate()) onSubmit({ name: name.trim(), email: email.trim() });
+    if (validate()) {
+      const n = name.trim(), em = email.trim();
+      logSignup(n, em);
+      onSubmit({ name: n, email: em });
+    }
   }
 
   const inputStyle = (hasError) => ({
@@ -5082,7 +5118,7 @@ function SignupPage({ onSubmit }) {
         {/* Heading */}
         <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: 24, textAlign: "center" }}>
           <div style={{
-            fontFamily: FONT, fontWeight: 700,
+            fontFamily: FONT, fontWeight: 600,
             fontSize: narrow ? 22 : 26, lineHeight: 1.25,
             color: "#ffffff", letterSpacing: "-0.24px",
           }}>
@@ -5104,7 +5140,7 @@ function SignupPage({ onSubmit }) {
           {/* Full Name */}
           <div>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 6 }}>
-              <label htmlFor="signup-name" style={{ fontFamily: FONT, fontSize: 14, fontWeight: 600, color: "rgba(255,255,255,0.85)" }}>Full Name</label>
+              <label htmlFor="signup-name" style={{ fontFamily: FONT, fontSize: 14, fontWeight: 500, color: "rgba(255,255,255,0.85)" }}>Full Name</label>
               <span style={{ fontFamily: FONT, fontSize: 13, color: "rgba(255,255,255,0.5)" }}>required</span>
             </div>
             <input
@@ -5125,7 +5161,7 @@ function SignupPage({ onSubmit }) {
           {/* Email */}
           <div>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 6 }}>
-              <label htmlFor="signup-email" style={{ fontFamily: FONT, fontSize: 14, fontWeight: 600, color: "rgba(255,255,255,0.85)" }}>RDC Email Address</label>
+              <label htmlFor="signup-email" style={{ fontFamily: FONT, fontSize: 14, fontWeight: 500, color: "rgba(255,255,255,0.85)" }}>RDC Email Address</label>
               <span style={{ fontFamily: FONT, fontSize: 13, color: "rgba(255,255,255,0.5)" }}>required</span>
             </div>
             <input
@@ -5216,7 +5252,7 @@ function LoginPage({ knownEmail, onLogin }) {
 
         <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: 24, textAlign: "center" }}>
           <div style={{
-            fontFamily: FONT, fontWeight: 700,
+            fontFamily: FONT, fontWeight: 600,
             fontSize: narrow ? 22 : 26, lineHeight: 1.25,
             color: "#ffffff", letterSpacing: "-0.24px",
           }}>
@@ -5228,7 +5264,7 @@ function LoginPage({ knownEmail, onLogin }) {
         <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: 16 }}>
           <div>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 6 }}>
-              <label htmlFor="login-email" style={{ fontFamily: FONT, fontSize: 14, fontWeight: 600, color: "rgba(255,255,255,0.85)" }}>RDC Email Address</label>
+              <label htmlFor="login-email" style={{ fontFamily: FONT, fontSize: 14, fontWeight: 500, color: "rgba(255,255,255,0.85)" }}>RDC Email Address</label>
               <span style={{ fontFamily: FONT, fontSize: 13, color: "rgba(255,255,255,0.5)" }}>required</span>
             </div>
             <input
@@ -5686,7 +5722,7 @@ export default function App() {
 
         <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", gap: 12, marginTop: 32, flexWrap: narrow ? "wrap" : "nowrap" }}>
           {allDone && (
-            <Button styleType="Tertiary" onClick={downloadCertificate} style={{ width: narrow ? "100%" : undefined }}>
+            <Button styleType="Tertiary" onClick={() => downloadCertificate(userInfo?.name || "Designer")} style={{ width: narrow ? "100%" : undefined }}>
               <IconDownload size={2} color="currentColor" />Download Certificate
             </Button>
           )}
