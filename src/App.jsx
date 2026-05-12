@@ -5135,7 +5135,8 @@ export default function App() {
   }
 
   // ── Signup gate ───────────────────────────────────────────────────────────
-  if (!userInfo) return <SignupPage onSubmit={info => setUserInfo(info)} />;
+  const previewSignup = typeof window !== "undefined" && new URLSearchParams(window.location.search).get("preview") === "signup";
+  if (!userInfo || previewSignup) return <SignupPage onSubmit={info => { setUserInfo(info); window.history.replaceState(null, "", window.location.pathname); }} />;
 
   // ── All done ──────────────────────────────────────────────────────────────
   if (allDone) return (
