@@ -2200,6 +2200,84 @@ const ChecklistCatName = styled.div`
   font-family: ${FONT};
 `;
 
+// Certificate print styles
+const CertificatePrintStyle = createGlobalStyle`
+  @media print {
+    @page { size: 1100px 620px landscape; margin: 0; }
+    body > * { display: none !important; }
+    #certificate-print-root { display: flex !important; }
+  }
+`;
+
+const CERT_RIGHT_IMG = BASE + "Images/Right elements.svg";
+
+function Certificate({ name, date }) {
+  return (
+    <div id="certificate-print-root" style={{
+      width: 1100, height: 620, position: "relative", overflow: "hidden",
+      background: "linear-gradient(123.72deg, #0b0b0b 10.21%, #0b0b0b 51.26%, #717171 94.51%)",
+      fontFamily: FONT,
+      display: "none",
+    }}>
+      {/* Right graphic */}
+      <img
+        src={CERT_RIGHT_IMG}
+        alt=""
+        aria-hidden="true"
+        style={{ position: "absolute", right: 0, top: 0, height: "100%", width: "auto", display: "block" }}
+      />
+
+      {/* Left content */}
+      <div style={{
+        position: "absolute", left: 64, top: "50%", transform: "translateY(-50%)",
+        display: "flex", flexDirection: "column", justifyContent: "space-between",
+        height: 413, width: 584,
+      }}>
+        {/* Top: logo + course title */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 30 }}>
+          <img src={LOGO_IMG} alt="Haven" height={29} style={{ display: "block" }} />
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <span style={{ fontSize: 12, fontWeight: 400, lineHeight: "16px", color: "#ffffff", letterSpacing: 0 }}>
+              Accessibility Design Certification
+            </span>
+            <span style={{ fontSize: 20, fontWeight: 600, lineHeight: "24px", color: "#ffffff", letterSpacing: "-0.24px" }}>
+              WCAG 2.2 Foundations for Product Designers
+            </span>
+          </div>
+        </div>
+
+        {/* Bottom: name + body + date */}
+        <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", height: 222, width: 519 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <span style={{ fontSize: 12, fontWeight: 400, lineHeight: "16px", color: "#ffffff" }}>
+                This certifies that
+              </span>
+              <span style={{ fontSize: 56, fontWeight: 600, lineHeight: "64px", color: "#ffffff", letterSpacing: "-1.68px" }}>
+                {name}
+              </span>
+            </div>
+            <p style={{ margin: 0, fontSize: 14, fontWeight: 400, lineHeight: "20px", color: "#ffffff" }}>
+              has successfully completed the Accessibility Design Fundamentals training program, demonstrating proficiency in WCAG 2.2 success criteria, and inclusive design practices.
+            </p>
+          </div>
+          <p style={{ margin: 0, fontSize: 12, lineHeight: "16px", color: "#ffffff" }}>
+            <strong style={{ fontWeight: 600 }}>Date of completion: </strong>
+            <span style={{ fontWeight: 400 }}>{date}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function downloadCertificate() {
+  const el = document.getElementById("certificate-print-root");
+  if (el) el.style.display = "flex";
+  window.print();
+  setTimeout(() => { if (el) el.style.display = "none"; }, 500);
+}
+
 // All-done screen
 const AllDoneWrapper = styled.div`
   min-height: 100vh;
@@ -5245,27 +5323,38 @@ export default function App() {
 
   // ── Signup / Login gate ───────────────────────────────────────────────────
   const previewSignup = typeof window !== "undefined" && new URLSearchParams(window.location.search).get("preview") === "signup";
-  if (!userInfo || previewSignup) return <SignupPage onSubmit={info => { setUserInfo(info); setLoggedIn(true); window.history.replaceState(null, "", window.location.pathname); }} />;
-  if (!loggedIn) return <LoginPage knownEmail={userInfo.email} onLogin={() => setLoggedIn(true)} />;
+  if (!userInfo || previewSignup) return <SignupPage onSubmit={info => { setUserInfo(info); setLoggedIn("new"); window.history.replaceState(null, "", window.location.pathname); }} />;
+  if (!loggedIn) return <LoginPage knownEmail={userInfo.email} onLogin={() => setLoggedIn("return")} />;
 
   // ── All done ──────────────────────────────────────────────────────────────
-  if (allDone) return (
-    <><GlobalFont /><AllDoneWrapper>
-      <AllDoneCard>
-        <AllDoneEmoji aria-hidden="true">🎉</AllDoneEmoji>
-        <AllDoneTitle>Training complete!</AllDoneTitle>
-        <AllDoneBody>
-          You have completed all {MODULES.length} modules of the Haven accessibility training.
-        </AllDoneBody>
-        <Button
-          styleType="PrimaryDefault"
-          onClick={() => { setAllDone(false); setActive(null); }}
-        >
-          Back to dashboard
-        </Button>
-      </AllDoneCard>
-    </AllDoneWrapper></>
-  );
+  if (allDone) {
+    const completionDate = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+    return (
+    <><GlobalFont /><CertificatePrintStyle />
+      <AllDoneWrapper>
+        <AllDoneCard>
+          <AllDoneEmoji aria-hidden="true">🎉</AllDoneEmoji>
+          <AllDoneTitle>Training complete!</AllDoneTitle>
+          <AllDoneBody>
+            You have completed all {MODULES.length} modules of the Haven accessibility training.
+          </AllDoneBody>
+          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+            <Button styleType="PrimaryDefault" onClick={downloadCertificate}>
+              Download Certificate
+            </Button>
+            <Button
+              styleType="SecondaryDefault"
+              onClick={() => { setAllDone(false); setActive(null); }}
+            >
+              Back to dashboard
+            </Button>
+          </div>
+        </AllDoneCard>
+      </AllDoneWrapper>
+      <Certificate name={userInfo?.name || "Designer"} date={completionDate} />
+    </>
+    );
+  }
 
   // ── Module reader ─────────────────────────────────────────────────────────
   if (active) {
@@ -5515,6 +5604,19 @@ export default function App() {
 
       <DashMain id="main-content">
 
+
+        {/* Welcome */}
+        <div style={{
+          fontFamily: FONT,
+          fontSize: rdcUiTheme.typography.scale.display700.size,
+          lineHeight: rdcUiTheme.typography.scale.display700.lineHeight,
+          letterSpacing: rdcUiTheme.typography.scale.display700.letterSpacing,
+          fontWeight: 700,
+          color: rdcUiTheme.color.text.primary,
+          marginBottom: 24,
+        }}>
+          {loggedIn === "return" ? "Welcome back, " : "Welcome, "}{userInfo.name}!
+        </div>
 
         {/* Progress */}
         <div>
