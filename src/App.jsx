@@ -424,7 +424,15 @@ const GlobalFont = createGlobalStyle`
   button, input, select, textarea, [class*="rui__"] {
     font-family: ${FONT} !important;
   }
-
+  #login-email::-webkit-calendar-picker-indicator,
+  #signup-email::-webkit-calendar-picker-indicator {
+    display: none !important;
+  }
+  #login-email,
+  #signup-email {
+    -webkit-appearance: none;
+    appearance: none;
+  }
 `;
 
 const PageWrapper = styled.div`

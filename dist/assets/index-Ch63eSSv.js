@@ -79,7 +79,15 @@ For example, a link that navigates to a help article should read "Learn how to u
   button, input, select, textarea, [class*="rui__"] {
     font-family: ${U} !important;
   }
-
+  #login-email::-webkit-calendar-picker-indicator,
+  #signup-email::-webkit-calendar-picker-indicator {
+    display: none !important;
+  }
+  #login-email,
+  #signup-email {
+    -webkit-appearance: none;
+    appearance: none;
+  }
 `,No=N.div`
   min-height: 100vh;
   background: ${B.color.bg.primary};
