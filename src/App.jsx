@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from "react";
+import html2canvas from "html2canvas";
 import styled, { createGlobalStyle, keyframes, css } from "styled-components";
 import { MODULES_DATA } from "./content.js";
 import { IconChevronLeft as RdcIconChevronLeft, IconClock as RdcIconClock, IconSchool as RdcIconSchool, IconBarChart as RdcIconBarChart, IconBarChartFilled as RdcIconBarChartFilled, IconList as RdcIconList, IconDownload as RdcIconDownload, ContentSwitch as RdcContentSwitch, ContentSwitchGroup as RdcContentSwitchGroup, InlineMessage as RdcInlineMessage } from "@rdc-npm/rdc-ui";
@@ -48,7 +49,8 @@ const rdcUiTheme = {
 // ── Local component replacements (replaces @rdc-npm/rdc-ui imports) ──────────
 
 function Button({ styleType, onClick, children, style, disabled }) {
-  const isPrimary   = styleType === 'PrimaryDefault';
+  const isPrimary  = styleType === 'PrimaryDefault';
+  const isTertiary = styleType === 'Tertiary';
   return (
     <button
       onClick={onClick}
@@ -60,8 +62,8 @@ function Button({ styleType, onClick, children, style, disabled }) {
         gap: '8px',
         padding: '10px 20px',
         borderRadius: '100px',
-        border: disabled ? '1px solid #BEB8B0' : isPrimary ? 'none' : `1px solid ${rdcUiTheme.color.border.accent}`,
-        background: disabled ? '#E9E7E4' : isPrimary ? '#3F3B36' : '#ffffff',
+        border: disabled ? '1px solid #BEB8B0' : isPrimary || isTertiary ? 'none' : `1px solid ${rdcUiTheme.color.border.accent}`,
+        background: disabled ? '#E9E7E4' : isPrimary ? '#3F3B36' : 'transparent',
         color: disabled ? '#696159' : isPrimary ? rdcUiTheme.color.text.primaryReverse : rdcUiTheme.color.text.primary,
         fontSize: '14px',
         fontWeight: 500,
@@ -2204,30 +2206,17 @@ const ChecklistCatName = styled.div`
   font-family: ${FONT};
 `;
 
-// Certificate print styles
-const CertificatePrintStyle = createGlobalStyle`
-  @media print {
-    @page { size: 1100px 620px landscape; margin: 0; }
-    body > * { visibility: hidden; }
-    #certificate-print-root,
-    #certificate-print-root * { visibility: visible; }
-    #certificate-print-root {
-      position: fixed !important;
-      left: 0 !important; top: 0 !important;
-      width: 1100px !important; height: 620px !important;
-    }
-  }
-`;
-
 const CERT_RIGHT_IMG = BASE + "Images/Right elements.svg";
 
 function Certificate({ name, date }) {
   return (
     <div id="certificate-print-root" style={{
-      width: 1100, height: 620, position: "fixed", left: -9999, top: 0,
-      overflow: "hidden", visibility: "hidden",
+      width: 1100, height: 620,
+      position: "fixed", left: -9999, top: 0, pointerEvents: "none",
       background: "linear-gradient(123.72deg, #0b0b0b 10.21%, #0b0b0b 51.26%, #717171 94.51%)",
       fontFamily: FONT,
+      overflow: "hidden",
+      flexShrink: 0,
     }}>
       {/* Right graphic */}
       <img
@@ -2245,7 +2234,7 @@ function Certificate({ name, date }) {
       }}>
         {/* Top: logo + course title */}
         <div style={{ display: "flex", flexDirection: "column", gap: 30 }}>
-          <img src={LOGO_IMG} alt="Haven" height={29} style={{ display: "block" }} />
+          <img src={LOGO_IMG} alt="Haven" style={{ display: "block", height: 29, width: "auto" }} />
           <div style={{ display: "flex", flexDirection: "column" }}>
             <span style={{ fontSize: 12, fontWeight: 400, lineHeight: "16px", color: "#ffffff", letterSpacing: 0 }}>
               Accessibility Design Certification
@@ -2281,8 +2270,20 @@ function Certificate({ name, date }) {
   );
 }
 
-function downloadCertificate() {
-  window.print();
+async function downloadCertificate() {
+  const el = document.getElementById("certificate-print-root");
+  if (!el) return;
+  const canvas = await html2canvas(el, {
+    width: 1100, height: 620,
+    scale: 2,
+    useCORS: true,
+    backgroundColor: null,
+    logging: false,
+  });
+  const link = document.createElement("a");
+  link.download = "accessibility-certificate.jpg";
+  link.href = canvas.toDataURL("image/jpeg", 0.95);
+  link.click();
 }
 
 // All-done screen
@@ -5675,27 +5676,23 @@ export default function App() {
         </ModuleGrid>
         </div>
 
-        <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 32 }}>
-          {allDone ? (
-            <Button styleType="PrimaryDefault" onClick={downloadCertificate} style={{ width: narrow ? "100%" : undefined }}>
+        <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", gap: 12, marginTop: 32, flexWrap: narrow ? "wrap" : "nowrap" }}>
+          {allDone && (
+            <Button styleType="Tertiary" onClick={downloadCertificate} style={{ width: narrow ? "100%" : undefined }}>
               <IconDownload size={2} color="currentColor" />Download Certificate
             </Button>
-          ) : (
-            <Button styleType="PrimaryDefault" onClick={() => { setLoggedIn(false); window.scrollTo(0, 0); }} style={{ width: narrow ? "100%" : undefined }}>
-              Save and Logout
-            </Button>
           )}
+          <Button styleType="PrimaryDefault" onClick={() => { setLoggedIn(false); window.scrollTo(0, 0); }} style={{ width: narrow ? "100%" : undefined }}>
+            {allDone ? "Logout" : "Save and Logout"}
+          </Button>
         </div>
       </DashMain>
     </PageWrapper>
     {allDone && (
-      <>
-        <CertificatePrintStyle />
-        <Certificate
-          name={userInfo?.name || "Designer"}
-          date={new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
-        />
-      </>
+      <Certificate
+        name={userInfo?.name || "Designer"}
+        date={new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+      />
     )}
   </>);
 }
