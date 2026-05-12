@@ -4373,10 +4373,22 @@ function GDCriterionBlock({ criterion, isReadOnly }) {
           ))}
         </ul>
       )}
+      {criterion.bodyNote && (
+        <GDBody style={{ marginTop: 8 }}>
+          {Array.isArray(criterion.bodyNote)
+            ? criterion.bodyNote.map((part, i) => {
+                if (typeof part !== "string" && part.semiboldItalic) return <span key={i} style={{ fontWeight: 600, fontStyle: "italic" }}>{part.text}</span>;
+                if (typeof part !== "string") return <a key={i} href={part.href} target="_blank" rel="noopener noreferrer" style={{ color: rdcUiTheme.color.text.primary }}>{part.text}</a>;
+                if (i === 0 && part.startsWith("Pro Tip:")) return <span key={i}><span style={{ fontWeight: 600 }}>Pro Tip:</span>{part.slice("Pro Tip:".length)}</span>;
+                return part;
+              })
+            : (() => { const n = criterion.bodyNote; const m = n.match(/^(Pro [Tt]ip:|Note:)([\s\S]*)$/); return m ? <><span style={{ fontWeight: 600 }}>{m[1]}</span>{m[2]}</> : n; })()}
+        </GDBody>
+      )}
       {criterion.bodyTable && (
         <div style={{ marginTop: 20, marginBottom: 8 }}>
           {criterion.bodyTable.title && (
-            <div style={{ fontFamily: FONT, fontSize: rdcUiTheme.typography.scale.body300.size, fontWeight: 600, color: rdcUiTheme.color.text.primary, marginBottom: 12 }}>{criterion.bodyTable.title}</div>
+            <div style={{ fontFamily: FONT, fontSize: rdcUiTheme.typography.scale.body400.size, fontWeight: 600, color: rdcUiTheme.color.text.primary, marginBottom: 12 }}>{criterion.bodyTable.title}</div>
           )}
           {narrow ? (
             <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
@@ -4384,8 +4396,8 @@ function GDCriterionBlock({ criterion, isReadOnly }) {
                 <div key={ri} style={{ border: `1px solid ${rdcUiTheme.color.border.base}`, borderRadius: 16, overflow: "hidden" }}>
                   {criterion.bodyTable.columns.map((col, ci) => (
                     <div key={ci} style={{ display: "flex", borderBottom: ci < criterion.bodyTable.columns.length - 1 ? `1px solid ${rdcUiTheme.color.border.base}` : "none" }}>
-                      <div style={{ width: 120, flexShrink: 0, padding: "10px 12px", fontFamily: FONT, fontSize: rdcUiTheme.typography.scale.body300.size, fontWeight: 600, color: rdcUiTheme.color.text.primary, background: rdcUiTheme.color.gray["50"], borderRight: `1px solid ${rdcUiTheme.color.border.base}` }}>{col}</div>
-                      <div style={{ flex: 1, padding: "10px 12px", fontFamily: FONT, fontSize: rdcUiTheme.typography.scale.body300.size, color: rdcUiTheme.color.text.primary, lineHeight: rdcUiTheme.typography.scale.body300.lineHeight }}>{row[ci]}</div>
+                      <div style={{ width: 120, flexShrink: 0, padding: "10px 12px", fontFamily: FONT, fontSize: rdcUiTheme.typography.scale.body400.size, fontWeight: 600, color: rdcUiTheme.color.text.primary, background: rdcUiTheme.color.gray["50"], borderRight: `1px solid ${rdcUiTheme.color.border.base}` }}>{col}</div>
+                      <div style={{ flex: 1, padding: "10px 12px", fontFamily: FONT, fontSize: rdcUiTheme.typography.scale.body400.size, color: rdcUiTheme.color.text.primary, lineHeight: rdcUiTheme.typography.scale.body400.lineHeight }}>{row[ci]}</div>
                     </div>
                   ))}
                 </div>
@@ -4398,7 +4410,7 @@ function GDCriterionBlock({ criterion, isReadOnly }) {
                   <TableHeader>
                     <TableRow>
                       {criterion.bodyTable.columns.map((col, ci) => (
-                        <TableCell key={ci} as="th" style={{ fontFamily: FONT, fontWeight: 600, background: rdcUiTheme.color.gray["50"], whiteSpace: "nowrap", borderBottom: `1px solid ${rdcUiTheme.color.border.base}` }}>{col}</TableCell>
+                        <TableCell key={ci} as="th" style={{ fontFamily: FONT, fontWeight: 600, fontSize: rdcUiTheme.typography.scale.body400.size, background: rdcUiTheme.color.gray["50"], whiteSpace: "nowrap", borderBottom: `1px solid ${rdcUiTheme.color.border.base}` }}>{col}</TableCell>
                       ))}
                     </TableRow>
                   </TableHeader>
@@ -4406,7 +4418,7 @@ function GDCriterionBlock({ criterion, isReadOnly }) {
                     {criterion.bodyTable.rows.map((row, ri) => (
                       <TableRow key={ri}>
                         {row.map((cell, ci) => (
-                          <TableCell key={ci} style={{ fontFamily: FONT, fontWeight: ci === 0 ? 600 : 400, borderBottom: ri === criterion.bodyTable.rows.length - 1 ? "none" : `1px solid ${rdcUiTheme.color.border.base}` }}>{cell}</TableCell>
+                          <TableCell key={ci} style={{ fontFamily: FONT, fontSize: rdcUiTheme.typography.scale.body400.size, fontWeight: ci === 0 ? 600 : 400, borderBottom: ri === criterion.bodyTable.rows.length - 1 ? "none" : `1px solid ${rdcUiTheme.color.border.base}` }}>{cell}</TableCell>
                         ))}
                       </TableRow>
                     ))}
@@ -4416,18 +4428,6 @@ function GDCriterionBlock({ criterion, isReadOnly }) {
             </div>
           )}
         </div>
-      )}
-      {criterion.bodyNote && (
-        <GDBody style={{ marginTop: 8 }}>
-          {Array.isArray(criterion.bodyNote)
-            ? criterion.bodyNote.map((part, i) => {
-                if (typeof part !== "string" && part.semiboldItalic) return <span key={i} style={{ fontWeight: 600, fontStyle: "italic" }}>{part.text}</span>;
-                if (typeof part !== "string") return <a key={i} href={part.href} target="_blank" rel="noopener noreferrer" style={{ color: rdcUiTheme.color.text.primary }}>{part.text}</a>;
-                if (i === 0 && part.startsWith("Pro Tip:")) return <span key={i}><span style={{ fontWeight: 600 }}>Pro Tip:</span>{part.slice("Pro Tip:".length)}</span>;
-                return part;
-              })
-            : (() => { const n = criterion.bodyNote; const m = n.match(/^(Pro [Tt]ip:|Note:)([\s\S]*)$/); return m ? <><span style={{ fontWeight: 600 }}>{m[1]}</span>{m[2]}</> : n; })()}
-        </GDBody>
       )}
       {criterion.examplesIntro && <GDExamplesIntro>{criterion.examplesIntro}</GDExamplesIntro>}
 
