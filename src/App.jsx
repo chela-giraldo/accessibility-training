@@ -4373,6 +4373,48 @@ function GDCriterionBlock({ criterion, isReadOnly }) {
           ))}
         </ul>
       )}
+      {criterion.bodyTable && (
+        <div style={{ marginTop: 20, marginBottom: 8 }}>
+          {criterion.bodyTable.title && (
+            <div style={{ fontFamily: FONT, fontSize: rdcUiTheme.typography.scale.body300.size, fontWeight: 600, color: rdcUiTheme.color.text.primary, marginBottom: 12 }}>{criterion.bodyTable.title}</div>
+          )}
+          {narrow ? (
+            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+              {criterion.bodyTable.rows.map((row, ri) => (
+                <div key={ri} style={{ border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 8, overflow: "hidden" }}>
+                  {criterion.bodyTable.columns.map((col, ci) => (
+                    <div key={ci} style={{ display: "flex", borderBottom: ci < criterion.bodyTable.columns.length - 1 ? `1px solid ${rdcUiTheme.color.border.accent}` : "none" }}>
+                      <div style={{ width: 120, flexShrink: 0, padding: "10px 12px", fontFamily: FONT, fontSize: rdcUiTheme.typography.scale.body300.size, fontWeight: 600, color: rdcUiTheme.color.text.primary, background: rdcUiTheme.color.gray["50"], borderRight: `1px solid ${rdcUiTheme.color.border.accent}` }}>{col}</div>
+                      <div style={{ flex: 1, padding: "10px 12px", fontFamily: FONT, fontSize: rdcUiTheme.typography.scale.body300.size, color: rdcUiTheme.color.text.primary, lineHeight: rdcUiTheme.typography.scale.body300.lineHeight }}>{row[ci]}</div>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <TableContainer>
+              <Table withLines>
+                <TableHeader>
+                  <TableRow>
+                    {criterion.bodyTable.columns.map((col, ci) => (
+                      <TableCell key={ci} as="th" style={{ fontFamily: FONT, fontWeight: 600, background: rdcUiTheme.color.gray["50"], whiteSpace: "nowrap" }}>{col}</TableCell>
+                    ))}
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {criterion.bodyTable.rows.map((row, ri) => (
+                    <TableRow key={ri}>
+                      {row.map((cell, ci) => (
+                        <TableCell key={ci} style={{ fontFamily: FONT, fontWeight: ci === 0 ? 600 : 400 }}>{cell}</TableCell>
+                      ))}
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          )}
+        </div>
+      )}
       {criterion.bodyNote && (
         <GDBody style={{ marginTop: 8 }}>
           {Array.isArray(criterion.bodyNote)
