@@ -5074,7 +5074,7 @@ function SignupPage({ onSubmit }) {
 // ── Login Page ────────────────────────────────────────────────────────────────
 
 function LoginPage({ knownEmail, onLogin }) {
-  const [email,    setEmail]    = useState(knownEmail || "");
+  const [email,    setEmail]    = useState("");
   const [emailErr, setEmailErr] = useState("");
   const narrow = useNarrow(600);
 
@@ -5140,13 +5140,19 @@ function LoginPage({ knownEmail, onLogin }) {
             <input
               id="login-email"
               type="email"
-              autoComplete="email"
+              autoComplete="off"
+              list="login-email-suggestions"
               value={email}
               onChange={e => { setEmail(e.target.value); if (emailErr) setEmailErr(""); }}
               style={inputStyle(!!emailErr)}
               aria-describedby={emailErr ? "login-email-err" : undefined}
               aria-invalid={!!emailErr}
             />
+            {knownEmail && (
+              <datalist id="login-email-suggestions">
+                <option value={knownEmail} />
+              </datalist>
+            )}
             {emailErr && (
               <p id="login-email-err" role="alert" style={{ margin: "6px 0 0", fontFamily: FONT, fontSize: 13, color: "#FF6B6E" }}>{emailErr}</p>
             )}
