@@ -62,8 +62,8 @@ function Button({ styleType, onClick, children, style, disabled }) {
         gap: '8px',
         padding: '10px 20px',
         borderRadius: '100px',
-        border: disabled ? '1px solid #BEB8B0' : isPrimary || isTertiary ? 'none' : `1px solid ${rdcUiTheme.color.border.accent}`,
-        background: disabled ? '#E9E7E4' : isPrimary ? '#3F3B36' : 'transparent',
+        border: disabled ? '1px solid #BEB8B0' : isPrimary ? 'none' : `1px solid ${rdcUiTheme.color.border.accent}`,
+        background: disabled ? '#E9E7E4' : isPrimary ? '#3F3B36' : '#ffffff',
         color: disabled ? '#696159' : isPrimary ? rdcUiTheme.color.text.primaryReverse : rdcUiTheme.color.text.primary,
         fontSize: '14px',
         fontWeight: 500,
@@ -2234,7 +2234,7 @@ function Certificate({ name, date }) {
       }}>
         {/* Top: logo + course title */}
         <div style={{ display: "flex", flexDirection: "column", gap: 30 }}>
-          <img src={LOGO_IMG} alt="Haven" style={{ display: "block", height: 29, width: "auto" }} />
+          <img src={LOGO_IMG} alt="Haven" style={{ display: "block", height: 29, width: "auto", alignSelf: "flex-start", flexShrink: 0 }} />
           <div style={{ display: "flex", flexDirection: "column" }}>
             <span style={{ fontSize: 12, fontWeight: 400, lineHeight: "16px", color: "#ffffff", letterSpacing: 0 }}>
               Accessibility Design Certification
