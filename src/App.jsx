@@ -56,6 +56,7 @@ function Button({ styleType, onClick, children, style, disabled }) {
       style={{
         display: 'inline-flex',
         alignItems: 'center',
+        justifyContent: 'center',
         gap: '8px',
         padding: '10px 20px',
         borderRadius: '100px',
@@ -4927,9 +4928,154 @@ const MODULE_IMAGES = [
 
 const MODULES = withBase(MODULES_DATA);
 
+// ── Signup Page ───────────────────────────────────────────────────────────────
+
+function SignupPage({ onSubmit }) {
+  const [name,      setName]      = useState("");
+  const [email,     setEmail]     = useState("");
+  const [nameErr,   setNameErr]   = useState("");
+  const [emailErr,  setEmailErr]  = useState("");
+  const narrow = useNarrow(600);
+
+  function validate() {
+    let ok = true;
+    if (!name.trim() || name.trim().length < 2) {
+      setNameErr("Please enter your full name (at least 2 characters)."); ok = false;
+    } else { setNameErr(""); }
+    if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+      setEmailErr("Please enter a valid email address."); ok = false;
+    } else { setEmailErr(""); }
+    return ok;
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (validate()) onSubmit({ name: name.trim(), email: email.trim() });
+  }
+
+  const inputStyle = (hasError) => ({
+    width: "100%", boxSizing: "border-box",
+    padding: "14px 16px",
+    fontFamily: FONT, fontSize: 16, color: "#ffffff",
+    background: "rgba(255,255,255,0.08)",
+    border: `1px solid ${hasError ? "#FF6B6E" : "rgba(255,255,255,0.25)"}`,
+    borderRadius: 10,
+    outline: "none",
+    transition: "border-color 0.15s",
+  });
+
+  return (
+    <><GlobalFont />
+    <div style={{
+      minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center",
+      background: "linear-gradient(116deg, #0b0b0b 10%, #0b0b0b 51%, #717171 95%)",
+      padding: narrow ? "32px 16px" : "32px 24px",
+      boxSizing: "border-box",
+    }}>
+      <form
+        onSubmit={handleSubmit}
+        noValidate
+        style={{
+          width: "100%", maxWidth: 585,
+          display: "flex", flexDirection: "column",
+          alignItems: "center", gap: 32,
+          paddingTop: 32,
+        }}
+      >
+        {/* Logo */}
+        <img src={LOGO_IMG} alt="Haven" height={29} style={{ display: "block" }} />
+
+        {/* Heading */}
+        <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: 24, textAlign: "center" }}>
+          <div style={{
+            fontFamily: FONT, fontWeight: 700,
+            fontSize: narrow ? 22 : 26, lineHeight: 1.25,
+            color: "#ffffff", letterSpacing: "-0.24px",
+          }}>
+            <div>Accessibility Design Course</div>
+            <div>WCAG 2.2 Foundations for Product Designers</div>
+          </div>
+          <p style={{
+            margin: 0,
+            fontFamily: FONT, fontWeight: 400,
+            fontSize: 16, lineHeight: "24px",
+            color: "rgba(255,255,255,0.85)",
+          }}>
+            Please enter your information to begin the course and receive your certificate upon completion.
+          </p>
+        </div>
+
+        {/* Form fields */}
+        <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: 16 }}>
+          {/* Full Name */}
+          <div>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 6 }}>
+              <label htmlFor="signup-name" style={{ fontFamily: FONT, fontSize: 14, fontWeight: 600, color: "rgba(255,255,255,0.85)" }}>Full Name</label>
+              <span style={{ fontFamily: FONT, fontSize: 13, color: "rgba(255,255,255,0.5)" }}>required</span>
+            </div>
+            <input
+              id="signup-name"
+              type="text"
+              autoComplete="name"
+              value={name}
+              onChange={e => { setName(e.target.value); if (nameErr) setNameErr(""); }}
+              style={inputStyle(!!nameErr)}
+              aria-describedby={nameErr ? "signup-name-err" : undefined}
+              aria-invalid={!!nameErr}
+            />
+            {nameErr && (
+              <p id="signup-name-err" role="alert" style={{ margin: "6px 0 0", fontFamily: FONT, fontSize: 13, color: "#FF6B6E" }}>{nameErr}</p>
+            )}
+          </div>
+
+          {/* Email */}
+          <div>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 6 }}>
+              <label htmlFor="signup-email" style={{ fontFamily: FONT, fontSize: 14, fontWeight: 600, color: "rgba(255,255,255,0.85)" }}>RDC Email Address</label>
+              <span style={{ fontFamily: FONT, fontSize: 13, color: "rgba(255,255,255,0.5)" }}>required</span>
+            </div>
+            <input
+              id="signup-email"
+              type="email"
+              autoComplete="email"
+              value={email}
+              onChange={e => { setEmail(e.target.value); if (emailErr) setEmailErr(""); }}
+              style={inputStyle(!!emailErr)}
+              aria-describedby={emailErr ? "signup-email-err" : undefined}
+              aria-invalid={!!emailErr}
+            />
+            {emailErr && (
+              <p id="signup-email-err" role="alert" style={{ margin: "6px 0 0", fontFamily: FONT, fontSize: 13, color: "#FF6B6E" }}>{emailErr}</p>
+            )}
+          </div>
+
+          {/* Submit */}
+          <button
+            type="submit"
+            style={{
+              width: "100%", padding: "14px 24px",
+              borderRadius: 40, border: "none",
+              background: "linear-gradient(180deg, #D92228 0%, #BA1B20 100%)",
+              color: "#ffffff", fontFamily: FONT, fontSize: 16, fontWeight: 500,
+              cursor: "pointer", letterSpacing: "0px", lineHeight: "24px",
+              transition: "opacity 0.15s",
+            }}
+            onMouseEnter={e => e.currentTarget.style.opacity = "0.9"}
+            onMouseLeave={e => e.currentTarget.style.opacity = "1"}
+          >
+            Start Training
+          </button>
+        </div>
+      </form>
+    </div></>
+  );
+}
+
 // ── App ───────────────────────────────────────────────────────────────────────
 
 export default function App() {
+  const narrow = useNarrow(600);
+  const [userInfo,   setUserInfo]   = useState(() => { try { return JSON.parse(localStorage.getItem("at_userInfo") || "null"); } catch { return null; } });
   const [active,     setActive]     = useState(() => { try { const id = localStorage.getItem("at_activeId"); return id ? MODULES.find(m => m.id === id) || null : null; } catch { return null; } });
   const [completed,  setCompleted]  = useState(() => { try { return JSON.parse(localStorage.getItem("at_completed") || "[]"); } catch { return []; } });
   const [showQuiz,   setShowQuiz]   = useState(() => { try { return localStorage.getItem("at_showQuiz") === "1"; } catch { return false; } });
@@ -4939,6 +5085,8 @@ export default function App() {
   const [attempt,    setAttempt]    = useState(0);
   const [started,    setStarted]    = useState(() => { try { return JSON.parse(localStorage.getItem("at_started") || "[]"); } catch { return []; } });
   const [showInfo,   setShowInfo]   = useState(true);
+
+  useEffect(() => { try { localStorage.setItem("at_userInfo", JSON.stringify(userInfo)); } catch {} }, [userInfo]);
 
   useEffect(() => { try { localStorage.setItem("at_activeId",  active ? active.id : ""); } catch {} }, [active]);
   useEffect(() => { try { localStorage.setItem("at_completed", JSON.stringify(completed)); } catch {} }, [completed]);
@@ -4985,6 +5133,9 @@ export default function App() {
     window.scrollTo(0, 0);
     if (showQuiz) { setShowQuiz(false); } else { setPage(p => p - 1); }
   }
+
+  // ── Signup gate ───────────────────────────────────────────────────────────
+  if (!userInfo) return <SignupPage onSubmit={info => setUserInfo(info)} />;
 
   // ── All done ──────────────────────────────────────────────────────────────
   if (allDone) return (
@@ -5322,6 +5473,12 @@ export default function App() {
             );
           })}
         </ModuleGrid>
+        </div>
+
+        <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 32 }}>
+          <Button styleType="PrimaryDefault" onClick={() => {}} style={{ width: narrow ? "100%" : undefined }}>
+            Save and Logout
+          </Button>
         </div>
       </DashMain>
     </PageWrapper></>
