@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import styled, { createGlobalStyle, keyframes, css } from "styled-components";
 import { MODULES_DATA } from "./content.js";
-import { IconChevronLeft as RdcIconChevronLeft, IconClock as RdcIconClock, IconSchool as RdcIconSchool, IconBarChart as RdcIconBarChart, IconBarChartFilled as RdcIconBarChartFilled, IconList as RdcIconList, ContentSwitch as RdcContentSwitch, ContentSwitchGroup as RdcContentSwitchGroup, InlineMessage as RdcInlineMessage } from "@rdc-npm/rdc-ui";
+import { IconChevronLeft as RdcIconChevronLeft, IconClock as RdcIconClock, IconSchool as RdcIconSchool, IconBarChart as RdcIconBarChart, IconBarChartFilled as RdcIconBarChartFilled, IconList as RdcIconList, IconDownload as RdcIconDownload, ContentSwitch as RdcContentSwitch, ContentSwitchGroup as RdcContentSwitchGroup, InlineMessage as RdcInlineMessage } from "@rdc-npm/rdc-ui";
 // ── Local theme (replaces @rdc-npm/rdc-ui rdcUiTheme) ───────────────────────
 const rdcUiTheme = {
   color: {
@@ -203,6 +203,10 @@ function IconSchool({ size = 16, color = 'currentColor' }) {
 
 function IconClock({ size = 16, color = 'currentColor' }) {
   return <RdcIconClock size={size} color={color} aria-hidden="true" />;
+}
+
+function IconDownload({ size = 16, color = 'currentColor' }) {
+  return <RdcIconDownload size={size} color={color} aria-hidden="true" />;
 }
 
 function Link({ as: As = 'a', reverse, onClick, style, children, ...rest }) {
@@ -541,7 +545,7 @@ const ProgressLabelRow = styled.div`
   justify-content: space-between;
   font-size: 14px;
   color: ${rdcUiTheme.color.text.primary};
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: 10px;
   font-family: ${FONT};
 `;
@@ -2204,8 +2208,14 @@ const ChecklistCatName = styled.div`
 const CertificatePrintStyle = createGlobalStyle`
   @media print {
     @page { size: 1100px 620px landscape; margin: 0; }
-    body > * { display: none !important; }
-    #certificate-print-root { display: flex !important; }
+    body > * { visibility: hidden; }
+    #certificate-print-root,
+    #certificate-print-root * { visibility: visible; }
+    #certificate-print-root {
+      position: fixed !important;
+      left: 0 !important; top: 0 !important;
+      width: 1100px !important; height: 620px !important;
+    }
   }
 `;
 
@@ -2214,10 +2224,10 @@ const CERT_RIGHT_IMG = BASE + "Images/Right elements.svg";
 function Certificate({ name, date }) {
   return (
     <div id="certificate-print-root" style={{
-      width: 1100, height: 620, position: "relative", overflow: "hidden",
+      width: 1100, height: 620, position: "fixed", left: -9999, top: 0,
+      overflow: "hidden", visibility: "hidden",
       background: "linear-gradient(123.72deg, #0b0b0b 10.21%, #0b0b0b 51.26%, #717171 94.51%)",
       fontFamily: FONT,
-      display: "none",
     }}>
       {/* Right graphic */}
       <img
@@ -2272,10 +2282,7 @@ function Certificate({ name, date }) {
 }
 
 function downloadCertificate() {
-  const el = document.getElementById("certificate-print-root");
-  if (el) el.style.display = "flex";
   window.print();
-  setTimeout(() => { if (el) el.style.display = "none"; }, 500);
 }
 
 // All-done screen
@@ -5282,6 +5289,14 @@ export default function App() {
   useEffect(() => { try { localStorage.setItem("at_page",      String(page)); } catch {} }, [page]);
   useEffect(() => { try { localStorage.setItem("at_started",   JSON.stringify(started)); } catch {} }, [started]);
 
+  useEffect(() => {
+    const param = new URLSearchParams(window.location.search).get("preview");
+    if (param === "alldone") {
+      setAllDone(true);
+      setCompleted(MODULES.map(m => m.id));
+    }
+  }, []);
+
   const moduleHeadingRef = useRef(null);
 
   // Move focus to module heading when a module opens
@@ -5322,40 +5337,11 @@ export default function App() {
   }
 
   // ── Signup / Login gate ───────────────────────────────────────────────────
-  const previewSignup = typeof window !== "undefined" && new URLSearchParams(window.location.search).get("preview") === "signup";
+  const previewParam = typeof window !== "undefined" && new URLSearchParams(window.location.search).get("preview");
+  const previewSignup = previewParam === "signup";
+  const previewAllDone = previewParam === "alldone";
   if (!userInfo || previewSignup) return <SignupPage onSubmit={info => { setUserInfo(info); setLoggedIn("new"); window.history.replaceState(null, "", window.location.pathname); }} />;
   if (!loggedIn) return <LoginPage knownEmail={userInfo.email} onLogin={() => setLoggedIn("return")} />;
-
-  // ── All done ──────────────────────────────────────────────────────────────
-  if (allDone) {
-    const completionDate = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
-    return (
-    <><GlobalFont /><CertificatePrintStyle />
-      <AllDoneWrapper>
-        <AllDoneCard>
-          <AllDoneEmoji aria-hidden="true">🎉</AllDoneEmoji>
-          <AllDoneTitle>Training complete!</AllDoneTitle>
-          <AllDoneBody>
-            You have completed all {MODULES.length} modules of the Haven accessibility training.
-          </AllDoneBody>
-          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-            <Button styleType="PrimaryDefault" onClick={downloadCertificate}>
-              Download Certificate
-            </Button>
-            <Button
-              styleType="SecondaryDefault"
-              onClick={() => { setAllDone(false); setActive(null); }}
-            >
-              Back to dashboard
-            </Button>
-          </div>
-        </AllDoneCard>
-      </AllDoneWrapper>
-      <Certificate name={userInfo?.name || "Designer"} date={completionDate} />
-    </>
-    );
-  }
-
   // ── Module reader ─────────────────────────────────────────────────────────
   if (active) {
     const acc        = MODULE_COLORS[active.id];
@@ -5566,7 +5552,8 @@ export default function App() {
 
   // ── Dashboard ─────────────────────────────────────────────────────────────
   return (
-    <><GlobalFont /><PageWrapper>
+    <><GlobalFont />
+    <PageWrapper>
       <HeroHeader>
         <HeroLeft>
           <HeroLogoWrap>
@@ -5611,7 +5598,7 @@ export default function App() {
           fontSize: rdcUiTheme.typography.scale.display700.size,
           lineHeight: rdcUiTheme.typography.scale.display700.lineHeight,
           letterSpacing: rdcUiTheme.typography.scale.display700.letterSpacing,
-          fontWeight: 700,
+          fontWeight: 600,
           color: rdcUiTheme.color.text.primary,
           marginBottom: 24,
         }}>
@@ -5622,7 +5609,7 @@ export default function App() {
         <div>
         <ProgressSection>
           <ProgressLabelRow>
-            <span>{completed.length} out of {MODULES.length} modules completed</span>
+            <span>{allDone ? `${MODULES.length} out of ${MODULES.length} trainings completed!` : `${completed.length} out of ${MODULES.length} modules completed`}</span>
             <span>{Math.round((completed.length / MODULES.length) * 100)}%</span>
           </ProgressLabelRow>
           <ProgressMeter
@@ -5689,11 +5676,26 @@ export default function App() {
         </div>
 
         <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 32 }}>
-          <Button styleType="PrimaryDefault" onClick={() => { setLoggedIn(false); window.scrollTo(0, 0); }} style={{ width: narrow ? "100%" : undefined }}>
-            Save and Logout
-          </Button>
+          {allDone ? (
+            <Button styleType="PrimaryDefault" onClick={downloadCertificate} style={{ width: narrow ? "100%" : undefined }}>
+              <IconDownload size={2} color="currentColor" />Download Certificate
+            </Button>
+          ) : (
+            <Button styleType="PrimaryDefault" onClick={() => { setLoggedIn(false); window.scrollTo(0, 0); }} style={{ width: narrow ? "100%" : undefined }}>
+              Save and Logout
+            </Button>
+          )}
         </div>
       </DashMain>
-    </PageWrapper></>
-  );
+    </PageWrapper>
+    {allDone && (
+      <>
+        <CertificatePrintStyle />
+        <Certificate
+          name={userInfo?.name || "Designer"}
+          date={new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+        />
+      </>
+    )}
+  </>);
 }
