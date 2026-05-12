@@ -4381,10 +4381,10 @@ function GDCriterionBlock({ criterion, isReadOnly }) {
           {narrow ? (
             <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
               {criterion.bodyTable.rows.map((row, ri) => (
-                <div key={ri} style={{ border: `1px solid ${rdcUiTheme.color.border.accent}`, borderRadius: 8, overflow: "hidden" }}>
+                <div key={ri} style={{ border: `1px solid ${rdcUiTheme.color.border.base}`, borderRadius: 16, overflow: "hidden" }}>
                   {criterion.bodyTable.columns.map((col, ci) => (
-                    <div key={ci} style={{ display: "flex", borderBottom: ci < criterion.bodyTable.columns.length - 1 ? `1px solid ${rdcUiTheme.color.border.accent}` : "none" }}>
-                      <div style={{ width: 120, flexShrink: 0, padding: "10px 12px", fontFamily: FONT, fontSize: rdcUiTheme.typography.scale.body300.size, fontWeight: 600, color: rdcUiTheme.color.text.primary, background: rdcUiTheme.color.gray["50"], borderRight: `1px solid ${rdcUiTheme.color.border.accent}` }}>{col}</div>
+                    <div key={ci} style={{ display: "flex", borderBottom: ci < criterion.bodyTable.columns.length - 1 ? `1px solid ${rdcUiTheme.color.border.base}` : "none" }}>
+                      <div style={{ width: 120, flexShrink: 0, padding: "10px 12px", fontFamily: FONT, fontSize: rdcUiTheme.typography.scale.body300.size, fontWeight: 600, color: rdcUiTheme.color.text.primary, background: rdcUiTheme.color.gray["50"], borderRight: `1px solid ${rdcUiTheme.color.border.base}` }}>{col}</div>
                       <div style={{ flex: 1, padding: "10px 12px", fontFamily: FONT, fontSize: rdcUiTheme.typography.scale.body300.size, color: rdcUiTheme.color.text.primary, lineHeight: rdcUiTheme.typography.scale.body300.lineHeight }}>{row[ci]}</div>
                     </div>
                   ))}
@@ -4392,26 +4392,28 @@ function GDCriterionBlock({ criterion, isReadOnly }) {
               ))}
             </div>
           ) : (
-            <TableContainer>
-              <Table withLines>
-                <TableHeader>
-                  <TableRow>
-                    {criterion.bodyTable.columns.map((col, ci) => (
-                      <TableCell key={ci} as="th" style={{ fontFamily: FONT, fontWeight: 600, background: rdcUiTheme.color.gray["50"], whiteSpace: "nowrap" }}>{col}</TableCell>
-                    ))}
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {criterion.bodyTable.rows.map((row, ri) => (
-                    <TableRow key={ri}>
-                      {row.map((cell, ci) => (
-                        <TableCell key={ci} style={{ fontFamily: FONT, fontWeight: ci === 0 ? 600 : 400 }}>{cell}</TableCell>
+            <div style={{ border: `1px solid ${rdcUiTheme.color.border.base}`, borderRadius: 16, overflow: "hidden" }}>
+              <div style={{ overflowX: "auto" }}>
+                <Table withLines>
+                  <TableHeader>
+                    <TableRow>
+                      {criterion.bodyTable.columns.map((col, ci) => (
+                        <TableCell key={ci} as="th" style={{ fontFamily: FONT, fontWeight: 600, background: rdcUiTheme.color.gray["50"], whiteSpace: "nowrap", borderBottom: `1px solid ${rdcUiTheme.color.border.base}` }}>{col}</TableCell>
                       ))}
                     </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
+                  </TableHeader>
+                  <TableBody>
+                    {criterion.bodyTable.rows.map((row, ri) => (
+                      <TableRow key={ri}>
+                        {row.map((cell, ci) => (
+                          <TableCell key={ci} style={{ fontFamily: FONT, fontWeight: ci === 0 ? 600 : 400, borderBottom: ri === criterion.bodyTable.rows.length - 1 ? "none" : `1px solid ${rdcUiTheme.color.border.base}` }}>{cell}</TableCell>
+                        ))}
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
+            </div>
           )}
         </div>
       )}
