@@ -5329,7 +5329,7 @@ export default function App() {
   const [completed,  setCompleted]  = useState(() => { try { const ids = new Set(MODULES_DATA.map(m => m.id)); return JSON.parse(localStorage.getItem("at_completed") || "[]").filter(id => ids.has(id)); } catch { return []; } });
   const [showQuiz,   setShowQuiz]   = useState(() => { try { return localStorage.getItem("at_showQuiz") === "1"; } catch { return false; } });
   const [quizDone,   setQuizDone]   = useState(false);
-  const [allDone,    setAllDone]    = useState(() => { try { return localStorage.getItem("at_allDone") === "1"; } catch { return false; } });
+  const [allDone,    setAllDone]    = useState(() => { try { return localStorage.getItem("at_allDone") === "1" || JSON.parse(localStorage.getItem("at_completed") || "[]").length >= MODULES.length; } catch { return false; } });
   const [page,       setPage]       = useState(() => { try { return parseInt(localStorage.getItem("at_page") || "0", 10); } catch { return 0; } });
   const [attempt,    setAttempt]    = useState(0);
   const [started,    setStarted]    = useState(() => { try { return JSON.parse(localStorage.getItem("at_started") || "[]"); } catch { return []; } });
