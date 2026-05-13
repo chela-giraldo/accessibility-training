@@ -1,7 +1,7 @@
 # Accessibility Training — Haven Design System
 
 ## What this is
-An interactive accessibility training web app for designers at Move/realtor.com, built with React + Vite. It teaches WCAG 2.2 principles through 9 modules, each with content pages and a knowledge-check quiz.
+An interactive accessibility training web app for designers at Move/realtor.com, built with React + Vite. It teaches WCAG 2.2 principles through 7 modules, each with content pages and a knowledge-check quiz.
 
 ## How to run
 ```
@@ -23,16 +23,14 @@ Opens at http://localhost:5173/
 - `public/` — all images and SVG assets referenced by the app
 - `public/Images/` — per-module illustration assets
 
-## The 9 modules
+## The 7 modules
 1. Why accessibility matters
-2. WCAG — The Global Standard
-3. Inclusive design | Perceivable
-4. Inclusive design | Operable
-5. Inclusive design | Understandable
-6. Inclusive design | Robust
-7. Accessibility in Figma
-8. Design system & Storybook
-9. Your role & checklist
+2. WCAG: The Global Standard for Accessibility
+3. WCAG principles | Perceivable
+4. WCAG principles | Operable
+5. WCAG principles | Understandable
+6. WCAG principles | Robust
+7. Your role & checklist
 
 ## Key design decisions
 - Uses Haven design system branding (logo, colors, fonts: Galano Grotesque Alt)

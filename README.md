@@ -1,6 +1,6 @@
 # Accessibility Training
 
-Interactive accessibility training for designers, built with React + Vite. Covers WCAG 2.2 across 9 modules with knowledge-check quizzes.
+Interactive accessibility training for designers, built with React + Vite. Covers WCAG 2.2 across 7 modules with knowledge-check quizzes.
 
 **Live site:** https://chela-giraldo.github.io/accessibility-training/
 **Repo:** https://github.com/chela-giraldo/accessibility-training
