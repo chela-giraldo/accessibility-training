@@ -3853,7 +3853,6 @@ function MiniLineChart({ data, yLabels }) {
 
 function SensoryCharacteristicsExample() {
   const narrow = useNarrow(1000);
-  const [tab, setTab] = useState("chart");
   const [containerW, setContainerW] = useState(null);
   const roRef = useRef(null);
   const chartContainerRef = useCallback((el) => {
@@ -3955,10 +3954,12 @@ function SensoryCharacteristicsExample() {
   );
 
   const switcher = (
-    <ContentSwitchGroup size="small">
-      <ContentSwitch selected={tab === "chart"} onClick={() => setTab("chart")}>Chart</ContentSwitch>
-      <ContentSwitch selected={tab === "table"} onClick={() => setTab("table")}>Table</ContentSwitch>
-    </ContentSwitchGroup>
+    <div style={{ pointerEvents: "none" }}>
+      <ContentSwitchGroup size="small">
+        <ContentSwitch selected={true}>Chart</ContentSwitch>
+        <ContentSwitch selected={false}>Table</ContentSwitch>
+      </ContentSwitchGroup>
+    </div>
   );
 
   const footer = narrow ? (
@@ -4243,28 +4244,28 @@ function ChartExample() {
         </div>
       ) : (
         <div style={{ background:rdcUiTheme.color.bg.primary, border:`1px solid ${rdcUiTheme.color.border.accent}`, borderRadius:8, padding:"0 24px" }}>
-        <TableContainer>
-          <Table withLines>
-            <TableHeader>
-              <TableRow>
-                <TableCell as="th" style={{ fontFamily:FONT }}>Week</TableCell>
-                {CHART_DATA.map((c,i)=>(
-                  <TableCell as="th" key={i} style={{ fontFamily:FONT }}>{c.label}</TableCell>
-                ))}
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {CHART_X.map((week,wi)=>(
-                <TableRow key={wi}>
-                  <TableCell style={{ fontFamily:FONT, color:rdcUiTheme.color.text.secondary, backgroundColor:rdcUiTheme.color.bg.primary }}>{week}</TableCell>
-                  {CHART_DATA.map((c,ci)=>(
-                    <TableCell key={ci} style={{ fontFamily:FONT, backgroundColor:rdcUiTheme.color.bg.primary }}>{c.data[wi].toLocaleString()}</TableCell>
+          <TableContainer>
+            <Table withLines>
+              <TableHeader>
+                <TableRow>
+                  <TableCell as="th" style={{ fontFamily:FONT }}>Week</TableCell>
+                  {CHART_DATA.map((c,i)=>(
+                    <TableCell as="th" key={i} style={{ fontFamily:FONT }}>{c.label}</TableCell>
                   ))}
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+              </TableHeader>
+              <TableBody>
+                {CHART_X.map((week,wi)=>(
+                  <TableRow key={wi}>
+                    <TableCell style={{ fontFamily:FONT, color:rdcUiTheme.color.text.secondary, backgroundColor:rdcUiTheme.color.bg.primary }}>{week}</TableCell>
+                    {CHART_DATA.map((c,ci)=>(
+                      <TableCell key={ci} style={{ fontFamily:FONT, backgroundColor:rdcUiTheme.color.bg.primary }}>{c.data[wi].toLocaleString()}</TableCell>
+                    ))}
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
         </div>
       )}
     </div>
@@ -4500,22 +4501,10 @@ function GDCriterionBlock({ criterion, isReadOnly }) {
           ))}
         </ul>
       )}
-      {criterion.bodyNote && (
-        <GDBody style={{ marginTop: 8 }}>
-          {Array.isArray(criterion.bodyNote)
-            ? criterion.bodyNote.map((part, i) => {
-                if (typeof part !== "string" && part.semiboldItalic) return <span key={i} style={{ fontWeight: 600, fontStyle: "italic" }}>{part.text}</span>;
-                if (typeof part !== "string") return <a key={i} href={part.href} target="_blank" rel="noopener noreferrer" style={{ color: rdcUiTheme.color.text.primary }}>{part.text}</a>;
-                if (i === 0 && part.startsWith("Pro Tip:")) return <span key={i}><span style={{ fontWeight: 600 }}>Pro Tip:</span>{part.slice("Pro Tip:".length)}</span>;
-                return part;
-              })
-            : (() => { const n = criterion.bodyNote; const m = n.match(/^(Pro [Tt]ip:|Note:)([\s\S]*)$/); return m ? <><span style={{ fontWeight: 600 }}>{m[1]}</span>{m[2]}</> : n; })()}
-        </GDBody>
-      )}
       {criterion.bodyTable && (
         <div style={{ marginTop: 20, marginBottom: 8 }}>
           {criterion.bodyTable.title && (
-            <div style={{ fontFamily: FONT, fontSize: rdcUiTheme.typography.scale.body400.size, fontWeight: 600, color: rdcUiTheme.color.text.primary, marginBottom: 12 }}>{criterion.bodyTable.title}</div>
+            <GDBody style={{ fontWeight: 600, marginBottom: 12 }}>{criterion.bodyTable.title}</GDBody>
           )}
           {narrow ? (
             <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
@@ -4555,6 +4544,18 @@ function GDCriterionBlock({ criterion, isReadOnly }) {
             </div>
           )}
         </div>
+      )}
+      {criterion.bodyNote && (
+        <GDBody style={{ marginTop: 8 }}>
+          {Array.isArray(criterion.bodyNote)
+            ? criterion.bodyNote.map((part, i) => {
+                if (typeof part !== "string" && part.semiboldItalic) return <span key={i} style={{ fontWeight: 600, fontStyle: "italic" }}>{part.text}</span>;
+                if (typeof part !== "string") return <a key={i} href={part.href} target="_blank" rel="noopener noreferrer" style={{ color: rdcUiTheme.color.text.primary }}>{part.text}</a>;
+                if (i === 0 && part.startsWith("Pro Tip:")) return <span key={i}><span style={{ fontWeight: 600 }}>Pro Tip:</span>{part.slice("Pro Tip:".length)}</span>;
+                return part;
+              })
+            : (() => { const n = criterion.bodyNote; const m = n.match(/^(Pro [Tt]ip:|Note:)([\s\S]*)$/); return m ? <><span style={{ fontWeight: 600 }}>{m[1]}</span>{m[2]}</> : n; })()}
+        </GDBody>
       )}
       {criterion.examplesIntro && <GDExamplesIntro>{criterion.examplesIntro}</GDExamplesIntro>}
 
@@ -4642,6 +4643,11 @@ function GDCriterionBlock({ criterion, isReadOnly }) {
                         )}
                       </div>
                     </>
+                  ) : ex.image && ex.imageSide ? (
+                    <div style={{ display: "flex", flexDirection: narrow ? "column" : "row", alignItems: "flex-start", gap: 24, width: "100%" }}>
+                      <img src={ex.image} alt="" aria-hidden="true" style={{ flex: ex.imageNaturalWidth || 1, minWidth: 0, width: "100%", height: "auto", display: "block" }} />
+                      <img src={ex.imageSide} alt="" aria-hidden="true" style={{ flex: ex.imageSideNaturalWidth || 1, minWidth: 0, width: "100%", height: "auto", display: "block" }} />
+                    </div>
                   ) : ex.image && ex.imageInteraction ? (
                     <div style={{ display: "flex", flexDirection: narrow ? "column" : "row", alignItems: narrow ? "stretch" : "flex-start", width: "100%" }}>
                       <div style={{ flex: ex.imageFlex || 1, minWidth: 0, display: "flex", flexDirection: "column", alignItems: "center" }}>
@@ -5049,7 +5055,7 @@ function Section({ section: s, acc, isReadOnly }) {
 const MODULE_IMAGES = [
   BASE+"module-1.svg", BASE+"module-2.svg", BASE+"module-3.svg",
   BASE+"module-4.svg", BASE+"module-5.svg", BASE+"module-6.svg",
-  BASE+"module-7.svg", BASE+"module-8.svg", BASE+"module-9.svg"
+  BASE+"module-9.svg"
 ];
 
 const MODULES = withBase(MODULES_DATA);
@@ -5316,7 +5322,7 @@ export default function App() {
   const [userInfo,   setUserInfo]   = useState(() => { try { return JSON.parse(localStorage.getItem("at_userInfo") || "null"); } catch { return null; } });
   const [loggedIn,   setLoggedIn]   = useState(false);
   const [active,     setActive]     = useState(() => { try { const id = localStorage.getItem("at_activeId"); return id ? MODULES.find(m => m.id === id) || null : null; } catch { return null; } });
-  const [completed,  setCompleted]  = useState(() => { try { return JSON.parse(localStorage.getItem("at_completed") || "[]"); } catch { return []; } });
+  const [completed,  setCompleted]  = useState(() => { try { const ids = new Set(MODULES_DATA.map(m => m.id)); return JSON.parse(localStorage.getItem("at_completed") || "[]").filter(id => ids.has(id)); } catch { return []; } });
   const [showQuiz,   setShowQuiz]   = useState(() => { try { return localStorage.getItem("at_showQuiz") === "1"; } catch { return false; } });
   const [quizDone,   setQuizDone]   = useState(false);
   const [allDone,    setAllDone]    = useState(() => { try { return localStorage.getItem("at_allDone") === "1"; } catch { return false; } });
@@ -5336,6 +5342,11 @@ export default function App() {
 
   useEffect(() => {
     const param = new URLSearchParams(window.location.search).get("preview");
+    if (param === "reset") {
+      localStorage.clear();
+      window.location.replace(window.location.pathname);
+      return;
+    }
     if (param === "alldone") {
       setAllDone(true);
       setCompleted(MODULES.map(m => m.id));
@@ -5654,12 +5665,12 @@ export default function App() {
         <div>
         <ProgressSection>
           <ProgressLabelRow>
-            <span>{allDone ? `${MODULES.length} out of ${MODULES.length} trainings completed!` : `${completed.length} out of ${MODULES.length} modules completed`}</span>
-            <span>{Math.round((completed.length / MODULES.length) * 100)}%</span>
+            <span>{allDone ? `${MODULES.length} out of ${MODULES.length} trainings completed - Congrats!` : `${completed.length} out of ${MODULES.length} modules completed`}</span>
+            <span>{Math.min(100, Math.round((completed.length / MODULES.length) * 100))}%</span>
           </ProgressLabelRow>
           <ProgressMeter
             id="dashboard-progress"
-            value={Math.round((completed.length / MODULES.length) * 100)}
+            value={Math.min(100, Math.round((completed.length / MODULES.length) * 100))}
           />
         </ProgressSection>
 

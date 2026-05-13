@@ -258,7 +258,7 @@ export const MODULES_DATA = [
             { title:"Define focus states and their order", level:"A/AA", noTitleLink: true, tags:["2.4.3: Focus order","2.4.7: Focus visible","2.4.11: Focus not obscured (minimum)"], tagLinks:[{ label:"2.4.3 Focus Order", url:"https://www.w3.org/WAI/WCAG22/Understanding/focus-order" },{ label:"2.4.7 Focus Visible", url:"https://www.w3.org/WAI/WCAG22/Understanding/focus-visible" },{ label:"2.4.11 Focus Not Obscured (Minimum)", url:"https://www.w3.org/WAI/WCAG22/Understanding/focus-not-obscured-minimum" }], body:"These criterions ensure that interactive elements have clear focus states, allowing users to navigate via keyboard or assistive technology. Providing distinct visual cues is essential for users to identify their current location on a page.\n\nSince Haven design system already provide components with built-in focus states, designers primarily need to ensure two things:", bodyItems:["Document a logical and intuitive focus order for their designs.","Verify that the implementation works as expected, making sure focus order is consistent with the visual layout and focused elements remain visible and are not obscured by elements like modals or toolbars."], examples:[{ title:"Sticky header obscuring focus", desc:"A sticky navigation bar or floating toolbar can overlap the focused element, making it invisible to keyboard users.", image:"/meaningful-sequence-1.svg", imageInteraction:"/Images/Operable/define-focus-states-2.svg", dont:{ caption:"Don't let a sticky header cover the focused element — keyboard users lose track of where they are on the page." }, do:{ caption:"Do account for sticky elements in layout and ensure focused items always remain fully visible, never obscured by fixed UI." } }] },
             { title:"2.4.4 Link Purpose (In Context)", level:"A", titleUrl:"https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context", tags:["2.4.4: Link purpose (in context)"], body:"Ensure links and buttons are clearly labeled. Avoid vague text like \"click here\" in favor of descriptive phrases that indicate the link's destination or action. Users should be able to understand the purpose of a link from its text alone, without relying on surrounding context.\n\nFor example, a link that navigates to a help article should read \"Learn how to update your contact info,\" not \"Click here for more information.\" The first option tells users exactly where they're going. The second tells them nothing.", bodyNote:"Pro tip: On modals and other action-oriented flows, mirror the title's action in the button label. If the modal heading is \"Delete your account,\" the primary button should read \"Delete account,\" not \"Confirm.\" This reinforces the action and reduces ambiguity at a critical decision point.", examples:[{ title:"Generic 'Read more' links", image:"/Images/Operable/Link Purpose (In Context).svg", imageMaxWidth:800, desc:"Multiple 'Read more' links on a page all sound identical to a screen reader user scanning links out of context.", dont:{ caption:"Don't label multiple links 'Read more' or 'Click here' — screen reader users navigating by links hear a list of meaningless identical text." }, do:{ caption:"Do write descriptive link text that identifies the destination or action: 'Read the WCAG 2.2 overview' communicates purpose without surrounding context." } }] },
             { title:"2.4.5 Multiple Ways", level:"AA", titleUrl:"https://www.w3.org/WAI/WCAG22/Understanding/multiple-ways", tags:["2.4.5: Multiple ways"], body:"Offer users multiple methods to access content, such as a site map, a search bar, a categorical navigation menu, quick-access files, or a list of related pages. This approach ensures users are not restricted to linear navigation and can find information through various avenues.", examples:[{ title:"Search plus structured navigation", desc:"Users should be able to reach any content through at least two routes — such as a navigation menu and a search bar.", dont:{ caption:"Don't rely on a single navigation path to access all content — users with cognitive disabilities or those lost in a hierarchy benefit from search as an alternative route." }, do:{ caption:"Do provide both structured navigation (menus, categories) and a search function so users can find content using whichever method works best for them." } }] },
-            { title:"2.4.6 Headings and Labels", level:"AA", titleUrl:"https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels", tags:["2.4.6: Headings and labels"], body:"The criterion requires that headings and labels used to describe topics or purposes are clear and concise. Headings should accurately reflect the content sections they represent, and labels should clearly describe the purpose of user interface controls, input fields, and other elements.", bodyParagraphs:["The Haven design system includes non-semantic typography tokens for both display and body text, either of which may be used for headings. However, as a designer, it's essential to document the logical heading order on the page to ensure correct implementation and semantic sense."], bodyTable:{ title:"Heading Level Definitions and Usage", columns:["Heading Level","Purpose","Usage Rule"], rows:[["H1","The Page Title","Use one H1 per page, always. It clearly states the topic of the entire page for all users and screen readers."],["H2","Big Sections / Main Chapters","Use for major content sections. Users often skip between these to navigate the page."],["H3","Subsections","Use for chunks of content that fall within an H2 section."],["H4","Nested Sections","Only use if your content genuinely requires a fourth layer of hierarchy (i.e., a section within an H3)."],["H5 & H6","Rarely Needed","If you find yourself needing these levels, consider reorganizing your content for better clarity."]] }, bodyNote:"Pro tip: To ensure a logical and correct heading structure for documentation, outline your content as a simple bulleted list (similar to writing a recipe) without any visual elements. After you've confirmed that the structure flows logically, document this correct heading order within your design file.", examples:[{ title:"Annotating semantic headings", desc:"Headings that look visually large but are marked as divs in code provide no navigation landmarks for screen readers.", dont:{ caption:"Don't use Display text styles on divs without annotating the intended heading level — developers will implement plain text and screen reader users lose all heading structure." }, do:{ caption:"Do annotate every section heading in your design file with its semantic level (H1–H6) so developers implement the correct hierarchy for screen reader navigation." } }] }
+            { title:"2.4.6 Headings and Labels", level:"AA", titleUrl:"https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels", tags:["2.4.6: Headings and labels"], body:"The criterion requires that headings and labels used to describe topics or purposes are clear and concise. Headings should accurately reflect the content sections they represent, and labels should clearly describe the purpose of user interface controls, input fields, and other elements.", bodyParagraphs:["The Haven design system includes non-semantic typography tokens for both display and body text, either of which may be used for headings. However, as a designer, it's essential to document the logical heading order on the page to ensure correct implementation and semantic sense."], bodyTable:{ title:"Heading Level Definitions and Usage", columns:["Heading Level","Purpose","Usage Rule"], rows:[["H1","The Page Title","Use one H1 per page, always. It clearly states the topic of the entire page for all users and screen readers."],["H2","Big Sections / Main Chapters","Use for major content sections. Users often skip between these to navigate the page."],["H3","Subsections","Use for chunks of content that fall within an H2 section."],["H4","Nested Sections","Only use if your content genuinely requires a fourth layer of hierarchy (i.e., a section within an H3)."],["H5 & H6","Rarely Needed","If you find yourself needing these levels, consider reorganizing your content for better clarity."]] }, bodyNote:"Pro tip: To ensure a logical and correct heading structure for documentation, outline your content as a simple bulleted list (similar to writing a recipe) without any visual elements. After you've confirmed that the structure flows logically, document this correct heading order within your design file.", examples:[{ title:"Annotating semantic headings", desc:"Headings that look visually large but are marked as divs in code provide no navigation landmarks for screen readers.", image:"/Images/Operable/heading-and-labels.svg", imageNaturalWidth:1440, imageSide:"/Images/Operable/heading-and-labels-2.svg", imageSideNaturalWidth:631, dont:{ caption:"Don't use Display text styles on divs without annotating the intended heading level — developers will implement plain text and screen reader users lose all heading structure." }, do:{ caption:"Do annotate every section heading in your design file with its semantic level (H1–H6) so developers implement the correct hierarchy for screen reader navigation." } }] }
           ]
         }
       ]},
@@ -344,56 +344,7 @@ export const MODULES_DATA = [
       }]}],
     quiz: QUIZZES[5]
   },
-  { id:6, title:"Accessibility in Figma", emoji:"✏️",
-    pages:[
-      { sections:[
-        { type:"text", heading:"Your role starts in the file", body:"Accessibility decisions made in Figma, or skipped there, directly affect what gets built. The earlier accessibility is considered, the cheaper and faster it is to fix." },
-        { type:"plugin-cards", heading:"Essential Figma plugins", plugins:[
-          { name:"Able",                icon:"🔍", use:"Contrast checker that works inline as you design. Essential for color decisions." },
-          { name:"A11y Annotation Kit", icon:"🏷️", use:"Official annotation library for adding accessibility specs to handoff files." },
-          { name:"Stark",               icon:"⚡", use:"Full a11y suite: contrast, vision simulator, focus order, and alt text." },
-          { name:"Color Blind",         icon:"👁️", use:"Simulates 8 types of color vision deficiency across your entire frame." }
-        ]}
-      ]},
-      { sections:[
-        { type:"annotation-guide", heading:"Annotating for handoff", body:"When you hand off designs, developers need more than visual specs. Include these accessibility annotations in every handoff:", items:[
-          { icon:"🏷️", label:"Reading order",    desc:"Number elements in the intended focus/reading sequence" },
-          { icon:"🖼️", label:"Alt text",          desc:"Write descriptive alt text for all meaningful images; mark decorative images" },
-          { icon:"🎯", label:"Interactive role",  desc:"Label components: button, link, checkbox, radio, etc." },
-          { icon:"⌨️", label:"Keyboard behavior", desc:"Note expected keyboard interactions (Enter to confirm, Esc to close, etc.)" },
-          { icon:"🔊", label:"ARIA labels",        desc:"Specify accessible names for icon-only buttons and unlabeled inputs" }
-        ]},
-        { type:"naming-guide", heading:"Layer naming matters", body:"Semantic layer names in Figma improve communication with developers. Follow these conventions:", rules:[
-          { do:"Button/Primary/Default",       dont:"Rectangle 12" },
-          { do:"Icon/ArrowRight (decorative)",  dont:"arrow-icon-2-final" },
-          { do:"Heading/Display500",           dont:"text copy here" },
-          { do:"Input/Email/Error",            dont:"group 47" }
-        ]}
-      ]}
-    ],
-    quiz: QUIZZES[6]
-  },
-  { id:7, title:"Design system & Storybook", emoji:"🧩",
-    pages:[
-      { sections:[
-        { type:"text", heading:"Accessibility is built in, but it's your job to use it correctly", body:"Our design system components are built to be accessible out of the box. But they can still be misused in ways that break accessibility." },
-        { type:"storybook-guide", heading:"Using Storybook for accessibility", body:"Every component in our Storybook includes an Accessibility tab powered by the axe-core engine. Before handing off a new pattern:", steps:[
-          { num:"01", title:"Find the component",                desc:"Locate the closest matching component in Storybook before designing a custom solution." },
-          { num:"02", title:"Check the Accessibility tab",       desc:"Review any existing violations or warnings. These are known issues the team is tracking." },
-          { num:"03", title:"Read the usage docs",               desc:"Each component has a Usage story with do/don't guidance, including a11y-specific notes." },
-          { num:"04", title:"Propose changes through the system", desc:"If a component doesn't meet a new accessibility need, open a design system ticket, don't one-off it." }
-        ]}
-      ]},
-      { sections:[{ type:"do-dont", heading:"Common misuses to avoid", pairs:[
-        { dont:"Using a div styled as a button in your design spec",            do:"Using the Button component from the system, which includes keyboard and ARIA support" },
-        { dont:"Creating a custom dropdown from scratch for a one-off use case", do:"Using the Select or Combobox component, which has focus management built in" },
-        { dont:"Removing the visible label from an input to save space",        do:"Using the Input component with a visible label or proper aria-label annotation" },
-        { dont:"Using a Display style on a div with no semantic note",          do:"Annotating the semantic heading level (H1-H6) separately from the visual Display style" }
-      ]}]}
-    ],
-    quiz: QUIZZES[7]
-  },
-  { id:8, title:"Your role & checklist", emoji:"✅",
+  { id:6, title:"Your role & checklist", emoji:"✅",
     pages:[
       { sections:[
         { type:"text", heading:"Accessibility is everyone's responsibility, but designers set the tone", body:"By the time a design reaches engineering, most of the accessibility decisions have already been made. That means your choices in Figma have an outsized impact on the final product's inclusivity." },
@@ -411,6 +362,6 @@ export const MODULES_DATA = [
         { title:"A11y Project Checklist",   url:"https://www.a11yproject.com/checklist/",         desc:"Practical, plain-language WCAG checklist" }
       ]}]}
     ],
-    quiz: QUIZZES[8]
+    quiz: QUIZZES[6]
   }
 ];
