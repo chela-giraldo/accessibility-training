@@ -1,16 +1,70 @@
-# React + Vite
+# Accessibility Training
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Interactive accessibility training for designers, built with React + Vite. Covers WCAG 2.2 across 9 modules with knowledge-check quizzes.
 
-Currently, two official plugins are available:
+**Live site:** https://chela-giraldo.github.io/accessibility-training/
+**Repo:** https://github.com/chela-giraldo/accessibility-training
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Editing content
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+All written content (module text, quiz questions, answers, explanations) lives in two files:
 
-## Expanding the ESLint configuration
+- `src/content.js` — module pages, body text, examples
+- `src/quizzes.js` — quiz questions, answer options, correct answers, explanations
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+You can edit these directly, or use Claude Code (see below).
+
+---
+
+## Using Claude Code to make changes
+
+Claude Code is an AI coding assistant you can run in your terminal to edit this project conversationally — the same way this project was built.
+
+**Setup (one time per person):**
+
+1. Install Claude Code:
+   ```
+   npm install -g @anthropic-ai/claude-code
+   ```
+2. You'll need an [Anthropic account](https://claude.ai) with a Claude subscription, or access through your company's setup.
+
+3. Clone the repo:
+   ```
+   git clone https://github.com/chela-giraldo/accessibility-training.git
+   cd accessibility-training
+   npm install
+   ```
+
+4. Start a Claude session:
+   ```
+   claude
+   ```
+
+Claude will automatically read `CLAUDE.md` for project context, so it already knows the file structure, how to build, and how to deploy. You can ask it to change text, update quizzes, add content, fix bugs, etc.
+
+---
+
+## Running locally
+
+```
+npm run dev
+```
+
+Opens at http://localhost:5173/
+
+---
+
+## Deploying
+
+After any change, build and push:
+
+```
+npm run build
+git add -A
+git commit -m "your message"
+git push
+```
+
+The `dist/` folder is committed to the repo. GitHub Pages deploys it automatically — no build step needed on the server.
