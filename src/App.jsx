@@ -4502,8 +4502,7 @@ function GDCriterionBlock({ criterion, isReadOnly }) {
         </ul>
       )}
       {criterion.bodyTable && (
-        <div style={{ marginTop: 20, marginBottom: 8 }}>
-          <GDDivider style={{ margin: '20px 0 20px' }} />
+        <div style={{ marginTop: 32, marginBottom: 32 }}>
           {criterion.bodyTable.title && (
             <GDBody style={{ fontWeight: 600, marginBottom: 12 }}>{criterion.bodyTable.title}</GDBody>
           )}
@@ -4544,7 +4543,6 @@ function GDCriterionBlock({ criterion, isReadOnly }) {
               </div>
             </div>
           )}
-          <GDDivider style={{ margin: '20px 0 0' }} />
         </div>
       )}
       {criterion.bodyNote && (
