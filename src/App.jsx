@@ -3414,15 +3414,15 @@ function WcagExample({ id }) {
             <ExPane $bad>
               <ExPaneLabel>Don&apos;t</ExPaneLabel>
               <div style={{ fontSize: 12, display: 'flex', flexDirection: 'column', gap: 6 }}>
-                <a href="#" style={{ color: '#0D2C62' }}>Read more →</a>
-                <a href="#" style={{ color: '#0D2C62' }}>Read more →</a>
+                <a href="#" style={{ color: '#0D2C62', textDecoration: 'underline' }}>Read more →</a>
+                <a href="#" style={{ color: '#0D2C62', textDecoration: 'underline' }}>Read more →</a>
               </div>
             </ExPane>
             <ExPane $good>
               <ExPaneLabel>Do</ExPaneLabel>
               <div style={{ fontSize: 12, display: 'flex', flexDirection: 'column', gap: 6 }}>
-                <a href="#" style={{ color: '#0D2C62' }}>Read the full accessibility guide →</a>
-                <a href="#" style={{ color: '#0D2C62' }}>View the contrast checker →</a>
+                <a href="#" style={{ color: '#0D2C62', textDecoration: 'underline' }}>Read the full accessibility guide →</a>
+                <a href="#" style={{ color: '#0D2C62', textDecoration: 'underline' }}>View the contrast checker →</a>
               </div>
             </ExPane>
           </ExRow>
