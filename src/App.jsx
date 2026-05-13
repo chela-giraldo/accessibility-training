@@ -2581,13 +2581,13 @@ function QuizBlock({ quiz: quizInput, attempt, onComplete, isReadOnly, prevButto
                   </PickerCard>
                 ))}
               </PickerGroup>
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: 8, marginTop: 16 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 16 }}>
                 <PickerCircle $correct aria-hidden="true" style={{ flexShrink: 0 }}>
                   <svg width="12" height="10" viewBox="0 0 12 10" fill="none">
                     <path d="M1 5L4.5 8.5L11 1.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </PickerCircle>
-                <span style={{ fontFamily: FONT, fontSize: rdcUiTheme.typography.scale.body200.size, lineHeight: rdcUiTheme.typography.scale.body200.lineHeight, color: rdcUiTheme.color.text.primary }}>
+                <span style={{ fontFamily: FONT, fontSize: rdcUiTheme.typography.scale.body300.size, lineHeight: rdcUiTheme.typography.scale.body300.lineHeight, color: rdcUiTheme.color.text.primary }}>
                   {q.explanation}
                 </span>
               </div>
@@ -2672,17 +2672,17 @@ function QuizBlock({ quiz: quizInput, attempt, onComplete, isReadOnly, prevButto
           ))}
         </PickerGroup>
         {showVal && (
-          <InlineMessage styleType="error" showIcon style={{ marginTop: 12, fontFamily: FONT }}>
+          <InlineMessage styleType="error" showIcon style={{ marginTop: 12, fontFamily: FONT, fontSize: 14, alignItems: 'center' }}>
             Please select an answer before submitting.
           </InlineMessage>
         )}
         {wasWrong && (
-          <InlineMessage styleType="error" showIcon style={{ marginTop: 12, fontFamily: FONT }}>
+          <InlineMessage styleType="error" showIcon style={{ marginTop: 12, fontFamily: FONT, fontSize: 14, alignItems: 'center' }}>
             Not quite. Please try again.
           </InlineMessage>
         )}
         {submitted && (
-          <InlineMessage styleType="success" showIcon style={{ marginTop: 16, fontFamily: FONT }}>
+          <InlineMessage styleType="success" showIcon style={{ marginTop: 16, fontFamily: FONT, fontSize: 14, alignItems: 'center' }}>
             <strong>Correct! </strong>{quiz.explanation}
           </InlineMessage>
         )}
