@@ -4490,7 +4490,11 @@ function GDCriterionBlock({ criterion, isReadOnly }) {
           ))}
         </div>
       )}
-      <GDBody>{criterion.body}</GDBody>
+      <GDBody>{criterion.bodyLinkPhrases ? (() => {
+        const phrases = criterion.bodyLinkPhrases;
+        const parts = criterion.body.split(new RegExp(`(${phrases.map(p => p.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`));
+        return parts.map((part, i) => phrases.includes(part) ? <span key={i} style={{ textDecoration: 'underline' }}>{part}</span> : part);
+      })() : criterion.body}</GDBody>
       {criterion.bodyParagraphs && criterion.bodyParagraphs.map((para, i) => (
         <GDBody key={i} style={{ marginTop: 12 }}>{para}</GDBody>
       ))}
