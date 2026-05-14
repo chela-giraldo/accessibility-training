@@ -5388,7 +5388,7 @@ export default function App() {
   function goNext() {
     window.scrollTo(0, 0);
     const lastPage = active && page === active.pages.length - 1;
-    if (lastPage) { setShowQuiz(true); } else { setPage(p => p + 1); }
+    if (lastPage && !active.quiz) { finishQuiz(); } else if (lastPage) { setShowQuiz(true); } else { setPage(p => p + 1); }
   }
 
   function goPrev() {
@@ -5504,7 +5504,7 @@ export default function App() {
           ) : (
             <>
               <StepIndicator
-                total={totalPages + 1}
+                total={active.quiz ? totalPages + 1 : totalPages}
                 current={showQuiz || quizDone ? totalPages : page}
                 onStepClick={i => {
                   window.scrollTo(0, 0);
@@ -5574,7 +5574,7 @@ export default function App() {
                   </div>
                   <NavRight>
                     <Button styleType="PrimaryDefault" onClick={goNext}>
-                      {isLastPage ? "Take the knowledge check" : "Next page"}
+                      {isLastPage && active.quiz ? "Take the knowledge check" : "Next page"}
                     </Button>
                   </NavRight>
                 </NavRow>

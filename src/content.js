@@ -364,6 +364,6 @@ export const MODULES_DATA = [
         { title:"A11y Project Checklist",   url:"https://www.a11yproject.com/checklist/",         desc:"Practical, plain-language WCAG checklist" }
       ]}]}
     ],
-    quiz: QUIZZES[6]
+    quiz: null
   }
 ];
