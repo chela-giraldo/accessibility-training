@@ -2315,6 +2315,7 @@ function Certificate({ name, date }) {
 async function downloadCertificate(name) {
   const el = document.getElementById("certificate-print-root");
   if (!el) return;
+  const previewWindow = window.open('', '_blank');
   await document.fonts.ready;
   const canvas = await html2canvas(el, {
     width: 1100, height: 620,
@@ -2328,7 +2329,7 @@ async function downloadCertificate(name) {
   link.download = `Accessibility Design Certification - ${name}.jpg`;
   link.href = dataUrl;
   link.click();
-  window.open(dataUrl, '_blank');
+  if (previewWindow) previewWindow.location.href = dataUrl;
 }
 
 // All-done screen
