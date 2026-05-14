@@ -5321,6 +5321,7 @@ function LoginPage({ knownEmail, onLogin }) {
 
 // ── CelebrationModal ─────────────────────────────────────────────────────────
 function CelebrationModal({ name, onDownload, onClose }) {
+  const [dlState, setDlState] = useState('idle'); // idle | downloading | done
   const confettiColors = ['#0D2C62','#4A7FD4','#F5A623','#E84040','#2ECC71','#9B59B6','#F39C12'];
   const pieces = useRef(Array.from({ length: 60 }, (_, i) => ({
     id: i,
@@ -5381,8 +5382,19 @@ function CelebrationModal({ name, onDownload, onClose }) {
           <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', fontFamily: FONT, fontSize: rdcUiTheme.typography.scale.body300.size, fontWeight: 500, color: rdcUiTheme.color.text.primary, textDecoration: 'underline', padding: 0 }}>
             Close
           </button>
-          <Button styleType="PrimaryDefault" onClick={onDownload} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <IconDownload size={2} color="currentColor" />Download certificate
+          <Button
+            styleType="PrimaryDefault"
+            disabled={dlState !== 'idle'}
+            onClick={async () => {
+              setDlState('downloading');
+              await onDownload();
+              setDlState('done');
+            }}
+            style={{ display: 'flex', alignItems: 'center', gap: 8, minWidth: 200, justifyContent: 'center' }}
+          >
+            {dlState === 'idle' && <><IconDownload size={2} color="currentColor" />Download certificate</>}
+            {dlState === 'downloading' && 'Downloading…'}
+            {dlState === 'done' && '✓ Downloaded'}
           </Button>
         </div>
       </div>
