@@ -4785,7 +4785,7 @@ function Section({ section: s, acc, isReadOnly }) {
       <SH>{s.heading}</SH>
       {Array.isArray(s.body) ? (
         <BodyStack>
-          {s.body.map((p, i) => <BodyText key={i} style={{ lineHeight: 1.7 }}>{p}</BodyText>)}
+          {s.body.map((p, i) => <Para key={i} para={p} />)}
         </BodyStack>
       ) : (
         <BodyText style={{ lineHeight: 1.7 }}>{s.body}</BodyText>
