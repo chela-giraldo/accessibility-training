@@ -368,7 +368,8 @@ export const MODULES_DATA = [
         "Not a perfect checklist. Just four questions worth asking before you hand something off."
       ]}]},
       { sections:[{ type:"text", heading:"One more thing", body:[
-        "Accessibility is a commitment in Haven, not a checklist item. This course is 7 modules right now, but the plan is to keep building it out. More criteria, more real examples, more of the specifics that actually show up in our work at Realtor.com. The goal is that this stays useful to you, not just something you completed once."
+        "Accessibility is a commitment in Haven, not a checklist item. This course is 7 modules right now, but the plan is to keep building it out. More criteria, more real examples, more of the specifics that actually show up in our work at Realtor.com. The goal is that this stays useful to you, not just something you completed once.",
+        { parts:["Want this content as a document? We've got you covered. Here's the ", { text:"full course content on Confluence", href:"https://moveinc.atlassian.net/wiki/spaces/systems/pages/118882533466" }, " — all guidelines, success criteria, and examples in one place, easy to reference anytime."] }
       ]}]}
     ],
     quiz: null
