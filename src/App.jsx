@@ -5466,7 +5466,7 @@ export default function App() {
     window.scrollTo(0, 0);
     const lastPage = active && page === active.pages.length - 1;
     const isLastModule = active && active.id === MODULES[MODULES.length - 1].id;
-    if (lastPage && !active.quiz && isLastModule) { markComplete(); setShowCelebration(true); }
+    if (lastPage && !active.quiz && isLastModule) { setShowCelebration(true); }
     else if (lastPage && !active.quiz) { finishQuiz(); }
     else if (lastPage) { setShowQuiz(true); }
     else { setPage(p => p + 1); }
@@ -5843,8 +5843,8 @@ export default function App() {
     {showCelebration && (
       <CelebrationModal
         name={userInfo?.name || "Designer"}
-        onDownload={() => downloadCertificate(userInfo?.name || "Designer")}
-        onClose={() => setShowCelebration(false)}
+        onDownload={() => { markComplete(); downloadCertificate(userInfo?.name || "Designer"); }}
+        onClose={() => { markComplete(); setShowCelebration(false); }}
       />
     )}
   </>);
