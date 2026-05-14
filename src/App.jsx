@@ -5735,15 +5735,20 @@ export default function App() {
         </ModuleGrid>
         </div>
 
-        <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", gap: 12, marginTop: 32, flexWrap: narrow ? "wrap" : "nowrap" }}>
-          {allDone && (
-            <Button styleType="Tertiary" onClick={() => downloadCertificate(userInfo?.name || "Designer")} style={{ width: narrow ? "100%" : undefined }}>
-              <IconDownload size={2} color="currentColor" />Download Certificate
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12, marginTop: 32, flexWrap: "wrap", flexDirection: narrow ? "column" : "row" }}>
+          <p style={{ fontFamily: FONT, fontSize: 14, color: rdcUiTheme.color.text.secondary, margin: 0, width: narrow ? "100%" : undefined }}>
+            Questions or feedback? We&apos;d love to hear them. <a href="https://forms.gle/f8xjAf9XCGojHVJq9" target="_blank" rel="noreferrer" style={{ color: "inherit", textDecoration: "underline" }}>Share your feedback here.</a>
+          </p>
+          <div style={{ display: "flex", alignItems: "center", gap: 12, width: narrow ? "100%" : undefined, flexWrap: narrow ? "wrap" : "nowrap" }}>
+            {allDone && (
+              <Button styleType="Tertiary" onClick={() => downloadCertificate(userInfo?.name || "Designer")} style={{ width: narrow ? "100%" : undefined }}>
+                <IconDownload size={2} color="currentColor" />Download Certificate
+              </Button>
+            )}
+            <Button styleType="PrimaryDefault" onClick={() => { setLoggedIn(false); window.scrollTo(0, 0); }} style={{ width: narrow ? "100%" : undefined }}>
+              {allDone ? "Logout" : "Save and Logout"}
             </Button>
-          )}
-          <Button styleType="PrimaryDefault" onClick={() => { setLoggedIn(false); window.scrollTo(0, 0); }} style={{ width: narrow ? "100%" : undefined }}>
-            {allDone ? "Logout" : "Save and Logout"}
-          </Button>
+          </div>
         </div>
       </DashMain>
     </PageWrapper>
