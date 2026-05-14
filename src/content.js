@@ -280,7 +280,7 @@ export const MODULES_DATA = [
     pages:[
       { sections:[
         { type:"guideline-cards",
-          heading:"Understandable Guidelines",
+          heading:"3. Understandable",
           href:"https://www.w3.org/TR/WCAG22/#understandable",
           intro:["This principle ensures that information and the operation of the interface is understandable. Content must be readable, interfaces must behave predictably, and users must be helped to avoid and correct mistakes. There are 3 guidelines to follow and in the next pages, we will explain how you can design with these guidelines in mind:"],
           cards:[
