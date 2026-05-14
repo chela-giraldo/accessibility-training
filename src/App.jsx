@@ -5383,7 +5383,7 @@ function CelebrationModal({ name, onDownload, onClose }) {
             Close
           </button>
           {dlState === 'done' ? (
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, background: '#2ECC71', color: '#fff', borderRadius: 999, padding: '10px 20px', fontFamily: FONT, fontWeight: 600, fontSize: rdcUiTheme.typography.scale.body300.size }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, background: rdcUiTheme.color.status.success, color: '#fff', borderRadius: 999, padding: '10px 20px', fontFamily: FONT, fontWeight: 600, fontSize: rdcUiTheme.typography.scale.body300.size }}>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
               Certificate downloaded
             </div>
