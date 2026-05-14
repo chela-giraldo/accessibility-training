@@ -348,32 +348,28 @@ export const MODULES_DATA = [
   },
   { id:6, title:"You Actually Know This Now", emoji:"✅",
     pages:[
-      { sections:[
-        { type:"text", heading:"You Actually Know This Now", body:[
-          "Nobody finishes an accessibility training and suddenly becomes a different designer overnight. But you do finish it knowing things you didn't before, and that part matters.",
-          "You've been through contrast ratios, color blindness, keyboard navigation, alt text, inclusive design, data visualization, WCAG criteria. Not as abstract concepts. As decisions you make in Figma every time you pick a color, lay out a page, or write a label."
-        ]},
-        { type:"text", heading:"What actually stuck", body:[
-          "Contrast ratios aren't magic numbers from a compliance doc. They're the gap between someone being able to read your UI at a coffee shop versus squinting and giving up. Color can't carry the whole message on its own because for a chunk of your users it literally isn't there. Alt text that says \"image of a house\" helps nobody. Reading order is a layout decision, even when it doesn't feel like one.",
-          "You know this stuff now. It'll start showing up in how you look at other people's designs too, which is a little annoying but mostly useful."
-        ]},
-        { type:"text", heading:"Where you actually have influence", body:[
-          "Most of the accessibility characteristics of a product are decided at the design stage. Not in QA. Not in a legal review. In Figma, before anyone writes a line of code. The color you chose, the layout you built, whether the error state communicates something beyond just turning red.",
-          "That's a real amount of influence. More than most people realize when they're in the middle of a sprint."
-        ]}
-      ]},
-      { sections:[
-        { type:"text", heading:"A gut check before you ship", body:[
-          "Does this work without color as the only signal? Would someone looking at a grayscale version of this screen still understand what's required, what's broken, what's selected?",
-          "Is there anything image-only that needs a text equivalent?",
-          "Does the layout hold at 400% zoom, or does it fall apart?",
-          "Does the reading order match the actual sequence of information on the page?",
-          "Not a perfect checklist. Just four questions worth asking before you hand something off."
-        ]},
-        { type:"text", heading:"One more thing", body:[
-          "Accessibility is a commitment in Haven, not a checklist item. This course is 7 modules right now, but the plan is to keep building it out. More criteria, more real examples, more of the specifics that actually show up in our work at Realtor.com. The goal is that this stays useful to you, not just something you completed once."
-        ]}
-      ]}
+      { sections:[{ type:"text", heading:"You Actually Know This Now", body:[
+        "Nobody finishes an accessibility training and suddenly becomes a different designer overnight. But you do finish it knowing things you didn't before, and that part matters.",
+        "You've been through contrast ratios, color blindness, keyboard navigation, alt text, inclusive design, data visualization, WCAG criteria. Not as abstract concepts. As decisions you make in Figma every time you pick a color, lay out a page, or write a label."
+      ]}]},
+      { sections:[{ type:"text", heading:"What actually stuck", body:[
+        "Contrast ratios aren't magic numbers from a compliance doc. They're the gap between someone being able to read your UI at a coffee shop versus squinting and giving up. Color can't carry the whole message on its own because for a chunk of your users it literally isn't there. Alt text that says \"image of a house\" helps nobody. Reading order is a layout decision, even when it doesn't feel like one.",
+        "You know this stuff now. It'll start showing up in how you look at other people's designs too, which is a little annoying but mostly useful."
+      ]}]},
+      { sections:[{ type:"text", heading:"Where you actually have influence", body:[
+        "Most of the accessibility characteristics of a product are decided at the design stage. Not in QA. Not in a legal review. In Figma, before anyone writes a line of code. The color you chose, the layout you built, whether the error state communicates something beyond just turning red.",
+        "That's a real amount of influence. More than most people realize when they're in the middle of a sprint."
+      ]}]},
+      { sections:[{ type:"text", heading:"A gut check before you ship", body:[
+        "Does this work without color as the only signal? Would someone looking at a grayscale version of this screen still understand what's required, what's broken, what's selected?",
+        "Is there anything image-only that needs a text equivalent?",
+        "Does the layout hold at 400% zoom, or does it fall apart?",
+        "Does the reading order match the actual sequence of information on the page?",
+        "Not a perfect checklist. Just four questions worth asking before you hand something off."
+      ]}]},
+      { sections:[{ type:"text", heading:"One more thing", body:[
+        "Accessibility is a commitment in Haven, not a checklist item. This course is 7 modules right now, but the plan is to keep building it out. More criteria, more real examples, more of the specifics that actually show up in our work at Realtor.com. The goal is that this stays useful to you, not just something you completed once."
+      ]}]}
     ],
     quiz: null
   }

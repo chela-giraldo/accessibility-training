@@ -5319,6 +5319,69 @@ function LoginPage({ knownEmail, onLogin }) {
   );
 }
 
+// ── CelebrationModal ─────────────────────────────────────────────────────────
+function CelebrationModal({ name, onDownload, onClose }) {
+  const confettiColors = ['#0D2C62','#4A7FD4','#F5A623','#E84040','#2ECC71','#9B59B6','#F39C12'];
+  const pieces = Array.from({ length: 40 }, (_, i) => ({
+    id: i,
+    color: confettiColors[i % confettiColors.length],
+    left: Math.random() * 100,
+    delay: Math.random() * 1.2,
+    duration: 1.8 + Math.random() * 1.2,
+    size: 6 + Math.random() * 8,
+    rotate: Math.random() * 360,
+  }));
+
+  return (
+    <div role="dialog" aria-modal="true" aria-labelledby="celebration-title" style={{ position: 'fixed', inset: 0, zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.55)', padding: 24 }}>
+      <style>{`
+        @keyframes confettiFall {
+          0%   { transform: translateY(-60px) rotate(0deg); opacity: 1; }
+          100% { transform: translateY(340px) rotate(720deg); opacity: 0; }
+        }
+        @keyframes modalPop {
+          0%   { transform: scale(0.85); opacity: 0; }
+          100% { transform: scale(1);    opacity: 1; }
+        }
+      `}</style>
+      {/* Confetti */}
+      <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none' }}>
+        {pieces.map(p => (
+          <div key={p.id} style={{
+            position: 'absolute',
+            left: `${p.left}%`,
+            top: 0,
+            width: p.size,
+            height: p.size,
+            background: p.color,
+            borderRadius: Math.random() > 0.5 ? '50%' : 2,
+            animation: `confettiFall ${p.duration}s ${p.delay}s ease-in forwards`,
+            transform: `rotate(${p.rotate}deg)`,
+          }} />
+        ))}
+      </div>
+      {/* Modal card */}
+      <div style={{ background: '#fff', borderRadius: 20, padding: '48px 40px', maxWidth: 480, width: '100%', textAlign: 'center', animation: 'modalPop 0.35s ease-out', position: 'relative' }}>
+        <div style={{ fontSize: 56, marginBottom: 16 }}>🎉</div>
+        <h2 id="celebration-title" style={{ fontFamily: FONT, fontSize: 26, fontWeight: 700, color: rdcUiTheme.color.text.primary, margin: '0 0 12px' }}>
+          You did it, {name}!
+        </h2>
+        <p style={{ fontFamily: FONT, fontSize: 16, color: rdcUiTheme.color.text.secondary, lineHeight: 1.6, margin: '0 0 32px' }}>
+          You've completed the accessibility training. Download your certificate and keep designing inclusively.
+        </p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+          <Button styleType="PrimaryDefault" onClick={onDownload} style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
+            <IconDownload size={2} color="currentColor" />Download Certificate
+          </Button>
+          <Button styleType="SecondaryDefault" onClick={onClose} style={{ width: '100%' }}>
+            Close
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ── App ───────────────────────────────────────────────────────────────────────
 
 export default function App() {
@@ -5333,7 +5396,8 @@ export default function App() {
   const [page,       setPage]       = useState(() => { try { return parseInt(localStorage.getItem("at_page") || "0", 10); } catch { return 0; } });
   const [attempt,    setAttempt]    = useState(0);
   const [started,    setStarted]    = useState(() => { try { return JSON.parse(localStorage.getItem("at_started") || "[]"); } catch { return []; } });
-  const [showInfo,   setShowInfo]   = useState(true);
+  const [showInfo,      setShowInfo]      = useState(true);
+  const [showCelebration, setShowCelebration] = useState(false);
 
   useEffect(() => { try { localStorage.setItem("at_userInfo", JSON.stringify(userInfo)); } catch {} }, [userInfo]);
 
@@ -5388,7 +5452,11 @@ export default function App() {
   function goNext() {
     window.scrollTo(0, 0);
     const lastPage = active && page === active.pages.length - 1;
-    if (lastPage && !active.quiz) { finishQuiz(); } else if (lastPage) { setShowQuiz(true); } else { setPage(p => p + 1); }
+    const isLastModule = active && active.id === MODULES[MODULES.length - 1].id;
+    if (lastPage && !active.quiz && isLastModule) { finishQuiz(); setShowCelebration(true); }
+    else if (lastPage && !active.quiz) { finishQuiz(); }
+    else if (lastPage) { setShowQuiz(true); }
+    else { setPage(p => p + 1); }
   }
 
   function goPrev() {
@@ -5409,6 +5477,7 @@ export default function App() {
     const totalPages = pages.length;
     const curPage    = pages[page];
     const isLastPage = page === totalPages - 1;
+    const isLastModule = active.id === MODULES[MODULES.length - 1].id;
     const headerTitle = active.headerTitle || active.title;
     const prevModule  = MODULES[active.id - 1];
     const nextModule  = MODULES[active.id + 1];
@@ -5574,7 +5643,7 @@ export default function App() {
                   </div>
                   <NavRight>
                     <Button styleType="PrimaryDefault" onClick={goNext}>
-                      {isLastPage && active.quiz ? "Take the knowledge check" : "Next page"}
+                      {isLastPage && active.quiz ? "Take the knowledge check" : isLastPage && isLastModule ? "Finish course" : "Next page"}
                     </Button>
                   </NavRight>
                 </NavRow>
@@ -5756,6 +5825,13 @@ export default function App() {
       <Certificate
         name={userInfo?.name || "Designer"}
         date={new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+      />
+    )}
+    {showCelebration && (
+      <CelebrationModal
+        name={userInfo?.name || "Designer"}
+        onDownload={() => downloadCertificate(userInfo?.name || "Designer")}
+        onClose={() => setShowCelebration(false)}
       />
     )}
   </>);
