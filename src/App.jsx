@@ -4795,7 +4795,7 @@ function Section({ section: s, acc, isReadOnly }) {
 
   if (s.type === "confluence-link") return (
     <InlineMessage styleType="info" showIcon style={{ marginTop: 16, fontFamily: FONT, fontSize: 14, alignItems: "center" }}>
-      <span>{s.text}<a href={s.href} target="_blank" rel="noreferrer" style={{ color: "inherit", fontWeight: 600, textDecoration: "underline" }}>{s.linkText}</a>{s.textAfter}</span>
+      <span><strong style={{ display: "block", marginBottom: 4 }}>{s.title}</strong>{s.text}<a href={s.href} target="_blank" rel="noreferrer" style={{ color: "inherit", fontWeight: 600, textDecoration: "underline" }}>{s.linkText}</a>{s.textAfter}</span>
     </InlineMessage>
   );
 

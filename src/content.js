@@ -372,7 +372,8 @@ export const MODULES_DATA = [
           "Accessibility is a commitment in Haven, not a checklist item. This course is 7 modules right now, but the plan is to keep building it out. More criteria, more real examples, more of the specifics that actually show up in our work at Realtor.com. The goal is that this stays useful to you, not just something you completed once."
         ]},
         { type:"confluence-link",
-          text:"Want this content as a document? We've got you covered. Here's the ",
+          title:"Want this content as a document?",
+          text:"We've got you covered. Here's the ",
           linkText:"full course content on Confluence",
           href:"https://moveinc.atlassian.net/wiki/spaces/systems/pages/118882533466",
           textAfter:", all guidelines, success criteria, and examples in one place, easy to reference anytime."
