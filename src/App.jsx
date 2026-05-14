@@ -2329,7 +2329,11 @@ async function downloadCertificate(name) {
   link.download = `Accessibility Design Certification - ${name}.jpg`;
   link.href = dataUrl;
   link.click();
-  if (previewWindow) previewWindow.location.href = dataUrl;
+  if (previewWindow) {
+    const blob = await (await fetch(dataUrl)).blob();
+    const blobUrl = URL.createObjectURL(blob);
+    previewWindow.location.href = blobUrl;
+  }
 }
 
 // All-done screen
