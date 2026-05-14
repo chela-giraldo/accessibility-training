@@ -1,0 +1,22 @@
+name: Sync content to Confluence
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - src/content.js
+      - src/quizzes.js
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Sync to Confluence
+        env:
+          CONFLUENCE_EMAIL:     ${{ secrets.CONFLUENCE_EMAIL }}
+          CONFLUENCE_API_TOKEN: ${{ secrets.CONFLUENCE_API_TOKEN }}
+        run: node scripts/sync-confluence.mjs

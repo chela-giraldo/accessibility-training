@@ -2323,10 +2323,12 @@ async function downloadCertificate(name) {
     backgroundColor: null,
     logging: false,
   });
+  const dataUrl = canvas.toDataURL("image/jpeg", 0.95);
   const link = document.createElement("a");
   link.download = `Accessibility Design Certification - ${name}.jpg`;
-  link.href = canvas.toDataURL("image/jpeg", 0.95);
+  link.href = dataUrl;
   link.click();
+  window.open(dataUrl, '_blank');
 }
 
 // All-done screen
