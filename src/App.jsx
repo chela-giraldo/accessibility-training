@@ -5382,20 +5382,26 @@ function CelebrationModal({ name, onDownload, onClose }) {
           <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', fontFamily: FONT, fontSize: rdcUiTheme.typography.scale.body300.size, fontWeight: 500, color: rdcUiTheme.color.text.primary, textDecoration: 'underline', padding: 0 }}>
             Close
           </button>
-          <Button
-            styleType="PrimaryDefault"
-            disabled={dlState !== 'idle'}
-            onClick={async () => {
-              setDlState('downloading');
-              await onDownload();
-              setDlState('done');
-            }}
-            style={{ display: 'flex', alignItems: 'center', gap: 8, minWidth: 200, justifyContent: 'center' }}
-          >
-            {dlState === 'idle' && <><IconDownload size={2} color="currentColor" />Download certificate</>}
-            {dlState === 'downloading' && 'Downloading…'}
-            {dlState === 'done' && '✓ Downloaded'}
-          </Button>
+          {dlState === 'done' ? (
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, background: '#2ECC71', color: '#fff', borderRadius: 999, padding: '10px 20px', fontFamily: FONT, fontWeight: 600, fontSize: rdcUiTheme.typography.scale.body300.size }}>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              Certificate downloaded
+            </div>
+          ) : (
+            <Button
+              styleType="PrimaryDefault"
+              disabled={dlState === 'downloading'}
+              onClick={async () => {
+                setDlState('downloading');
+                await onDownload();
+                setDlState('done');
+              }}
+              style={{ display: 'flex', alignItems: 'center', gap: 8, minWidth: 200, justifyContent: 'center' }}
+            >
+              {dlState === 'idle' && <><IconDownload size={2} color="currentColor" />Download certificate</>}
+              {dlState === 'downloading' && 'Downloading…'}
+            </Button>
+          )}
         </div>
       </div>
     </div>
