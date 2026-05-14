@@ -5690,11 +5690,17 @@ export default function App() {
         </ReaderMain>
       </ReaderWrapper>
       {showCelebration && (
-        <CelebrationModal
-          name={userInfo?.name || "Designer"}
-          onDownload={() => { markComplete(); downloadCertificate(userInfo?.name || "Designer"); }}
-          onClose={() => { markComplete(); setShowCelebration(false); setActive(null); }}
-        />
+        <>
+          <Certificate
+            name={userInfo?.name || "Designer"}
+            date={new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+          />
+          <CelebrationModal
+            name={userInfo?.name || "Designer"}
+            onDownload={() => { markComplete(); downloadCertificate(userInfo?.name || "Designer"); }}
+            onClose={() => { markComplete(); setShowCelebration(false); setActive(null); }}
+          />
+        </>
       )}
       </>
     );
