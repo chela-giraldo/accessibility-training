@@ -5736,8 +5736,8 @@ export default function App() {
         </div>
 
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12, marginTop: 32, flexWrap: "wrap", flexDirection: narrow ? "column" : "row" }}>
-          <p style={{ fontFamily: FONT, fontSize: 14, color: rdcUiTheme.color.text.secondary, margin: 0, width: narrow ? "100%" : undefined }}>
-            Questions or feedback? We&apos;d love to hear them. <a href="https://forms.gle/f8xjAf9XCGojHVJq9" target="_blank" rel="noreferrer" style={{ color: "inherit", textDecoration: "underline" }}>Share your feedback here.</a>
+          <p style={{ fontFamily: FONT, fontSize: 14, color: rdcUiTheme.color.text.primary, margin: 0, width: narrow ? "100%" : undefined }}>
+            Questions or feedback? We&apos;d love to hear them. <a href="https://forms.gle/f8xjAf9XCGojHVJq9" target="_blank" rel="noreferrer" style={{ color: "inherit", textDecoration: "underline", fontWeight: 500 }}>Share your feedback here.</a>
           </p>
           <div style={{ display: "flex", alignItems: "center", gap: 12, width: narrow ? "100%" : undefined, flexWrap: narrow ? "wrap" : "nowrap" }}>
             {allDone && (
