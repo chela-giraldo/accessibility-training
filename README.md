@@ -68,6 +68,22 @@ Opens at http://localhost:5173/
 
 ---
 
+## Confluence sync
+
+All written content is automatically synced to a Confluence page whenever `src/content.js` or `src/quizzes.js` is pushed to `main`.
+
+**Confluence page:** https://moveinc.atlassian.net/wiki/spaces/systems/pages/118882533466
+
+The sync is handled by a GitHub Action (`.github/workflows/sync-confluence.yml`) that runs `scripts/sync-confluence.mjs`. It parses the content files and overwrites the Confluence page via the Atlassian REST API.
+
+**Required GitHub secrets** (already configured):
+- `CONFLUENCE_EMAIL` — your moveinc email
+- `CONFLUENCE_API_TOKEN` — an [Atlassian API token](https://id.atlassian.com/manage-profile/security/api-tokens)
+
+To trigger a manual sync without making a content change, go to [Actions → Sync content to Confluence](https://github.com/chela-giraldo/accessibility-training/actions/workflows/sync-confluence.yml) and click **Run workflow**.
+
+---
+
 ## Deploying
 
 After any change, build and push:
