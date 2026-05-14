@@ -185,11 +185,12 @@ try {
 } catch {
   current = await confluenceRequest(`/content/${PAGE_ID}?expand=version,space&status=draft`);
 }
-const nextVersion = current.version.number + 1;
+const isDraft     = current.status === "draft";
+const nextVersion = isDraft ? 1 : current.version.number + 1;
 const spaceKey    = current.space.key;
 const title       = current.title;
 
-console.log(`Updating "${title}" (space: ${spaceKey}, v${current.version.number} → v${nextVersion})`);
+console.log(`Updating "${title}" (space: ${spaceKey}, status: ${current.status}, v${current.version.number} → v${nextVersion})`);
 
 await confluenceRequest(`/content/${PAGE_ID}`, "PUT", {
   version: { number: nextVersion },
