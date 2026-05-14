@@ -46,6 +46,18 @@ Claude will automatically read `CLAUDE.md` for project context, so it already kn
 
 ---
 
+## Editing examples and layout (Figma)
+
+Images, illustrations, and example layouts used throughout the training are sourced from the Figma file. To update them:
+
+1. Open the [Accessibility Training Source File](https://www.figma.com/design/0sYcVsaK1cEP7mVPgmvD0k/Accessibility-Training-Source-File?node-id=0-1&t=1OaFkuSBu8ghj25u-1) in Figma
+2. Make your changes
+3. Export the updated asset as SVG or PNG
+4. Replace the corresponding file in `public/Images/` in the repo (same filename)
+5. Build and push (see Deploying below)
+
+---
+
 ## Running locally
 
 ```
