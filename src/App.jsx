@@ -5322,29 +5322,31 @@ function LoginPage({ knownEmail, onLogin }) {
 // ── CelebrationModal ─────────────────────────────────────────────────────────
 function CelebrationModal({ name, onDownload, onClose }) {
   const confettiColors = ['#0D2C62','#4A7FD4','#F5A623','#E84040','#2ECC71','#9B59B6','#F39C12'];
-  const pieces = Array.from({ length: 40 }, (_, i) => ({
+  const pieces = React.useRef(Array.from({ length: 60 }, (_, i) => ({
     id: i,
     color: confettiColors[i % confettiColors.length],
     left: Math.random() * 100,
-    delay: Math.random() * 1.2,
-    duration: 1.8 + Math.random() * 1.2,
-    size: 6 + Math.random() * 8,
-    rotate: Math.random() * 360,
-  }));
+    delay: (Math.random() * 3).toFixed(2),
+    duration: (2 + Math.random() * 2).toFixed(2),
+    size: 6 + Math.floor(Math.random() * 8),
+    isCircle: Math.random() > 0.5,
+    rotate: Math.floor(Math.random() * 360),
+  }))).current;
 
   return (
     <div role="dialog" aria-modal="true" aria-labelledby="celebration-title" style={{ position: 'fixed', inset: 0, zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.55)', padding: 24 }}>
       <style>{`
         @keyframes confettiFall {
-          0%   { transform: translateY(-60px) rotate(0deg); opacity: 1; }
-          100% { transform: translateY(340px) rotate(720deg); opacity: 0; }
+          0%   { transform: translateY(-80px) rotate(0deg); opacity: 1; }
+          80%  { opacity: 1; }
+          100% { transform: translateY(105vh) rotate(900deg); opacity: 0; }
         }
         @keyframes modalPop {
-          0%   { transform: scale(0.85); opacity: 0; }
+          0%   { transform: scale(0.88); opacity: 0; }
           100% { transform: scale(1);    opacity: 1; }
         }
       `}</style>
-      {/* Confetti */}
+      {/* Confetti — infinite loop */}
       <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none' }}>
         {pieces.map(p => (
           <div key={p.id} style={{
@@ -5354,27 +5356,33 @@ function CelebrationModal({ name, onDownload, onClose }) {
             width: p.size,
             height: p.size,
             background: p.color,
-            borderRadius: Math.random() > 0.5 ? '50%' : 2,
-            animation: `confettiFall ${p.duration}s ${p.delay}s ease-in forwards`,
+            borderRadius: p.isCircle ? '50%' : 2,
+            animation: `confettiFall ${p.duration}s ${p.delay}s ease-in infinite`,
             transform: `rotate(${p.rotate}deg)`,
           }} />
         ))}
       </div>
       {/* Modal card */}
-      <div style={{ background: '#fff', borderRadius: 20, padding: '48px 40px', maxWidth: 480, width: '100%', textAlign: 'center', animation: 'modalPop 0.35s ease-out', position: 'relative' }}>
-        <div style={{ fontSize: 56, marginBottom: 16 }}>🎉</div>
-        <h2 id="celebration-title" style={{ fontFamily: FONT, fontSize: 26, fontWeight: 700, color: rdcUiTheme.color.text.primary, margin: '0 0 12px' }}>
+      <div style={{ background: '#fff', borderRadius: 16, padding: '24px', maxWidth: 480, width: '100%', animation: 'modalPop 0.3s ease-out', position: 'relative', boxShadow: '0 4px 16px rgba(0,0,0,0.16)' }}>
+        {/* X close button */}
+        <button onClick={onClose} aria-label="Close" style={{ position: 'absolute', top: 16, right: 16, background: 'none', border: 'none', cursor: 'pointer', padding: 4, color: rdcUiTheme.color.text.primary, lineHeight: 1 }}>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M15 5L5 15M5 5l10 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
+        </button>
+        {/* Header */}
+        <h2 id="celebration-title" style={{ fontFamily: FONT, fontSize: rdcUiTheme.typography.scale.display600?.size || 22, fontWeight: 600, color: rdcUiTheme.color.text.primary, margin: '0 0 12px', paddingRight: 32, lineHeight: 1.3 }}>
           You did it, {name}!
         </h2>
-        <p style={{ fontFamily: FONT, fontSize: 16, color: rdcUiTheme.color.text.secondary, lineHeight: 1.6, margin: '0 0 32px' }}>
-          You've completed the accessibility training. Download your certificate and keep designing inclusively.
+        {/* Body */}
+        <p style={{ fontFamily: FONT, fontSize: rdcUiTheme.typography.scale.body300.size, color: rdcUiTheme.color.text.primary, lineHeight: rdcUiTheme.typography.scale.body300.lineHeight, margin: '0 0 24px' }}>
+          You&apos;ve completed the accessibility training. Download your certificate and keep designing inclusively.
         </p>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-          <Button styleType="PrimaryDefault" onClick={onDownload} style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
-            <IconDownload size={2} color="currentColor" />Download Certificate
-          </Button>
-          <Button styleType="SecondaryDefault" onClick={onClose} style={{ width: '100%' }}>
+        {/* Footer */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
+          <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', fontFamily: FONT, fontSize: rdcUiTheme.typography.scale.body300.size, fontWeight: 500, color: rdcUiTheme.color.text.primary, textDecoration: 'underline', padding: 0 }}>
             Close
+          </button>
+          <Button styleType="PrimaryDefault" onClick={onDownload} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <IconDownload size={2} color="currentColor" />Download certificate
           </Button>
         </div>
       </div>
