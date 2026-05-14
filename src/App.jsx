@@ -5475,13 +5475,13 @@ export default function App() {
                   ))}
                 </ContentCard>
               ))}
-              <QuizBlock
+              {active.quiz && <QuizBlock
                 key={active.id + "-" + attempt}
                 quiz={active.quiz}
                 attempt={attempt}
                 onComplete={finishQuiz}
                 isReadOnly={isReadOnly}
-              />
+              />}
               <NavRow>
                 <div>
                   {prevModule ? (
@@ -5529,7 +5529,7 @@ export default function App() {
               )}
 
               {/* Quiz   key forces remount between modules/attempts */}
-              {showQuiz && (
+              {showQuiz && active.quiz && (
                 <QuizBlock
                   key={active.id + "-" + attempt}
                   quiz={active.quiz}
