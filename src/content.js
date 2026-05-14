@@ -328,7 +328,7 @@ export const MODULES_DATA = [
     pages:[
       { sections:[
         { type:"guideline-cards",
-          heading:"Robust Guidelines",
+          heading:"4. Robust",
           href:"https://www.w3.org/TR/WCAG22/#robust",
           intro:["This principle ensures that content is robust enough to be interpreted by a wide variety of current and future technologies, including assistive tools. Every interactive element must expose its name, role, and value so screen readers, voice control, and switch access can all operate it reliably. There is 1 guideline to follow and in the next pages, we will explain how you can design with this guideline in mind:"],
           cards:[
@@ -337,10 +337,11 @@ export const MODULES_DATA = [
         }
       ]},
       { sections:[{ type:"guideline-detail",
-        heading:"Compatible",
-        intro:"Content must be robust enough to be interpreted by a wide variety of current and future assistive technologies. This means every interactive element must expose its name, role, and value so that screen readers, voice control, and switch access can all operate it reliably.",
+        heading:"4.1 Compatible",
+        headingUrl:"https://www.w3.org/WAI/WCAG22/Understanding/compatible",
+        intro:"This guideline focuses on ensuring web content is compatible with current and future user tools, particularly assistive technologies. That means content needs to be properly structured and coded, with correct parsing, accurate names and roles for UI elements, and status messages that can be determined programmatically. For users with disabilities who rely on these technologies to navigate and interact with digital content, this kind of under-the-hood precision is what makes the difference between content that works and content that doesn\'t.",
         criteria:[
-          { title:"Avoid being platform-specific", level:"A", tags:["4.1.2: Name, role, value"], body:"Users who use assistive technologies may not be able to tap or click to perform a function. Every interactive element must have a programmatically determinable name, role, and value.", examples:[{ title:"Icon-only button", desc:"A button that only contains an icon has no visible text label. Without an accessible name, screen readers announce it as 'button' with no context.", dont:{ caption:"Don't spec an icon-only button without annotating an accessible name — screen reader users will hear 'button' with no indication of what it does." }, do:{ caption:"Do annotate every icon-only button in your design handoff with an explicit accessible name (e.g., aria-label: 'Close dialog') so developers can implement it correctly." } }] }
+          { title:"Avoid being platform-specific", level:"A", tags:["4.1.2: Name, role, value"], body:"Users who use assistive technologies may not be able to tap or click to perform a function. Every interactive element must have a programmatically determinable name, role, and value.", examples:[{ title:"Icon-only button", desc:"A button that only contains an icon has no visible text label. Without an accessible name, screen readers announce it as \'button\' with no context.", dont:{ caption:"Don\'t spec an icon-only button without annotating an accessible name — screen reader users will hear \'button\' with no indication of what it does." }, do:{ caption:"Do annotate every icon-only button in your design handoff with an explicit accessible name (e.g., aria-label: \'Close dialog\') so developers can implement it correctly." } }] }
         ]
       }]}],
     quiz: QUIZZES[5]
