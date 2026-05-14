@@ -284,9 +284,9 @@ export const MODULES_DATA = [
           href:"https://www.w3.org/TR/WCAG22/#understandable",
           intro:["This principle ensures that information and the operation of the interface is understandable. Content must be readable, interfaces must behave predictably, and users must be helped to avoid and correct mistakes. There are 3 guidelines to follow and in the next pages, we will explain how you can design with these guidelines in mind:"],
           cards:[
-            { title:"Readable",          desc:"Content must be readable and understandable, with language attributes that assistive technologies can use." },
-            { title:"Predictable",       desc:"Web pages must appear and operate in predictable ways so users always know what to expect." },
-            { title:"Input assistance",  desc:"Users must be helped to avoid and correct mistakes when providing input." }
+            { title:"Readable",          desc:"Content must be readable and understandable, with language attributes that assistive technologies can use.", image:"/Images/Understandable/Readable.svg" },
+            { title:"Predictable",       desc:"Web pages must appear and operate in predictable ways so users always know what to expect.", image:"/Images/Understandable/Predictable.svg" },
+            { title:"Input assistance",  desc:"Users must be helped to avoid and correct mistakes when providing input.", image:"/Images/Understandable/Input assistance.svg" }
           ]
         }
       ]},
