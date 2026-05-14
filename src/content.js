@@ -376,7 +376,7 @@ export const MODULES_DATA = [
           text:"We've got you covered. Here's the ",
           linkText:"full course content on Confluence",
           href:"https://moveinc.atlassian.net/wiki/spaces/systems/pages/118882533466",
-          textAfter:", all guidelines, success criteria, and examples in one place, easy to reference anytime."
+          textAfter:", all guidelines, success criteria, and examples in one place, easy to reference anytime!"
         }
       ]}
     ],
