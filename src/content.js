@@ -346,23 +346,34 @@ export const MODULES_DATA = [
       }]}],
     quiz: QUIZZES[5]
   },
-  { id:6, title:"Your role & checklist", emoji:"✅",
+  { id:6, title:"You Actually Know This Now", emoji:"✅",
     pages:[
       { sections:[
-        { type:"text", heading:"Accessibility is everyone's responsibility, but designers set the tone", body:"By the time a design reaches engineering, most of the accessibility decisions have already been made. That means your choices in Figma have an outsized impact on the final product's inclusivity." },
-        { type:"checklist-module", heading:"Designer accessibility checklist", categories:[
-          { name:"Color & visual",       items:["All text meets 4.5:1 contrast ratio (3:1 for large text)","UI components (inputs, buttons, icons) meet 3:1 contrast","Color is never the sole means of conveying information","Designs reviewed under color blindness simulation"] },
-          { name:"Typography & layout",  items:["Body text is Body 300 (16px) minimum","Touch/click targets are at least 48x48px","Content reflows at 400% zoom without horizontal scrolling","Text spacing can be increased without loss of functionality"] },
-          { name:"Interaction & states", items:["All interactive elements have a visible focus state","Hover, focus, active, disabled, and error states are designed","Keyboard interaction annotated for complex components","Motion can be disabled (prefers-reduced-motion considered)"] },
-          { name:"Handoff",              items:["Reading/focus order annotated in Figma","Alt text written for all meaningful images","ARIA labels specified for icon-only controls","Interactive element roles labeled (button, link, checkbox...)"] }
+        { type:"text", heading:"You Actually Know This Now", body:[
+          "Nobody finishes an accessibility training and suddenly becomes a different designer overnight. But you do finish it knowing things you didn't before, and that part matters.",
+          "You've been through contrast ratios, color blindness, keyboard navigation, alt text, inclusive design, data visualization, WCAG criteria. Not as abstract concepts. As decisions you make in Figma every time you pick a color, lay out a page, or write a label."
+        ]},
+        { type:"text", heading:"What actually stuck", body:[
+          "Contrast ratios aren't magic numbers from a compliance doc. They're the gap between someone being able to read your UI at a coffee shop versus squinting and giving up. Color can't carry the whole message on its own because for a chunk of your users it literally isn't there. Alt text that says \"image of a house\" helps nobody. Reading order is a layout decision, even when it doesn't feel like one.",
+          "You know this stuff now. It'll start showing up in how you look at other people's designs too, which is a little annoying but mostly useful."
+        ]},
+        { type:"text", heading:"Where you actually have influence", body:[
+          "Most of the accessibility characteristics of a product are decided at the design stage. Not in QA. Not in a legal review. In Figma, before anyone writes a line of code. The color you chose, the layout you built, whether the error state communicates something beyond just turning red.",
+          "That's a real amount of influence. More than most people realize when they're in the middle of a sprint."
         ]}
       ]},
-      { sections:[{ type:"resources", heading:"Keep learning", links:[
-        { title:"WCAG 2.2 Quick Reference", url:"https://www.w3.org/WAI/WCAG22/quickref/",       desc:"Official filterable checklist from W3C" },
-        { title:"WebAIM Contrast Checker",  url:"https://webaim.org/resources/contrastchecker/", desc:"Quick ratio checker for any two colors" },
-        { title:"Inclusive Components",     url:"https://inclusive-components.design/",           desc:"Deep dives on designing common UI patterns accessibly" },
-        { title:"A11y Project Checklist",   url:"https://www.a11yproject.com/checklist/",         desc:"Practical, plain-language WCAG checklist" }
-      ]}]}
+      { sections:[
+        { type:"text", heading:"A gut check before you ship", body:[
+          "Does this work without color as the only signal? Would someone looking at a grayscale version of this screen still understand what's required, what's broken, what's selected?",
+          "Is there anything image-only that needs a text equivalent?",
+          "Does the layout hold at 400% zoom, or does it fall apart?",
+          "Does the reading order match the actual sequence of information on the page?",
+          "Not a perfect checklist. Just four questions worth asking before you hand something off."
+        ]},
+        { type:"text", heading:"One more thing", body:[
+          "Accessibility is a commitment in Haven, not a checklist item. This course is 7 modules right now, but the plan is to keep building it out. More criteria, more real examples, more of the specifics that actually show up in our work at Realtor.com. The goal is that this stays useful to you, not just something you completed once."
+        ]}
+      ]}
     ],
     quiz: null
   }
