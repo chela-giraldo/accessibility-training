@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import html2canvas from "html2canvas";
 import styled, { createGlobalStyle, keyframes, css } from "styled-components";
 import { MODULES_DATA } from "./content.js";
-import { IconChevronLeft as RdcIconChevronLeft, IconClock as RdcIconClock, IconSchool as RdcIconSchool, IconBarChart as RdcIconBarChart, IconBarChartFilled as RdcIconBarChartFilled, IconList as RdcIconList, IconDownload as RdcIconDownload, ContentSwitch as RdcContentSwitch, ContentSwitchGroup as RdcContentSwitchGroup, InlineMessage as RdcInlineMessage } from "@rdc-npm/rdc-ui";
+import { IconChevronLeft as RdcIconChevronLeft, IconClock as RdcIconClock, IconSchool as RdcIconSchool, IconBarChart as RdcIconBarChart, IconBarChartFilled as RdcIconBarChartFilled, IconList as RdcIconList, IconDownload as RdcIconDownload, IconCircleCheckFilled as RdcIconCircleCheckFilled, ContentSwitch as RdcContentSwitch, ContentSwitchGroup as RdcContentSwitchGroup, InlineMessage as RdcInlineMessage } from "@rdc-npm/rdc-ui";
 // ── Local theme (replaces @rdc-npm/rdc-ui rdcUiTheme) ───────────────────────
 const rdcUiTheme = {
   color: {
@@ -209,6 +209,9 @@ function IconClock({ size = 16, color = 'currentColor' }) {
 
 function IconDownload({ size = 16, color = 'currentColor' }) {
   return <RdcIconDownload size={size} color={color} aria-hidden="true" />;
+}
+function IconCircleCheckFilled({ size = 16, color = 'currentColor' }) {
+  return <RdcIconCircleCheckFilled size={size} color={color} aria-hidden="true" />;
 }
 
 function Link({ as: As = 'a', reverse, onClick, style, children, ...rest }) {
@@ -5384,7 +5387,7 @@ function CelebrationModal({ name, onDownload, onClose }) {
           </button>
           {dlState === 'done' ? (
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, background: rdcUiTheme.color.status.success, color: '#fff', borderRadius: 999, padding: '10px 20px', fontFamily: FONT, fontWeight: 600, fontSize: rdcUiTheme.typography.scale.body300.size }}>
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              <IconCircleCheckFilled size={2} color="currentColor" />
               Certificate downloaded
             </div>
           ) : (
