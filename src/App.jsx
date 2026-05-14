@@ -5322,7 +5322,7 @@ function LoginPage({ knownEmail, onLogin }) {
 // ── CelebrationModal ─────────────────────────────────────────────────────────
 function CelebrationModal({ name, onDownload, onClose }) {
   const confettiColors = ['#0D2C62','#4A7FD4','#F5A623','#E84040','#2ECC71','#9B59B6','#F39C12'];
-  const pieces = React.useRef(Array.from({ length: 60 }, (_, i) => ({
+  const pieces = useRef(Array.from({ length: 60 }, (_, i) => ({
     id: i,
     color: confettiColors[i % confettiColors.length],
     left: Math.random() * 100,
@@ -5450,10 +5450,15 @@ export default function App() {
     window.scrollTo(0, 0);
   }
 
-  function finishQuiz() {
+  function markComplete() {
     const next = completed.includes(active.id) ? completed : completed.concat([active.id]);
     setCompleted(next);
     if (next.length === MODULES.length) setAllDone(true);
+    return next;
+  }
+
+  function finishQuiz() {
+    markComplete();
     setQuizDone(true);
   }
 
@@ -5461,7 +5466,7 @@ export default function App() {
     window.scrollTo(0, 0);
     const lastPage = active && page === active.pages.length - 1;
     const isLastModule = active && active.id === MODULES[MODULES.length - 1].id;
-    if (lastPage && !active.quiz && isLastModule) { finishQuiz(); setShowCelebration(true); }
+    if (lastPage && !active.quiz && isLastModule) { markComplete(); setShowCelebration(true); }
     else if (lastPage && !active.quiz) { finishQuiz(); }
     else if (lastPage) { setShowQuiz(true); }
     else { setPage(p => p + 1); }
