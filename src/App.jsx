@@ -5388,9 +5388,9 @@ function CelebrationModal({ name, onDownload, onClose }) {
             Close
           </button>
           {dlState === 'done' ? (
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, background: rdcUiTheme.color.status.success, color: '#fff', borderRadius: 999, padding: '10px 20px', fontFamily: FONT, fontWeight: 600, fontSize: rdcUiTheme.typography.scale.body300.size }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, background: rdcUiTheme.color.status.success, color: '#fff', borderRadius: 999, padding: '10px 20px', fontFamily: FONT, fontWeight: 500, fontSize: rdcUiTheme.typography.scale.body300.size }}>
               <IconCircleCheckFilled size={2} color="currentColor" />
-              Certificate downloaded
+              Certificate downloaded!
             </div>
           ) : (
             <Button
