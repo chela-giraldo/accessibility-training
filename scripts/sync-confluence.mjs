@@ -178,7 +178,13 @@ async function confluenceRequest(path, method = "GET", body = undefined) {
   return res.json();
 }
 
-const current = await confluenceRequest(`/content/${PAGE_ID}?expand=version,space`);
+// Fetch page — try current first, fall back to draft
+let current;
+try {
+  current = await confluenceRequest(`/content/${PAGE_ID}?expand=version,space`);
+} catch {
+  current = await confluenceRequest(`/content/${PAGE_ID}?expand=version,space&status=draft`);
+}
 const nextVersion = current.version.number + 1;
 const spaceKey    = current.space.key;
 const title       = current.title;
