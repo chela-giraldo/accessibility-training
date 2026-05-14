@@ -6,6 +6,7 @@ on:
     paths:
       - src/content.js
       - src/quizzes.js
+  workflow_dispatch:
 
 jobs:
   sync:
