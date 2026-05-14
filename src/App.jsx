@@ -5688,7 +5688,15 @@ export default function App() {
             </>
           )}
         </ReaderMain>
-      </ReaderWrapper></>
+      </ReaderWrapper>
+      {showCelebration && (
+        <CelebrationModal
+          name={userInfo?.name || "Designer"}
+          onDownload={() => { markComplete(); downloadCertificate(userInfo?.name || "Designer"); }}
+          onClose={() => { markComplete(); setShowCelebration(false); setActive(null); }}
+        />
+      )}
+      </>
     );
   }
 
