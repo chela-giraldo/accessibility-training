@@ -4505,6 +4505,11 @@ function GDCriterionBlock({ criterion, isReadOnly }) {
         const parts = criterion.body.split(new RegExp(`(${phrases.map(p => p.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`));
         return parts.map((part, i) => phrases.includes(part) ? <span key={i} style={{ textDecoration: 'underline' }}>{part}</span> : part);
       })() : criterion.body}</GDBody>
+      {criterion.bodyExtra && (
+        <div style={{ marginTop: 16, padding: "12px 16px", background: rdcUiTheme.color.bg.secondary, borderRadius: 8, borderLeft: `4px solid ${rdcUiTheme.color.status.info}` }}>
+          <GDBody style={{ margin: 0 }}><span style={{ fontWeight: 500 }}>Pro tip:</span>{criterion.bodyExtra.replace(/^Pro tip:/, '')}</GDBody>
+        </div>
+      )}
       {criterion.bodyParagraphs && criterion.bodyParagraphs.map((para, i) => (
         <GDBody key={i} style={{ marginTop: 12 }}>{para}</GDBody>
       ))}
