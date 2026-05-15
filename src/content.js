@@ -369,7 +369,7 @@ export const MODULES_DATA = [
       ]}]},
       { sections:[
         { type:"text", heading:"One more thing", body:[
-          "Accessibility is a commitment in Haven, not a checklist item. This course is 7 modules right now, but the plan is to keep building it out. More criteria, more real examples, more of the specifics that actually show up in our work at Realtor.com. The goal is that this stays useful to you, not just something you completed once."
+          "Accessibility is a commitment in Haven, not a checklist item. This course is 7 modules right now, but the plan is to keep building it out. More criteria, more real examples, more of the specifics that actually show up in our work at Realtor.com. Coming up: guidance on the accessibility documentation in ZeroHeight and accessibility practices in Figma for the new Haven library. The goal is that this stays useful to you, not just something you completed once."
         ]},
         { type:"confluence-link",
           title:"Want this content as a document?",
