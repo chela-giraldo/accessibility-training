@@ -4505,9 +4505,7 @@ function GDCriterionBlock({ criterion, isReadOnly }) {
         const parts = criterion.body.split(new RegExp(`(${phrases.map(p => p.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`));
         return parts.map((part, i) => phrases.includes(part) ? <span key={i} style={{ textDecoration: 'underline' }}>{part}</span> : part);
       })() : criterion.body}</GDBody>
-      {criterion.bodyExtra && (
-        <GDBody style={{ marginTop: 12 }}>{criterion.bodyExtra}</GDBody>
-      )}
+
       {criterion.bodyParagraphs && criterion.bodyParagraphs.map((para, i) => (
         <GDBody key={i} style={{ marginTop: 12 }}>{para}</GDBody>
       ))}
