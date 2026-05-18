@@ -2591,7 +2591,7 @@ function QuizBlock({ quiz: quizInput, attempt, onComplete, isReadOnly, prevButto
                   </PickerCard>
                 ))}
               </PickerGroup>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 16 }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: 8, marginTop: 16 }}>
                 <PickerCircle $correct aria-hidden="true" style={{ flexShrink: 0 }}>
                   <svg width="12" height="10" viewBox="0 0 12 10" fill="none">
                     <path d="M1 5L4.5 8.5L11 1.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
