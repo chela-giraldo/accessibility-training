@@ -4677,6 +4677,10 @@ function GDCriterionBlock({ criterion, isReadOnly }) {
                     </div>
                   ) : ex.image && ex.audioControlExample ? (
                     <img src={ex.image} alt="" aria-hidden="true" style={{ width: "100%", maxWidth: 800, height: "auto", display: "block" }} />
+                  ) : ex.image && ex.imageGreyBox ? (
+                    <div style={{ width: "100%", background: rdcUiTheme.color.gray['50'], border: `1px solid ${rdcUiTheme.color.border.base}`, borderRadius: 16, padding: 24, boxSizing: "border-box", display: "flex", justifyContent: "center" }}>
+                      <img src={ex.image} alt="" aria-hidden="true" style={{ width: "100%", maxWidth: ex.imageMaxWidth || 600, height: "auto", display: "block" }} />
+                    </div>
                   ) : ex.image ? (
                     <img src={ex.image} alt="" aria-hidden="true" style={{ width: "100%", maxWidth: ex.imageMaxWidth || 600, height: "auto", display: "block" }} />
                   ) : (
