@@ -5615,9 +5615,13 @@ export default function App() {
                     </Button>
                   )}
                 </div>
-                {nextModule && (
+                {nextModule ? (
                   <Button styleType="PrimaryDefault" onClick={() => openModule(nextModule)}>
                     {completed.includes(nextModule.id) ? "Next module recap" : "Next module"}
+                  </Button>
+                ) : (
+                  <Button styleType="PrimaryDefault" onClick={() => setActive(null)}>
+                    Back to dashboard
                   </Button>
                 )}
               </NavRow>
