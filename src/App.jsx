@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import html2canvas from "html2canvas";
 import styled, { createGlobalStyle, keyframes, css } from "styled-components";
 import { MODULES_DATA } from "./content.js";
-import { IconChevronLeft as RdcIconChevronLeft, IconClock as RdcIconClock, IconSchool as RdcIconSchool, IconBarChart as RdcIconBarChart, IconBarChartFilled as RdcIconBarChartFilled, IconList as RdcIconList, IconDownload as RdcIconDownload, IconCircleCheckFilled as RdcIconCircleCheckFilled, ContentSwitch as RdcContentSwitch, ContentSwitchGroup as RdcContentSwitchGroup, InlineMessage as RdcInlineMessage } from "@rdc-npm/rdc-ui";
+import { IconChevronLeft as RdcIconChevronLeft, IconClock as RdcIconClock, IconSchool as RdcIconSchool, IconBarChart as RdcIconBarChart, IconBarChartFilled as RdcIconBarChartFilled, IconList as RdcIconList, IconDownload as RdcIconDownload, IconCircleCheckFilled as RdcIconCircleCheckFilled, IconErrorFilled as RdcIconErrorFilled, ContentSwitch as RdcContentSwitch, ContentSwitchGroup as RdcContentSwitchGroup, InlineMessage as RdcInlineMessage } from "@rdc-npm/rdc-ui";
 // ── Local theme (replaces @rdc-npm/rdc-ui rdcUiTheme) ───────────────────────
 const rdcUiTheme = {
   color: {
@@ -5181,7 +5181,7 @@ function SignupPage({ onSubmit }) {
               aria-invalid={!!nameErr}
             />
             {nameErr && (
-              <p id="signup-name-err" role="alert" style={{ margin: "6px 0 0", fontFamily: FONT, fontSize: 13, color: "#FF6B6E" }}>{nameErr}</p>
+              <p id="signup-name-err" role="alert" style={{ margin: "6px 0 0", fontFamily: FONT, fontSize: 13, color: "#FF6B6E", display: "flex", alignItems: "center", gap: 4 }}><RdcIconErrorFilled size={14} color="#FF6B6E" aria-hidden="true" />{nameErr}</p>
             )}
           </div>
 
@@ -5202,7 +5202,7 @@ function SignupPage({ onSubmit }) {
               aria-invalid={!!emailErr}
             />
             {emailErr && (
-              <p id="signup-email-err" role="alert" style={{ margin: "6px 0 0", fontFamily: FONT, fontSize: 13, color: "#FF6B6E" }}>{emailErr}</p>
+              <p id="signup-email-err" role="alert" style={{ margin: "6px 0 0", fontFamily: FONT, fontSize: 13, color: "#FF6B6E", display: "flex", alignItems: "center", gap: 4 }}><RdcIconErrorFilled size={14} color="#FF6B6E" aria-hidden="true" />{emailErr}</p>
             )}
           </div>
 
@@ -5311,7 +5311,7 @@ function LoginPage({ knownEmail, onLogin }) {
               </datalist>
             )}
             {emailErr && (
-              <p id="login-email-err" role="alert" style={{ margin: "6px 0 0", fontFamily: FONT, fontSize: 13, color: "#FF6B6E" }}>{emailErr}</p>
+              <p id="login-email-err" role="alert" style={{ margin: "6px 0 0", fontFamily: FONT, fontSize: 13, color: "#FF6B6E", display: "flex", alignItems: "center", gap: 4 }}><RdcIconErrorFilled size={14} color="#FF6B6E" aria-hidden="true" />{emailErr}</p>
             )}
           </div>
 
