@@ -2139,7 +2139,7 @@ const PickerGroup = styled.div`
 const PickerCard = styled.label`
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 12px;
   padding: 16px 20px;
   border: 1px solid ${p => p.$correct ? rdcUiTheme.color.status.success : p.$selected ? rdcUiTheme.color.text.primary : rdcUiTheme.color.border.accent};

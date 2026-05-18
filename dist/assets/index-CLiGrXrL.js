@@ -1302,7 +1302,7 @@ For example, a link that navigates to a help article should read "Learn how to u
 `,xl=P.label`
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 12px;
   padding: 16px 20px;
   border: 1px solid ${e=>e.$correct?V.color.status.success:e.$selected?V.color.text.primary:V.color.border.accent};
