@@ -330,7 +330,7 @@ export const MODULES_DATA = [
           href:"https://www.w3.org/TR/WCAG22/#robust",
           intro:["This principle ensures that content is robust enough to be interpreted by a wide variety of current and future technologies, including assistive tools. Every interactive element must expose its name, role, and value so screen readers, voice control, and switch access can all operate it reliably. There is 1 guideline to follow and in the next pages, we will explain how you can design with this guideline in mind:"],
           cards:[
-            { title:"Compatible", desc:"Content must be robust enough to be reliably interpreted by a wide variety of assistive technologies." }
+            { title:"Compatible", desc:"Content must be robust enough to be reliably interpreted by a wide variety of assistive technologies.", image:"/Images/Compatible.svg" }
           ]
         }
       ]},
