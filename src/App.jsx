@@ -5181,7 +5181,7 @@ function SignupPage({ onSubmit }) {
               aria-invalid={!!nameErr}
             />
             {nameErr && (
-              <p id="signup-name-err" role="alert" style={{ margin: "6px 0 0", fontFamily: FONT, fontSize: 13, color: "#FF6B6E", display: "flex", alignItems: "center", gap: 4 }}><RdcIconError size={16} color="#FF6B6E" aria-hidden="true" />{nameErr}</p>
+              <p id="signup-name-err" role="alert" style={{ margin: "6px 0 0", fontFamily: FONT, fontSize: 13, color: "#FF6B6E", display: "flex", alignItems: "center", gap: 4 }}><RdcIconError size={2} color="#FF6B6E" aria-hidden="true" />{nameErr}</p>
             )}
           </div>
 
@@ -5202,7 +5202,7 @@ function SignupPage({ onSubmit }) {
               aria-invalid={!!emailErr}
             />
             {emailErr && (
-              <p id="signup-email-err" role="alert" style={{ margin: "6px 0 0", fontFamily: FONT, fontSize: 13, color: "#FF6B6E", display: "flex", alignItems: "center", gap: 4 }}><RdcIconError size={16} color="#FF6B6E" aria-hidden="true" />{emailErr}</p>
+              <p id="signup-email-err" role="alert" style={{ margin: "6px 0 0", fontFamily: FONT, fontSize: 13, color: "#FF6B6E", display: "flex", alignItems: "center", gap: 4 }}><RdcIconError size={2} color="#FF6B6E" aria-hidden="true" />{emailErr}</p>
             )}
           </div>
 
@@ -5311,7 +5311,7 @@ function LoginPage({ knownEmail, onLogin }) {
               </datalist>
             )}
             {emailErr && (
-              <p id="login-email-err" role="alert" style={{ margin: "6px 0 0", fontFamily: FONT, fontSize: 13, color: "#FF6B6E", display: "flex", alignItems: "center", gap: 4 }}><RdcIconError size={16} color="#FF6B6E" aria-hidden="true" />{emailErr}</p>
+              <p id="login-email-err" role="alert" style={{ margin: "6px 0 0", fontFamily: FONT, fontSize: 13, color: "#FF6B6E", display: "flex", alignItems: "center", gap: 4 }}><RdcIconError size={2} color="#FF6B6E" aria-hidden="true" />{emailErr}</p>
             )}
           </div>
 
