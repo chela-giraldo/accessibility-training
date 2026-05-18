@@ -4512,7 +4512,7 @@ function GDCriterionBlock({ criterion, isReadOnly }) {
       {criterion.bodyItems && (
         <ul style={{ margin: "8px 0 16px", paddingLeft: 20 }}>
           {criterion.bodyItems.map((item, i) => (
-            <li key={i} style={{ fontSize: 18, color: rdcUiTheme.color.text.primary, fontFamily: FONT, lineHeight: 1.65, marginBottom: 6 }}>{typeof item === "string" ? (() => { const m = item.match(/^([^:]+:)([\s\S]*)$/); return m ? <><span style={{ fontWeight: 600 }}>{m[1]}</span>{m[2]}</> : item; })() : <>{item.text}{item.link && <a href={item.link.href} target="_blank" rel="noreferrer" style={{ color: rdcUiTheme.color.status.info, textDecoration: "underline" }}>{item.link.label}</a>}{item.after}</>}</li>
+            <li key={i} style={{ fontSize: 18, color: rdcUiTheme.color.text.primary, fontFamily: FONT, lineHeight: 1.65, marginBottom: 6 }}>{typeof item === "string" ? (() => { const m = item.match(/^([^:]+:)([\s\S]*)$/); return m ? <><span style={{ fontWeight: 600 }}>{m[1]}</span>{m[2]}</> : item; })() : <>{item.text}{item.link && <a href={item.link.href} target="_blank" rel="noreferrer" style={{ color: rdcUiTheme.color.text.primary, textDecoration: "underline" }}>{item.link.label}</a>}{item.after}</>}</li>
           ))}
         </ul>
       )}
