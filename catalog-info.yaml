@@ -1,0 +1,24 @@
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: accessibility-training
+  title: Accessibility Design Course
+  description: Interactive WCAG 2.2 accessibility training for designers at Move/realtor.com, built with React + Vite.
+  tags:
+    - design-system
+    - accessibility
+    - training
+  annotations:
+    github.com/project-slug: MoveRDC/accessibility-training
+  links:
+    - url: https://curly-goggles-r314ew1.pages.github.io/
+      title: Live Site
+      type: website
+    - url: https://moveinc.atlassian.net/wiki/spaces/systems/pages/118882533466
+      title: Course Content on Confluence
+      type: documentation
+spec:
+  type: website
+  lifecycle: production
+  owner: group:default/component-systems
