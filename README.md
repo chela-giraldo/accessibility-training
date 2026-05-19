@@ -2,8 +2,8 @@
 
 Interactive accessibility training for designers, built with React + Vite. Covers WCAG 2.2 across 7 modules with knowledge-check quizzes.
 
-**Live site:** https://chela-giraldo.github.io/accessibility-training/
-**Repo:** https://github.com/chela-giraldo/accessibility-training
+**Live site:** https://curly-goggles-r314ew1.pages.github.io/
+**Repo:** https://github.com/MoveRDC/accessibility-training
 
 ---
 
@@ -32,7 +32,7 @@ Claude Code is an AI coding assistant you can run in your terminal to edit this 
 
 3. Clone the repo:
    ```
-   git clone https://github.com/chela-giraldo/accessibility-training.git
+   git clone https://github.com/MoveRDC/accessibility-training.git
    cd accessibility-training
    npm install
    ```
@@ -80,7 +80,7 @@ The sync is handled by a GitHub Action (`.github/workflows/sync-confluence.yml`)
 - `CONFLUENCE_EMAIL` — your moveinc email
 - `CONFLUENCE_API_TOKEN` — an [Atlassian API token](https://id.atlassian.com/manage-profile/security/api-tokens)
 
-To trigger a manual sync without making a content change, go to [Actions → Sync content to Confluence](https://github.com/chela-giraldo/accessibility-training/actions/workflows/sync-confluence.yml) and click **Run workflow**.
+To trigger a manual sync without making a content change, go to [Actions → Sync content to Confluence](https://github.com/MoveRDC/accessibility-training/actions/workflows/sync-confluence.yml) and click **Run workflow**.
 
 ---
 
